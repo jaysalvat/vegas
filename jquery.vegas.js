@@ -60,10 +60,11 @@
 						resize( $new, options );
 					});
 
-					$new.attr({
-						width: this[0].width,
-						height: this[0].height
-					});
+					if ($.browser.webkit)
+						$new.attr({
+							width: this[0].width,
+							height: this[0].height
+						});
 					
 					if ( $current ) {
 						$current.stop();
