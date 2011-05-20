@@ -55,10 +55,16 @@
 					'left':		'0px',
 					'top':		'0px'
 				})
-				.load( function() {
+				.imagesLoaded( function() {
 					$( window ).bind( 'resize.vegas', function( e ) {
 						resize( $new, options );
 					});
+
+					if ($.browser.webkit)
+						$new.attr({
+							width: this[0].width,
+							height: this[0].height
+						});
 					
 					if ( $current ) {
 						$current.stop();
