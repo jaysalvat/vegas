@@ -34,13 +34,13 @@
 		timer,
 		step = 0,
 		methods = {
-			
+
 		// Init plugin
 		init : function( settings ) {
 			var options = {
 				src:		getBackground(),
 				align: 		'center',
-				valign: 	'center',
+				valign:		'center',
 				fade:		0,
 				load:		function() {},
 				complete: 	function() {}
@@ -48,7 +48,7 @@
 			$.extend( true, options, settings );
 
 			loading();
-			
+
 			$new = $background.clone();
 			$new.css( {
 					'position':	'fixed',
@@ -59,7 +59,7 @@
 					$( window ).bind( 'resize.vegas', function( e ) {
 						resize( $new, options );
 					});
-					
+
 					if ( $current ) {
 						$current.stop();
 						$new.hide()
@@ -90,35 +90,34 @@
 					options.load.apply( $current.get(0) );
 				})
 				.attr( 'src', options.src );
-				
+
 			return $.vegas;
 		},
 
 		// Destroy background
 		destroy: function( what ) {
 			if ( !what || what == 'background') {
-				$('.vegas-background').remove();
-				$('.vegas-loading').remove();
+				$( '.vegas-background, .vegas-loading' ).remove();
 				$( window ).unbind( 'resize.vegas' );
 				$current = null;
 			}
 
 			if ( !what || what == 'overlay') {
-				$('.vegas-overlay').remove();
+				$( '.vegas-overlay' ).remove();
 			}
-		
+
 			return $.vegas;
 		},
-		
+
 		overlay:function( settings ) {
 			var options = {
 				src:		null,
 				opacity:	null
 			};
 			$.extend( options, settings );
-			
+
 			$overlay.remove();
-			
+
 			$overlay
 				.css( {
 					'margin':	'0',
@@ -129,7 +128,7 @@
 					'width':	'100%',
 					'height':	'100%'
 			});
-			
+
 			if ( options.src ) {
 				$overlay.css( 'backgroundImage', 'url(' + options.src + ')' );
 			}
@@ -137,7 +136,7 @@
 			if ( options.opacity ) {
 				$overlay.css( 'opacity', options.opacity );
 			}
-	
+
 			$overlay.prependTo( 'body' );
 			
 			return $.vegas;
@@ -153,39 +152,39 @@
 
 			clearInterval( timer );
 
-			var doSlideshow = function() {		
+			var doSlideshow = function() {
 				$.vegas( options.backgrounds[ step++ ] );
 
 				if ( step >= options.backgrounds.length ) {
 					step = 0;
 				}
 			}
-			
+
 			doSlideshow();
 			timer = setInterval( doSlideshow, options.delay );
-			
+
 			return $.vegas;
 		},
-		
+
 		// Stop slideshow
 		stop: function( settings ) {
 			step = 0;
 			clearInterval( timer );
-			
+
 			return $.vegas;
 		},
-		
+
 		// Pause SlideShow
 		pause: function( settings ) {
 			clearInterval( timer );
 		}
-	}		
+	}
 
 	// Resize the background
 	function resize( $img, settings ) {	
 		var options =  {
 			align: 	'center',
-			valign: 'center'
+			valign:	'center'
 		}
 		$.extend( options, settings );
 
@@ -198,7 +197,7 @@
 			newWidth, newHeight,
 			newLeft, newTop,
 			properties;
-			
+
 		if ( rw > ri ) {
 			newWidth = wh / ri;
 			newHeight = wh;
