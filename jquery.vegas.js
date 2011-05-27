@@ -177,6 +177,8 @@
 		// Pause SlideShow
 		pause: function( settings ) {
 			clearInterval( timer );
+
+			return $.vegas;
 		}
 	}
 
