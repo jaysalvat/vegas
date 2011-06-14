@@ -337,10 +337,14 @@
 
         properties = {
             'width': newWidth + 'px',
-            'height': newHeight + 'px'
+            'height': newHeight + 'px',
+			'top': 'auto',
+			'bottom': 'auto',
+			'left': 'auto',
+			'right': 'auto'			
         }
 
-        if ( parseInt( options.valign ) != 'NaN' ) {
+        if ( !isNaN( parseInt( options.valign ) ) ) {
             properties[ 'top' ] = ( 0 - ( newHeight - wh ) / 100 * parseInt( options.valign ) ) + 'px';
         } else if ( options.valign == 'top' ) {
             properties[ 'top' ] = 0;
@@ -350,7 +354,7 @@
             properties[ 'top' ] = ( wh - newHeight ) / 2;
         } 
 
-        if ( parseInt( options.align ) != 'NaN' ) {
+        if ( !isNaN( parseInt( options.align ) ) ) {
             properties[ 'left' ] = ( 0 - ( newWidth - ww ) / 100 * parseInt( options.align ) ) + 'px';
         } else if ( options.align == 'left' ) {
             properties[ 'left' ] = 0;
