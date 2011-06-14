@@ -100,7 +100,7 @@
                 options.load.apply( $current.get(0), [ step - 1 ] );
 
                 if ( step ) {
-                    $( 'body' ).trigger( 'vegasstep', [ $current.get(0), step - 1 ] );
+                    $( 'body' ).trigger( 'vegaswalk', [ $current.get(0), step - 1 ] );
                     options.walk.apply( $current.get(0), [ step - 1 ] );
                 }
             })
