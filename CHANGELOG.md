@@ -2,7 +2,7 @@
 
 ## CHANGE LOG
 
-Vegas 1.1.0 2011-06-17
+### Vegas 1.1.0 2011-06-17
 
 * Added default settings
 * Added 'previous' method
@@ -24,6 +24,6 @@ Vegas 1.1.0 2011-06-17
 * Added 'vegaswalk' event
 * Enhanced 'valign' and 'align' with % values
 
-Vegas 1.0.0 2011-05-13
+### Vegas 1.0.0 2011-05-13
 
 * First public release
