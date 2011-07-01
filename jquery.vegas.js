@@ -62,6 +62,10 @@
                 'top': '0px'
             })
             .load( function() {
+                if ( $new == $current ) {
+                    return;
+                }
+                
                 $( window ).bind( 'resize.vegas', function( e ) {
                     resize( $new, options );
                 });
