@@ -162,13 +162,14 @@
         slideshow: function( settings, keepPause ) {
             var options = {
                 step: step,
-                delay: 5000,
+             //   delay: 5000,
                 preload: false,
                 backgrounds: backgrounds,
                 walk: function() {}
             };
-            options = $.extend( {}, $.vegas.defaults.slideshow, options, settings );
-
+            
+            $.extend( options, $.vegas.defaults.slideshow, settings );
+                        
             if ( options.backgrounds != backgrounds ) {
                 if ( !settings.step ) {
                     options.step = 0;
@@ -181,7 +182,7 @@
 
             backgrounds = options.backgrounds;
             step = options.step;
-
+            
             clearInterval( timer );
 
             if ( !backgrounds.length ) {
