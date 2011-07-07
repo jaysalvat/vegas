@@ -166,7 +166,7 @@
         slideshow: function( settings, keepPause ) {
             var options = {
                 step: step,
-             //   delay: 5000,
+                delay: 5000,
                 preload: false,
                 backgrounds: backgrounds,
                 walk: function() {}
