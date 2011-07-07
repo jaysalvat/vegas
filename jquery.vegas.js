@@ -55,7 +55,7 @@
                 loading();
             }
 
-            $new = $background.clone();
+            var $new = $background.clone();
             $new.css( {
                 'position': 'fixed',
                 'left': '0px',
