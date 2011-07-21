@@ -34,6 +34,7 @@
         paused = null,
         backgrounds = [],
         step = 0,
+		delay = 5000,
         timer,
         methods = {
 
@@ -166,7 +167,7 @@
         slideshow: function( settings, keepPause ) {
             var options = {
                 step: step,
-                delay: 5000,
+                delay: delay,
                 preload: false,
                 backgrounds: backgrounds,
                 walk: function() {}
@@ -185,8 +186,9 @@
             }
 
             backgrounds = options.backgrounds;
+			delay = options.delay;
             step = options.step;
-            
+
             clearInterval( timer );
 
             if ( !backgrounds.length ) {
