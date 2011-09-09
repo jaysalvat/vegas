@@ -1,6 +1,11 @@
-# Vegas Background jQuery Plugin v1.1
+# Vegas Background jQuery Plugin v1.2
 
 ## CHANGE LOG
+
+### Vegas 1.2.0 2011-09-09
+
+* Fixed the bug when fading effect is longer than then slideshow delay
+* Added imagesLoaded plugin by Paul Irish et al, thanks simshaun
 
 ### Vegas 1.1.0 2011-06-17
 
