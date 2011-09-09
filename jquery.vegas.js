@@ -181,7 +181,7 @@
                 }
 
                 if ( options.preload ) {
-                    $.vegas( 'preload', options.backgrounds )
+                    $.vegas( 'preload', options.backgrounds );
                 }
             }
 
@@ -206,6 +206,10 @@
 
                 var settings = backgrounds[ step++ ];
                 settings.walk = options.walk;
+
+                if ( settings.fade > options.delay ) {
+                    settings.fade = options.delay;
+                }
 
                 $.vegas( settings );
             }
