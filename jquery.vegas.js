@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
 // Vegas - jQuery plugin 
 // Add awesome fullscreen backgrounds to your webpages.
-// v 1.1 beta
+// v 1.x
 // Dual licensed under the MIT and GPL licenses.
 // http://vegas.jaysalvat.com/
 // ----------------------------------------------------------------------------
@@ -35,12 +35,12 @@
         backgrounds = [],
         step = 0,
 		delay = 5000,
+		walk = function() {},
         timer,
         methods = {
 
         // Init plugin
         init : function( settings ) {
-
             var options = {
                 src: getBackground(),
                 align: 'center',
@@ -170,7 +170,7 @@
                 delay: delay,
                 preload: false,
                 backgrounds: backgrounds,
-                walk: function() {}
+                walk: walk
             };
             
             $.extend( options, $.vegas.defaults.slideshow, settings );
@@ -178,6 +178,10 @@
             if ( options.backgrounds != backgrounds ) {
                 if ( !settings.step ) {
                     options.step = 0;
+                }
+
+                if ( !settings.walk ) {
+                    options.walk = function() {};
                 }
 
                 if ( options.preload ) {
@@ -188,6 +192,7 @@
             backgrounds = options.backgrounds;
 			delay = options.delay;
             step = options.step;
+			walk = options.walk;
 
             clearInterval( timer );
 
@@ -210,7 +215,7 @@
                 if ( settings.fade > options.delay ) {
                     settings.fade = options.delay;
                 }
-
+				
                 $.vegas( settings );
             }
             doSlideshow();
