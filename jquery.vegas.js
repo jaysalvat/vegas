@@ -34,8 +34,8 @@
         paused = null,
         backgrounds = [],
         step = 0,
-		delay = 5000,
-		walk = function() {},
+        delay = 5000,
+        walk = function() {},
         timer,
         methods = {
 
@@ -190,9 +190,9 @@
             }
 
             backgrounds = options.backgrounds;
-			delay = options.delay;
+            delay = options.delay;
             step = options.step;
-			walk = options.walk;
+            walk = options.walk;
 
             clearInterval( timer );
 
@@ -215,7 +215,7 @@
                 if ( settings.fade > options.delay ) {
                     settings.fade = options.delay;
                 }
-				
+
                 $.vegas( settings );
             }
             doSlideshow();
@@ -315,9 +315,12 @@
         
         // Preload an array of backgrounds
         preload: function( backgrounds ) {
+            var cache = [];
             for( var i in backgrounds ) {
                 if ( backgrounds[ i ].src ) {
-                    $('<img src="' + backgrounds[ i ].src + '">');
+                    var cacheImage = document.createElement('img');
+                    cacheImage.src = backgrounds[ i ].src;
+                    cache.push(cacheImage);
                 }
             }
 
@@ -354,10 +357,10 @@
         properties = {
             'width': newWidth + 'px',
             'height': newHeight + 'px',
-			'top': 'auto',
-			'bottom': 'auto',
-			'left': 'auto',
-			'right': 'auto'			
+            'top': 'auto',
+            'bottom': 'auto',
+            'left': 'auto',
+            'right': 'auto'
         }
 
         if ( !isNaN( parseInt( options.valign ) ) ) {
