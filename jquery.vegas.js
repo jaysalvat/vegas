@@ -212,6 +212,10 @@
                 var settings = backgrounds[ step++ ];
                 settings.walk = options.walk;
 
+                if ( typeof( settings.fade ) == 'undefined' ) {
+                    settings.fade = options.fade;
+                }
+
                 if ( settings.fade > options.delay ) {
                     settings.fade = options.delay;
                 }
@@ -428,6 +432,7 @@
             // complete:    function
         },
         slideshow: {
+            // fade:        null
             // step:        int
             // delay:       int
             // backgrounds: array
