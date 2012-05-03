@@ -119,7 +119,7 @@
             if ( !what || what == 'background') {
                 $( '.vegas-background, .vegas-loading' ).remove();
                 $( window ).unbind( 'resize.vegas' );
-                $current = null;
+                $current = $();
             }
 
             if ( what == 'overlay') {
