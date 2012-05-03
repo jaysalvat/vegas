@@ -67,7 +67,7 @@
                     return;
                 }
                 
-                $( window ).bind( 'resize.vegas', function( e ) {
+                $( window ).bind( 'load resize.vegas', function( e ) {
                     resize( $new, options );
                 });
 
@@ -458,29 +458,30 @@
             blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
         function triggerCallback() {
-          callback.call( $this, $images );
+            callback.call( $this, $images );
         }
 
         function imgLoaded() {
-          if ( --len <= 0 && this.src !== blank ){
-            setTimeout( triggerCallback );
-            $images.unbind( 'load error', imgLoaded );
-          }
+            if ( --len <= 0 && this.src !== blank ){
+                setTimeout( triggerCallback );
+                $images.unbind( 'load error', imgLoaded );
+            }
         }
 
         if ( !len ) {
-          triggerCallback();
+            setTimeout( triggerCallback, 200 );
+            // triggerCallback();
         }
 
         $images.bind( 'load error',  imgLoaded ).each( function() {
-          // cached images don't fire load sometimes, so we reset src.
-          if (this.complete || this.complete === undefined){
-            var src = this.src;
-            // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-            // data uri bypasses webkit log warning (thx doug jones)
-            this.src = blank;
-            this.src = src;
-          }
+            // cached images don't fire load sometimes, so we reset src.
+            if (this.complete || this.complete === undefined){
+                var src = this.src;
+                // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+                // data uri bypasses webkit log warning (thx doug jones)
+                this.src = blank;
+                this.src = src;
+            }
         });
 
         return $this;
