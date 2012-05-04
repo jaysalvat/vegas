@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
 // Vegas - jQuery plugin 
 // Add awesome fullscreen backgrounds to your webpages.
-// v 1.x
+// v 1.3
 // Dual licensed under the MIT and GPL licenses.
 // http://vegas.jaysalvat.com/
 // ----------------------------------------------------------------------------
