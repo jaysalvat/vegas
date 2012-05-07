@@ -462,7 +462,7 @@
         }
 
         function imgLoaded() {
-            if ( --len <= 0 && this.src !== blank ){
+            if ( --len <= 0 && this.src !== blank && this.height !== 0 ){
                 setTimeout( triggerCallback );
                 $images.unbind( 'load error', imgLoaded );
             }
