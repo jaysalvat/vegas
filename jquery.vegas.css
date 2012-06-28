@@ -22,3 +22,8 @@
 	-ms-interpolation-mode: bicubic;
 	z-index:-2;
 }
+
+img.vegas-background {
+    /* counteracts global img modification by twitter bootstrap library */
+    max-width: none !important;
+}
