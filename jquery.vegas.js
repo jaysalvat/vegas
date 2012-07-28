@@ -462,7 +462,7 @@
         }
 
         function imgLoaded() {
-            if ( --len <= 0 && this.src !== blank ){
+            if ( --len <= 0 && this.src !== blank && ( $.browser.msie || this.height > 1 ) ){
                 setTimeout( triggerCallback );
                 $images.unbind( 'load error', imgLoaded );
             }
