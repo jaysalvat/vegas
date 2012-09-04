@@ -340,6 +340,14 @@
         }
         $.extend( options, settings );
 
+    	if($img.height() == 0)
+		{
+			$img.load(function(){
+				resize($(this), settings);
+			});
+			return;
+		}
+
         var ww = $( window ).width(),
             wh = $( window ).height(),
             iw = $img.width(),
