@@ -1,6 +1,10 @@
-# Vegas Background jQuery Plugin v1.3
+# Vegas Background jQuery Plugin v1.3.1
 
 ## CHANGE LOG
+
+### Vegas 1.3.1 2012-09-05
+* New attempt to fix the webkit image size bug (Thanks orourkedd)
+* Get rid of imagesLoadedForVegas function
 
 ### Vegas 1.3.0 2012-05-04
 

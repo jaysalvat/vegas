@@ -1,11 +1,11 @@
 // ----------------------------------------------------------------------------
 // Vegas - jQuery plugin 
 // Add awesome fullscreen backgrounds to your webpages.
-// v 1.3
+// v 1.3.1
 // Dual licensed under the MIT and GPL licenses.
 // http://vegas.jaysalvat.com/
 // ----------------------------------------------------------------------------
-// Copyright (C) 2011 Jay Salvat
+// Copyright (C) 2012 Jay Salvat
 // http://jaysalvat.com/
 // ----------------------------------------------------------------------------
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -62,7 +62,7 @@
                 'left': '0px',
                 'top': '0px'
             })
-            .imagesLoadedForVegas( function() {
+            .bind('load', function() {
                 if ( $new == $current ) {
                     return;
                 }
@@ -340,6 +340,14 @@
         }
         $.extend( options, settings );
 
+        if( $img.height() == 0 ) {
+            console.log('pecouille');
+            $img.load( function(){
+                resize( $(this), settings );
+            } );
+            return;
+        }
+
         var ww = $( window ).width(),
             wh = $( window ).height(),
             iw = $img.width(),
@@ -444,46 +452,4 @@
             // opacity:     float
         }
     }
-
-    /*!
-     * jQuery imagesLoaded plugin v1.0.3
-     * http://github.com/desandro/imagesloaded
-     *
-     * MIT License. by Paul Irish et al.
-     */
-    $.fn.imagesLoadedForVegas = function( callback ) {
-        var $this = this,
-            $images = $this.find('img').add( $this.filter('img') ),
-            len = $images.length,
-            blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-
-        function triggerCallback() {
-            callback.call( $this, $images );
-        }
-
-        function imgLoaded() {
-            if ( --len <= 0 && this.src !== blank ){
-                setTimeout( triggerCallback );
-                $images.unbind( 'load error', imgLoaded );
-            }
-        }
-
-        if ( !len ) {
-            setTimeout( triggerCallback, 200 );
-            // triggerCallback();
-        }
-
-        $images.bind( 'load error',  imgLoaded ).each( function() {
-            // cached images don't fire load sometimes, so we reset src.
-            if (this.complete || this.complete === undefined){
-                var src = this.src;
-                // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-                // data uri bypasses webkit log warning (thx doug jones)
-                this.src = blank;
-                this.src = src;
-            }
-        });
-
-        return $this;
-      };
 })( jQuery );
