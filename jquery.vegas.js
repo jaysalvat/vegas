@@ -43,6 +43,7 @@
         init : function( settings ) {
             var options = {
                 src: getBackground(),
+                bgtarget: 'body',
                 align: 'center',
                 valign: 'center',
                 fade: 0,
@@ -58,7 +59,7 @@
 
             var $new = $background.clone();
             $new.css( {
-                'position': 'fixed',
+                'position': 'absolute',
                 'left': '0px',
                 'top': '0px'
             })
@@ -81,14 +82,14 @@
                             $('.vegas-background')
                                 .not(this)
                                     .remove();
-                            $( 'body' ).trigger( 'vegascomplete', [ this, step - 1 ] );
+                            $( options.bgtarget ).trigger( 'vegascomplete', [ this, step - 1 ] );
                             options.complete.apply( $new, [ step - 1 ] );
                         });
                 } else {
                     $new.hide()
-                        .prependTo( 'body' )
+                        .prependTo( options.bgtarget )
                         .fadeIn( options.fade, function() {
-                            $( 'body' ).trigger( 'vegascomplete', [ this, step - 1 ] );
+                            $( options.bgtarget ).trigger( 'vegascomplete', [ this, step - 1 ] );
                             options.complete.apply( this, [ step - 1 ] );    
                         });
                 }
@@ -101,11 +102,11 @@
                     loaded();
                 }
 
-                $( 'body' ).trigger( 'vegasload', [ $current.get(0), step - 1 ] );
+                $( options.bgtarget ).trigger( 'vegasload', [ $current.get(0), step - 1 ] );
                 options.load.apply( $current.get(0), [ step - 1 ] );
 
                 if ( step ) {
-                    $( 'body' ).trigger( 'vegaswalk', [ $current.get(0), step - 1 ] );
+                    $( options.bgtarget ).trigger( 'vegaswalk', [ $current.get(0), step - 1 ] );
                     options.walk.apply( $current.get(0), [ step - 1 ] );
                 }
             })
@@ -133,7 +134,8 @@
         overlay: function( settings ) {
             var options = {
                 src: null,
-                opacity: null
+                opacity: null,
+                bgtarget: 'body'
             };
             $.extend( options, $.vegas.defaults.overlay, settings );
 
@@ -143,7 +145,7 @@
                 .css( {
                     'margin': '0',
                     'padding': '0',
-                    'position': 'fixed',
+                    'position': 'absolute',
                     'left': '0px',
                     'top': '0px',
                     'width': '100%',
@@ -158,7 +160,7 @@
                 $overlay.css( 'opacity', options.opacity );
             }
 
-            $overlay.prependTo( 'body' );
+            $overlay.prependTo( options.bgtarget );
 
             return $.vegas;
         },
@@ -166,6 +168,7 @@
         // Start/restart slideshow
         slideshow: function( settings, keepPause ) {
             var options = {
+                bgtarget: 'body',
                 step: step,
                 delay: delay,
                 preload: false,
@@ -244,7 +247,7 @@
             if ( step ) {
                 $.vegas( 'slideshow', { step: step }, true );
 
-                $( 'body' ).trigger( 'vegasnext', [ $current.get(0), step - 1, from - 1 ] );
+                $( options.bgtarget ).trigger( 'vegasnext', [ $current.get(0), step - 1, from - 1 ] );
             }
 
             return $.vegas;
@@ -257,7 +260,7 @@
             if ( step ) {
                 $.vegas( 'slideshow', { step: step - 2 }, true );
 
-                $( 'body' ).trigger( 'vegasprevious', [ $current.get(0), step - 1, from - 1 ] );
+                $( options.bgtarget ).trigger( 'vegasprevious', [ $current.get(0), step - 1, from - 1 ] );
             }
 
             return $.vegas;
@@ -270,7 +273,7 @@
             if ( step ) {
                 $.vegas( 'slideshow', { step: s }, true );
 
-                $( 'body' ).trigger( 'vegasjump', [ $current.get(0), step - 1, from - 1 ] );
+                $( options.bgtarget ).trigger( 'vegasjump', [ $current.get(0), step - 1, from - 1 ] );
             }
 
             return $.vegas;
@@ -283,7 +286,7 @@
             paused = null;
             clearInterval( timer );
 
-            $( 'body' ).trigger( 'vegasstop', [ $current.get(0), from - 1 ] );
+            $( options.bgtarget ).trigger( 'vegasstop', [ $current.get(0), from - 1 ] );
 
             return $.vegas;
         },
@@ -293,7 +296,7 @@
             paused = true;
             clearInterval( timer );
 
-            $( 'body' ).trigger( 'vegaspause', [ $current.get(0), step - 1 ] );
+            $( options.bgtarget ).trigger( 'vegaspause', [ $current.get(0), step - 1 ] );
 
             return $.vegas;
         },
@@ -336,7 +339,8 @@
     function resize( $img, settings ) {
         var options =  {
             align: 'center',
-            valign: 'center'
+            valign: 'center',
+            bgtarget: 'body'
         }
         $.extend( options, settings );
 
@@ -348,8 +352,8 @@
             return;
         }
 
-        var ww = $( window ).width(),
-            wh = $( window ).height(),
+        var ww = $( options.bgtarget ).width(),
+            wh = $( options.bgtarget ).height(),
             iw = $img.width(),
             ih = $img.height(),
             rw = wh / ww,
@@ -399,8 +403,8 @@
     }
 
     // Display the loading indicator
-    function loading() {
-        $loading.prependTo( 'body' ).fadeIn();
+    function loading(options) {
+        $loading.prependTo( options.bgtarget ).fadeIn();
     }
 
     // Hide the loading indicator
@@ -411,9 +415,9 @@
     }
 
     // Get the background image from the body
-    function getBackground() {
-        if ( $( 'body' ).css( 'backgroundImage' ) ) {
-            return $( 'body' ).css( 'backgroundImage' ).replace( /url\("?(.*?)"?\)/i, '$1' );
+    function getBackground(options) {
+        if ( $( options.bgtarget ).css( 'backgroundImage' ) ) {
+            return $( options.bgtarget ).css( 'backgroundImage' ).replace( /url\("?(.*?)"?\)/i, '$1' );
         }
     }
 
