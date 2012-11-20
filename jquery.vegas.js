@@ -43,13 +43,13 @@
         init : function( settings ) {
             var options = {
                 src: getBackground(),
-                bgtarget: 'body',
                 align: 'center',
                 valign: 'center',
                 fade: 0,
                 loading: true,
                 load: function() {},
-                complete: function() {}
+                complete: function() {},
+                bgtarget: 'body'
             }
             $.extend( options, $.vegas.defaults.background, settings );
 
@@ -168,12 +168,12 @@
         // Start/restart slideshow
         slideshow: function( settings, keepPause ) {
             var options = {
-                bgtarget: 'body',
                 step: step,
                 delay: delay,
                 preload: false,
                 backgrounds: backgrounds,
-                walk: walk
+                walk: walk,
+                bgtarget: 'body'
             };
             
             $.extend( options, $.vegas.defaults.slideshow, settings );
@@ -214,6 +214,7 @@
 
                 var settings = backgrounds[ step++ ];
                 settings.walk = options.walk;
+                settings.bgtarget = options.bgtarget;
 
                 if ( typeof( settings.fade ) == 'undefined' ) {
                     settings.fade = options.fade;
@@ -230,7 +231,7 @@
             if ( !keepPause ) {
                 paused = false;
                 
-                $( 'body' ).trigger( 'vegasstart', [ $current.get(0), step - 1 ] );
+                $( options.bgtarget ).trigger( 'vegasstart', [ $current.get(0), step - 1 ] );
             }
 
             if ( !paused ) {
@@ -442,6 +443,7 @@
             // loading      bool
             // load:        function
             // complete:    function
+            // bgtarget:    string
         },
         slideshow: {
             // fade:        null
@@ -450,10 +452,12 @@
             // backgrounds: array
             // preload:     bool
             // walk:        function
+            // bgtarget:    string
         },
         overlay: {
             // src:         string
             // opacity:     float
+            // bgtarget:    string
         }
     }
 })( jQuery );
