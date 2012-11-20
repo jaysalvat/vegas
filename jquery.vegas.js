@@ -54,7 +54,7 @@
             $.extend( options, $.vegas.defaults.background, settings );
 
             if ( options.loading ) {
-                loading();
+                loading(options);
             }
 
             var $new = $background.clone();
