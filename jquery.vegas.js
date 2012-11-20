@@ -415,9 +415,9 @@
     }
 
     // Get the background image from the body
-    function getBackground(options) {
-        if ( $( options.bgtarget ).css( 'backgroundImage' ) ) {
-            return $( options.bgtarget ).css( 'backgroundImage' ).replace( /url\("?(.*?)"?\)/i, '$1' );
+    function getBackground() {
+        if ( $( this.bgtarget ).css( 'backgroundImage' ) ) {
+            return $( this.bgtarget ).css( 'backgroundImage' ).replace( /url\("?(.*?)"?\)/i, '$1' );
         }
     }
 
