@@ -4,9 +4,11 @@
 	background: rgba(0,0,0,0.7);
 	background: url(images/loading.gif) no-repeat center center; /* Loading Gif by http://preloaders.net/ */
 	height: 32px;
-	left: 20px;
-	position: fixed;
-	top: 20px;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	margin-left:-16px;
+	margin-top:-16px;
 	width: 32px; 
 	z-index: 0;
 }
