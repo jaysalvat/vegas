@@ -461,7 +461,7 @@
         }
     }
 
-    $.fn.vegas = function( position ) {  
+    $.fn.vegas = function() {  
         $targetElem = this;
         $targetElem.addClass("vegas-target");
         $.vegas.apply( this, arguments );
