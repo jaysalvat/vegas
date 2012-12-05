@@ -461,12 +461,9 @@
         }
     }
 
-    $.fn.vegas = function() {  
+    $.fn.vegas = function( position ) {  
         $targetElem = this;
-        $targetElem.css({
-            position: 'relative',
-            overflow: 'hidden'
-        });
+        $targetElem.addClass("vegas-target");
         $.vegas.apply( this, arguments );
 
         return this;

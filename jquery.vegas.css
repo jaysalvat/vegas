@@ -34,3 +34,8 @@
 	    -ms-user-select: none;
 	        user-select: none;
 }
+
+.vegas-target {
+    position: absolute;
+    overflow: hidden;
+}
