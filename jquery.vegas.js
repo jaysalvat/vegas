@@ -27,10 +27,12 @@
 // THE SOFTWARE.
 // ----------------------------------------------------------------------------
 ( function( $ ){
+
     var $background = $( '<img />' ).addClass( 'vegas-background' ),
         $overlay    = $( '<div />' ).addClass( 'vegas-overlay' ),
         $loading    = $( '<div />' ).addClass( 'vegas-loading' ),
         $current    = $(),
+        $targetElem = $('body'),
         paused = null,
         backgrounds = [],
         step = 0,
@@ -56,9 +58,10 @@
                 loading();
             }
 
-            var $new = $background.clone();
+            var $new = $background.clone(),
+            position = ($targetElem.selector === 'body') ? 'fixed' : 'absolute';
             $new.css( {
-                'position': 'fixed',
+                'position': position,
                 'left': '0px',
                 'top': '0px'
             })
@@ -81,14 +84,14 @@
                             $('.vegas-background')
                                 .not(this)
                                     .remove();
-                            $( 'body' ).trigger( 'vegascomplete', [ this, step - 1 ] );
+                            $targetElem.trigger( 'vegascomplete', [ this, step - 1 ] );
                             options.complete.apply( $new, [ step - 1 ] );
                         });
                 } else {
                     $new.hide()
-                        .prependTo( 'body' )
+                        .prependTo( $targetElem )
                         .fadeIn( options.fade, function() {
-                            $( 'body' ).trigger( 'vegascomplete', [ this, step - 1 ] );
+                            $targetElem.trigger( 'vegascomplete', [ this, step - 1 ] );
                             options.complete.apply( this, [ step - 1 ] );    
                         });
                 }
@@ -101,11 +104,11 @@
                     loaded();
                 }
 
-                $( 'body' ).trigger( 'vegasload', [ $current.get(0), step - 1 ] );
+                $targetElem.trigger( 'vegasload', [ $current.get(0), step - 1 ] );
                 options.load.apply( $current.get(0), [ step - 1 ] );
 
                 if ( step ) {
-                    $( 'body' ).trigger( 'vegaswalk', [ $current.get(0), step - 1 ] );
+                    $targetElem.trigger( 'vegaswalk', [ $current.get(0), step - 1 ] );
                     options.walk.apply( $current.get(0), [ step - 1 ] );
                 }
             })
@@ -138,12 +141,12 @@
             $.extend( options, $.vegas.defaults.overlay, settings );
 
             $overlay.remove();
-
+            position = ($targetElem.selector === 'body') ? 'fixed' : 'absolute';
             $overlay
                 .css( {
                     'margin': '0',
                     'padding': '0',
-                    'position': 'fixed',
+                    'position': position,
                     'left': '0px',
                     'top': '0px',
                     'width': '100%',
@@ -158,7 +161,7 @@
                 $overlay.css( 'opacity', options.opacity );
             }
 
-            $overlay.prependTo( 'body' );
+            $overlay.prependTo( $targetElem );
 
             return $.vegas;
         },
@@ -227,7 +230,7 @@
             if ( !keepPause ) {
                 paused = false;
                 
-                $( 'body' ).trigger( 'vegasstart', [ $current.get(0), step - 1 ] );
+                $targetElem.trigger( 'vegasstart', [ $current.get(0), step - 1 ] );
             }
 
             if ( !paused ) {
@@ -244,7 +247,7 @@
             if ( step ) {
                 $.vegas( 'slideshow', { step: step }, true );
 
-                $( 'body' ).trigger( 'vegasnext', [ $current.get(0), step - 1, from - 1 ] );
+                $targetElem.trigger( 'vegasnext', [ $current.get(0), step - 1, from - 1 ] );
             }
 
             return $.vegas;
@@ -257,7 +260,7 @@
             if ( step ) {
                 $.vegas( 'slideshow', { step: step - 2 }, true );
 
-                $( 'body' ).trigger( 'vegasprevious', [ $current.get(0), step - 1, from - 1 ] );
+                $targetElem.trigger( 'vegasprevious', [ $current.get(0), step - 1, from - 1 ] );
             }
 
             return $.vegas;
@@ -270,7 +273,7 @@
             if ( step ) {
                 $.vegas( 'slideshow', { step: s }, true );
 
-                $( 'body' ).trigger( 'vegasjump', [ $current.get(0), step - 1, from - 1 ] );
+                $targetElem.trigger( 'vegasjump', [ $current.get(0), step - 1, from - 1 ] );
             }
 
             return $.vegas;
@@ -283,7 +286,7 @@
             paused = null;
             clearInterval( timer );
 
-            $( 'body' ).trigger( 'vegasstop', [ $current.get(0), from - 1 ] );
+            $targetElem.trigger( 'vegasstop', [ $current.get(0), from - 1 ] );
 
             return $.vegas;
         },
@@ -293,7 +296,7 @@
             paused = true;
             clearInterval( timer );
 
-            $( 'body' ).trigger( 'vegaspause', [ $current.get(0), step - 1 ] );
+            $targetElem.trigger( 'vegaspause', [ $current.get(0), step - 1 ] );
 
             return $.vegas;
         },
@@ -348,8 +351,8 @@
             return;
         }
 
-        var ww = $( window ).width(),
-            wh = $( window ).height(),
+        var ww = $targetElem.outerWidth(),
+            wh = $targetElem.outerHeight(),
             iw = $img.width(),
             ih = $img.height(),
             rw = wh / ww,
@@ -357,6 +360,11 @@
             newWidth, newHeight,
             newLeft, newTop,
             properties;
+
+            if ($targetElem.selector === 'body') {
+                ww = $( window ).width();
+                wh = $( window ).height();
+            }
 
         if ( rw > ri ) {
             newWidth = wh / ri;
@@ -400,7 +408,7 @@
 
     // Display the loading indicator
     function loading() {
-        $loading.prependTo( 'body' ).fadeIn();
+        $loading.prependTo( $targetElem ).fadeIn();
     }
 
     // Hide the loading indicator
@@ -412,8 +420,8 @@
 
     // Get the background image from the body
     function getBackground() {
-        if ( $( 'body' ).css( 'backgroundImage' ) ) {
-            return $( 'body' ).css( 'backgroundImage' ).replace( /url\("?(.*?)"?\)/i, '$1' );
+        if ( $targetElem.css( 'backgroundImage' ) ) {
+            return $targetElem.css( 'backgroundImage' ).replace( /url\("?(.*?)"?\)/i, '$1' );
         }
     }
 
@@ -452,4 +460,13 @@
             // opacity:     float
         }
     }
+
+    $.fn.vegas = function() {  
+        $targetElem = this;
+        $targetElem.addClass("vegas-target");
+        $.vegas.apply( this, arguments );
+
+        return this;
+    }
+
 })( jQuery );
