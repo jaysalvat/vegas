@@ -36,6 +36,6 @@
 }
 
 .vegas-target {
-    position: absolute;
+    position: relative;
     overflow: hidden;
 }
