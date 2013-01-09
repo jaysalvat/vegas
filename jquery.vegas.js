@@ -341,7 +341,6 @@
         $.extend( options, settings );
 
         if( $img.height() == 0 ) {
-            console.log('pecouille');
             $img.load( function(){
                 resize( $(this), settings );
             } );
