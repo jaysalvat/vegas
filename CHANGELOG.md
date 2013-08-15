@@ -1,9 +1,6 @@
-# Vegas Background jQuery Plugin v1.3.2
+# Vegas jQuery Plugin
 
 ## CHANGE LOG
-
-### Vegas 1.3.2 xxxx-xx-xx
-* Add user-select:none to CSS (Thanks Hüseyin)
 
 ### Vegas 1.3.1 2012-09-05
 * New attempt to fix the webkit image size bug (Thanks orourkedd)
