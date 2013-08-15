@@ -2,6 +2,9 @@
 
 ## CHANGE LOG
 
+### Vegas 1.3.2 2013-08-15
+* Add user-select:none to CSS
+
 ### Vegas 1.3.1 2012-09-05
 * New attempt to fix the webkit image size bug (Thanks orourkedd)
 * Get rid of imagesLoadedForVegas function
