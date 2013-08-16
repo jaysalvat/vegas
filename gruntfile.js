@@ -55,25 +55,15 @@ module.exports = function(grunt) {
         },
 
         exec: {
-            copyAssets: {
-                cmd: [
-                    'cp -r src/images dist/',
-                    'cp -r src/overlays dist/',
-                    'cp -r src/jquery.vegas.css dist/jquery.vegas.css'
-                ].join(' && ')
-            },
             publish: {
                 cmd: [
                     'cp -r src/images dist/',
                     'cp -r src/overlays dist/',
                     'cp -r src/jquery.vegas.css dist/jquery.vegas.css',
                     'cp -r dist/ tmp/',
-                    'zip -rj tmp/vegas.zip tmp/jquery.vegas.js',
-                    'zip -rj tmp/vegas.zip tmp/jquery.vegas.min.js',
-                    'zip -rj tmp/vegas.zip tmp/jquery.vegas.css',
-                    'zip -rj tmp/vegas.zip tmp/jquery.vegas.min.css',
-                    'zip -rj tmp/vegas.zip tmp/images',
-                    'zip -rj tmp/vegas.zip tmp/overlays',
+                    'cd tmp',
+                    'zip -r vegas.zip *',
+                    'cd -',
                     'git checkout gh-pages',
                     'rm -rf releases/latest/',
                     'cp -r tmp/ releases/<%= pkg.version %>/',
@@ -94,7 +84,7 @@ module.exports = function(grunt) {
             },
             gitCommit: {
                 cmd: function(message) {
-                    return format('git commit -m "%s"', message);
+                    return format('git commit -m "Build %s"', message);
                 }
             },
             gitTag: {
