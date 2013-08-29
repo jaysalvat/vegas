@@ -1,6 +1,6 @@
  // ----------------------------------------------------------------------------
  // Vegas – Fullscreen Backgrounds and Slideshows with jQuery.
- // v1.3.2 - released 2013-08-15 17:14
+ // v1.3.2 - released 2013-08-29 13:29
  // Licensed under the MIT license.
  // http://vegas.jaysalvat.com/
  // ----------------------------------------------------------------------------
@@ -66,12 +66,13 @@
         destroy: function(what) {
             if (!what || what == "background") {
                 $(".vegas-background, .vegas-loading").remove();
-                $(window).unbind("resize.vegas");
+                $(window).unbind("*.vegas");
                 $current = $();
             }
-            if (what == "overlay") {
+            if (!what || what == "overlay") {
                 $(".vegas-overlay").remove();
             }
+            clearInterval(timer);
             return $.vegas;
         },
         overlay: function(settings) {
