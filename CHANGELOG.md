@@ -2,6 +2,8 @@
 
 ## CHANGE LOG
 
+* Fix Destroy method
+
 ### Vegas 1.3.2 2013-08-15
 * Remove forgotten debug
 * Add user-select:none to CSS

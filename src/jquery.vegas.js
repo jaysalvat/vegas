@@ -100,13 +100,15 @@
         destroy: function(what) {
             if (!what || what == 'background') {
                 $('.vegas-background, .vegas-loading').remove();
-                $(window).unbind('resize.vegas');
+                $(window).unbind('*.vegas');
                 $current = $();
             }
 
-            if (what == 'overlay') {
+            if (!what || what == 'overlay') {
                 $('.vegas-overlay').remove();
             }
+
+            clearInterval(timer);
 
             return $.vegas;
         },
