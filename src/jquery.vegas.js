@@ -7,7 +7,7 @@
 // http://jaysalvat.com/
 // ----------------------------------------------------------------------------
 
-(function($){
+(function($) {
     var $background = $('<img />').addClass('vegas-background'),
         $overlay = $('<div />').addClass('vegas-overlay'),
         $loading = $('<div />').addClass('vegas-loading'),
@@ -333,8 +333,9 @@
             return;
         }
 
-        var ww = $(window).width(),
-            wh = $(window).height(),
+        var vp = getViewportSize(),
+            ww = vp.width,
+            wh = vp.height,
             iw = $img.width(),
             ih = $img.height(),
             rw = wh / ww,
@@ -400,6 +401,22 @@
         if ($('body').css('backgroundImage')) {
             return $('body').css('backgroundImage').replace(/url\("?(.*?)"?\)/i, '$1');
         }
+    }
+
+    // Get the real viewport size
+    function getViewportSize(){
+        var elmt = window,
+            prop = 'inner';
+
+        if (!('innerWidth' in window)){
+            elmt = document.documentElement || document.body;
+            prop = 'client';
+        }
+
+        return {
+            width:  elmt[prop + 'Width' ],
+            height: elmt[prop + 'Height']
+        };
     }
 
     // The plugin
