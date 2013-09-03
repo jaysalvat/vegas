@@ -1,6 +1,6 @@
  // ----------------------------------------------------------------------------
  // Vegas – Fullscreen Backgrounds and Slideshows with jQuery.
- // v1.3.2 - released 2013-08-29 13:29
+ // v1.3.3 - released 2013-09-03 13:27
  // Licensed under the MIT license.
  // http://vegas.jaysalvat.com/
  // ----------------------------------------------------------------------------
@@ -237,7 +237,7 @@
             });
             return;
         }
-        var ww = $(window).width(), wh = $(window).height(), iw = $img.width(), ih = $img.height(), rw = wh / ww, ri = ih / iw, newWidth, newHeight, newLeft, newTop, properties;
+        var vp = getViewportSize(), ww = vp.width, wh = vp.height, iw = $img.width(), ih = $img.height(), rw = wh / ww, ri = ih / iw, newWidth, newHeight, newLeft, newTop, properties;
         if (rw > ri) {
             newWidth = wh / ri;
             newHeight = wh;
@@ -285,6 +285,17 @@
         if ($("body").css("backgroundImage")) {
             return $("body").css("backgroundImage").replace(/url\("?(.*?)"?\)/i, "$1");
         }
+    }
+    function getViewportSize() {
+        var elmt = window, prop = "inner";
+        if (!("innerWidth" in window)) {
+            elmt = document.documentElement || document.body;
+            prop = "client";
+        }
+        return {
+            width: elmt[prop + "Width"],
+            height: elmt[prop + "Height"]
+        };
     }
     $.vegas = function(method) {
         if (methods[method]) {
