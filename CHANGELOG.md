@@ -2,9 +2,13 @@
 
 ## CHANGE LOG
 
+### Vegas 1.3.4 coming
+
+* Fix loading option which didn't work on slideshows
+
 ### Vegas 1.3.3 2013-09-03
 
-* Fix some size bug. Get the real Viewport size.
+* Fix some size bug. Get the real Viewport size
 * Fix Destroy method
 
 ### Vegas 1.3.2 2013-08-15

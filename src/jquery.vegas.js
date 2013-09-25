@@ -153,6 +153,7 @@
                 step: step,
                 delay: delay,
                 preload: false,
+                loading: true,
                 backgrounds: backgrounds,
                 walk: walk
             };
@@ -195,6 +196,7 @@
 
                 var settings = backgrounds[step++];
                 settings.walk = options.walk;
+                settings.loading = options.loading;
 
                 if (typeof(settings.fade) == 'undefined') {
                     settings.fade = options.fade;
@@ -446,6 +448,7 @@
             // step:        int
             // delay:       int
             // backgrounds: array
+            // loading      bool
             // preload:     bool
             // walk:        function
         },
