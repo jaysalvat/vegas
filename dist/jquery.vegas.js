@@ -1,6 +1,6 @@
  // ----------------------------------------------------------------------------
- // Vegas – Fullscreen Backgrounds and Slideshows with jQuery.
- // v1.3.3 - released 2013-09-03 13:27
+ // Vegas - Fullscreen Backgrounds and Slideshows with jQuery.
+ // v1.3.4 - released 2013-12-16 13:23
  // Licensed under the MIT license.
  // http://vegas.jaysalvat.com/
  // ----------------------------------------------------------------------------
@@ -91,6 +91,9 @@
                 width: "100%",
                 height: "100%"
             });
+            if (options.src === false) {
+                $overlay.css("backgroundImage", "none");
+            }
             if (options.src) {
                 $overlay.css("backgroundImage", "url(" + options.src + ")");
             }
@@ -105,6 +108,7 @@
                 step: step,
                 delay: delay,
                 preload: false,
+                loading: true,
                 backgrounds: backgrounds,
                 walk: walk
             };
@@ -137,6 +141,7 @@
                 }
                 var settings = backgrounds[step++];
                 settings.walk = options.walk;
+                settings.loading = options.loading;
                 if (typeof settings.fade == "undefined") {
                     settings.fade = options.fade;
                 }
