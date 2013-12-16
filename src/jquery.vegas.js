@@ -134,6 +134,10 @@
                     'height': '100%'
             });
 
+            if (options.src === false) {
+                $overlay.css('backgroundImage', 'none');
+            }
+
             if (options.src) {
                 $overlay.css('backgroundImage', 'url(' + options.src + ')');
             }
