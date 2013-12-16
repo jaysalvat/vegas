@@ -94,8 +94,8 @@ module.exports = function(grunt) {
             },
             gitPush: {
                 cmd: [
-                    'git push',
-                    'git push --tags'
+                    'git push origin gh-pages',
+                    'git push origin gh-pages --tags'
                 ].join(' && ')
             }
         }
