@@ -2,7 +2,7 @@
 
 ## CHANGE LOG
 
-### Vegas 1.3.4 coming
+### Vegas 1.3.4 2013-12-16
 
 * Allow overlay(false) to disable overlay when vegas is already running
 * Fix loading option which didn't work on slideshows
