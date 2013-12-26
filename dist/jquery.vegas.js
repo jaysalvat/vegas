@@ -11,7 +11,12 @@
 (function($) {
     var $background = $("<img />").addClass("vegas-background"), $overlay = $("<div />").addClass("vegas-overlay"), $loading = $("<div />").addClass("vegas-loading"), $current = $(), paused = null, backgrounds = [], step = 0, delay = 5e3, walk = function() {}, timer, methods = {
         init: function(settings) {
-            var options = {
+        	// apply to a container
+        	var container = $(settings.container && settings.container !== 'body' ? '#'+settings.container : 'body');
+        	if(container.length === 0)
+        		container = $('body');
+        	
+        	var options = {
                 src: getBackground(),
                 align: "center",
                 valign: "center",
@@ -21,12 +26,18 @@
                 complete: function() {}
             };
             $.extend(options, $.vegas.defaults.background, settings);
+            // lets save the first set of settings passed in
+            // in case we make another call so we can reference (jump, pause, next)
+            if(!$.vegas.defaults.init)
+            	$.vegas.defaults.init = settings;
+            // set the container to the options to use in resize
+            options.container = container;
             if (options.loading) {
                 loading();
             }
             var $new = $background.clone();
             $new.css({
-                position: "fixed",
+                position: container[0] === document.body ? "fixed" : "absolute",
                 left: "0px",
                 top: "0px"
             }).bind("load", function() {
@@ -44,7 +55,7 @@
                         options.complete.apply($new, [ step - 1 ]);
                     });
                 } else {
-                    $new.hide().prependTo("body").fadeIn(options.fade, function() {
+                    $new.hide().prependTo(container[0]).fadeIn(options.fade, function() {
                         $("body").trigger("vegascomplete", [ this, step - 1 ]);
                         options.complete.apply(this, [ step - 1 ]);
                     });
@@ -105,12 +116,15 @@
         },
         slideshow: function(settings, keepPause) {
             var options = {
+            	container : 'body',
                 step: step,
                 delay: delay,
                 preload: false,
                 loading: true,
                 backgrounds: backgrounds,
-                walk: walk
+                walk: walk,
+            	align: "center",
+            	valign: "center"
             };
             $.extend(options, $.vegas.defaults.slideshow, settings);
             if (options.backgrounds != backgrounds) {
@@ -142,6 +156,9 @@
                 var settings = backgrounds[step++];
                 settings.walk = options.walk;
                 settings.loading = options.loading;
+                settings.container = options.container;
+                settings.valign = options.valign;
+                settings.align = options.align;
                 if (typeof settings.fade == "undefined") {
                     settings.fade = options.fade;
                 }
@@ -162,10 +179,10 @@
         },
         next: function() {
             var from = step;
+            // pass to slideshow with init object
+            $.vegas.defaults.init.step = step;
             if (step) {
-                $.vegas("slideshow", {
-                    step: step
-                }, true);
+                $.vegas("slideshow", $.vegas.defaults.init , true);
                 $("body").trigger("vegasnext", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
@@ -173,9 +190,9 @@
         previous: function() {
             var from = step;
             if (step) {
-                $.vegas("slideshow", {
-                    step: step - 2
-                }, true);
+           	 	// pass to slideshow with init object
+            	$.vegas.defaults.init.step = step - 2;
+                $.vegas("slideshow", $.vegas.defaults.init, true);
                 $("body").trigger("vegasprevious", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
@@ -183,9 +200,9 @@
         jump: function(s) {
             var from = step;
             if (step) {
-                $.vegas("slideshow", {
-                    step: s
-                }, true);
+            	// pass to slideshow with init object
+            	$.vegas.defaults.init.step = s;
+                $.vegas("slideshow", $.vegas.defaults.init, true);
                 $("body").trigger("vegasjump", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
@@ -236,13 +253,15 @@
             valign: "center"
         };
         $.extend(options, settings);
+                
         if ($img.height() === 0) {
             $img.load(function() {
                 resize($(this), settings);
             });
             return;
         }
-        var vp = getViewportSize(), ww = vp.width, wh = vp.height, iw = $img.width(), ih = $img.height(), rw = wh / ww, ri = ih / iw, newWidth, newHeight, newLeft, newTop, properties;
+        var vp = getViewportSize(settings), ww = vp.width, wh = vp.height, iw = $img.width(), ih = $img.height(), rw = wh / ww, ri = ih / iw, newWidth, newHeight, newLeft, newTop, properties;
+        
         if (rw > ri) {
             newWidth = wh / ri;
             newHeight = wh;
@@ -250,6 +269,7 @@
             newWidth = ww;
             newHeight = ww * ri;
         }
+       
         properties = {
             width: newWidth + "px",
             height: newHeight + "px",
@@ -291,16 +311,24 @@
             return $("body").css("backgroundImage").replace(/url\("?(.*?)"?\)/i, "$1");
         }
     }
-    function getViewportSize() {
-        var elmt = window, prop = "inner";
-        if (!("innerWidth" in window)) {
-            elmt = document.documentElement || document.body;
-            prop = "client";
+    function getViewportSize(settings) {
+    	// attached to an element
+    	if(settings.container[0] !== document.body){
+    		return {
+	            width: settings.container.width(),
+	            height: settings.container.height()
+	        };
+    	} else {
+	        var elmt = window, prop = "inner";
+	        if (!("innerWidth" in window)) {
+	            elmt = document.documentElement || document.body;
+	            prop = "client";
+	        }
+	    	return {
+	            width: elmt[prop + "Width"],
+	            height: elmt[prop + "Height"]
+	        };
         }
-        return {
-            width: elmt[prop + "Width"],
-            height: elmt[prop + "Height"]
-        };
     }
     $.vegas = function(method) {
         if (methods[method]) {
