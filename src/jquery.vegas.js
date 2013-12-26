@@ -23,6 +23,7 @@
         // Init plugin
         init : function(settings) {
             var options = {
+                container: 'body',
                 src: getBackground(),
                 align: 'center',
                 valign: 'center',
@@ -33,14 +34,31 @@
             };
 
             $.extend(options, $.vegas.defaults.background, settings);
+            
+            // lets save the first set of settings passed in
+            // in case we make another call so we can reference (jump, pause, next)
+            if(!$.vegas.defaults.init)
+                $.vegas.defaults.init = settings;
+                
+            // set the container to the options to use in resize
+            // apply to a container
+            if (options.container !== 'body'){
+                options.container = $('#' + options.container);
+                // if not found set back to body
+                if (options.container.length === 0)
+                    options.container = $('body');
+            } else {
+                options.container = $('body');
+            }
 
             if (options.loading) {
                 loading();
             }
 
             var $new = $background.clone();
+            // set position to abslute if set to an element
             $new.css({
-                'position': 'fixed',
+                'position': options.container[0] === document.body ? 'fixed' : 'absolute',
                 'left': '0px',
                 'top': '0px'
             })
@@ -68,7 +86,7 @@
                         });
                 } else {
                     $new.hide()
-                        .prependTo('body')
+                        .prependTo(options.container[0])
                         .fadeIn(options.fade, function() {
                             $('body').trigger('vegascomplete', [this, step - 1]);
                             options.complete.apply(this, [step - 1]);
@@ -159,7 +177,9 @@
                 preload: false,
                 loading: true,
                 backgrounds: backgrounds,
-                walk: walk
+                walk: walk,
+                align: 'center',
+                valign: 'center'
             };
 
             $.extend(options, $.vegas.defaults.slideshow, settings);
@@ -201,6 +221,9 @@
                 var settings = backgrounds[step++];
                 settings.walk = options.walk;
                 settings.loading = options.loading;
+                settings.container = options.container;
+                settings.valign = options.valign;
+                settings.align = options.align;
 
                 if (typeof(settings.fade) == 'undefined') {
                     settings.fade = options.fade;
@@ -246,7 +269,9 @@
             var from = step;
 
             if (step) {
-                $.vegas('slideshow', { step: step - 2 }, true);
+                // pass to slideshow with init object
+                $.vegas.defaults.init.step = step - 2;
+                $.vegas('slideshow', $.vegas.defaults.init, true);
 
                 $('body').trigger('vegasprevious', [$current.get(0), step - 1, from - 1]);
             }
@@ -259,7 +284,9 @@
             var from = step;
 
             if (step) {
-                $.vegas('slideshow', { step: s }, true);
+                // pass to slideshow with init object
+                $.vegas.defaults.init.step = s;
+                $.vegas('slideshow', $.vegas.defaults.init, true);
 
                 $('body').trigger('vegasjump', [$current.get(0), step - 1, from - 1]);
             }
@@ -339,7 +366,7 @@
             return;
         }
 
-        var vp = getViewportSize(),
+        var vp = getViewportSize(settings),
             ww = vp.width,
             wh = vp.height,
             iw = $img.width(),
@@ -410,19 +437,28 @@
     }
 
     // Get the real viewport size
-    function getViewportSize(){
-        var elmt = window,
-            prop = 'inner';
+    function getViewportSize(settings){
+        // if attached to an element lets return the elements width and height
+        if(settings.container[0] !== document.body){
+            return {
+                width: settings.container.width(),
+                height: settings.container.height()
+            };
+        } else {
 
-        if (!('innerWidth' in window)){
-            elmt = document.documentElement || document.body;
-            prop = 'client';
+            var elmt = window,
+                prop = 'inner';
+    
+            if (!('innerWidth' in window)){
+                elmt = document.documentElement || document.body;
+                prop = 'client';
+            }
+    
+            return {
+                width:  elmt[prop + 'Width' ],
+                height: elmt[prop + 'Height']
+            };
         }
-
-        return {
-            width:  elmt[prop + 'Width' ],
-            height: elmt[prop + 'Height']
-        };
     }
 
     // The plugin

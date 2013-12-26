@@ -1,6 +1,6 @@
  // ----------------------------------------------------------------------------
  // Vegas - Fullscreen Backgrounds and Slideshows with jQuery.
- // v1.3.4 - released 2013-12-26 16:59
+ // v1.3.4 - released 2013-12-26 17:34
  // Licensed under the MIT license.
  // http://vegas.jaysalvat.com/
  // ----------------------------------------------------------------------------
@@ -12,6 +12,7 @@
     var $background = $("<img />").addClass("vegas-background"), $overlay = $("<div />").addClass("vegas-overlay"), $loading = $("<div />").addClass("vegas-loading"), $current = $(), paused = null, backgrounds = [], step = 0, delay = 5e3, walk = function() {}, timer, methods = {
         init: function(settings) {
             var options = {
+                container: "body",
                 src: getBackground(),
                 align: "center",
                 valign: "center",
@@ -21,12 +22,19 @@
                 complete: function() {}
             };
             $.extend(options, $.vegas.defaults.background, settings);
+            if (!$.vegas.defaults.init) $.vegas.defaults.init = settings;
+            if (options.container !== "body") {
+                options.container = $("#" + options.container);
+                if (options.container.length === 0) options.container = $("body");
+            } else {
+                options.container = $("body");
+            }
             if (options.loading) {
                 loading();
             }
             var $new = $background.clone();
             $new.css({
-                position: "fixed",
+                position: options.container[0] === document.body ? "fixed" : "absolute",
                 left: "0px",
                 top: "0px"
             }).bind("load", function() {
@@ -44,7 +52,7 @@
                         options.complete.apply($new, [ step - 1 ]);
                     });
                 } else {
-                    $new.hide().prependTo("body").fadeIn(options.fade, function() {
+                    $new.hide().prependTo(options.container[0]).fadeIn(options.fade, function() {
                         $("body").trigger("vegascomplete", [ this, step - 1 ]);
                         options.complete.apply(this, [ step - 1 ]);
                     });
@@ -110,7 +118,9 @@
                 preload: false,
                 loading: true,
                 backgrounds: backgrounds,
-                walk: walk
+                walk: walk,
+                align: "center",
+                valign: "center"
             };
             $.extend(options, $.vegas.defaults.slideshow, settings);
             if (options.backgrounds != backgrounds) {
@@ -142,6 +152,9 @@
                 var settings = backgrounds[step++];
                 settings.walk = options.walk;
                 settings.loading = options.loading;
+                settings.container = options.container;
+                settings.valign = options.valign;
+                settings.align = options.align;
                 if (typeof settings.fade == "undefined") {
                     settings.fade = options.fade;
                 }
@@ -173,9 +186,8 @@
         previous: function() {
             var from = step;
             if (step) {
-                $.vegas("slideshow", {
-                    step: step - 2
-                }, true);
+                $.vegas.defaults.init.step = step - 2;
+                $.vegas("slideshow", $.vegas.defaults.init, true);
                 $("body").trigger("vegasprevious", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
@@ -183,9 +195,8 @@
         jump: function(s) {
             var from = step;
             if (step) {
-                $.vegas("slideshow", {
-                    step: s
-                }, true);
+                $.vegas.defaults.init.step = s;
+                $.vegas("slideshow", $.vegas.defaults.init, true);
                 $("body").trigger("vegasjump", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
@@ -242,7 +253,7 @@
             });
             return;
         }
-        var vp = getViewportSize(), ww = vp.width, wh = vp.height, iw = $img.width(), ih = $img.height(), rw = wh / ww, ri = ih / iw, newWidth, newHeight, newLeft, newTop, properties;
+        var vp = getViewportSize(settings), ww = vp.width, wh = vp.height, iw = $img.width(), ih = $img.height(), rw = wh / ww, ri = ih / iw, newWidth, newHeight, newLeft, newTop, properties;
         if (rw > ri) {
             newWidth = wh / ri;
             newHeight = wh;
@@ -291,16 +302,23 @@
             return $("body").css("backgroundImage").replace(/url\("?(.*?)"?\)/i, "$1");
         }
     }
-    function getViewportSize() {
-        var elmt = window, prop = "inner";
-        if (!("innerWidth" in window)) {
-            elmt = document.documentElement || document.body;
-            prop = "client";
+    function getViewportSize(settings) {
+        if (settings.container[0] !== document.body) {
+            return {
+                width: settings.container.width(),
+                height: settings.container.height()
+            };
+        } else {
+            var elmt = window, prop = "inner";
+            if (!("innerWidth" in window)) {
+                elmt = document.documentElement || document.body;
+                prop = "client";
+            }
+            return {
+                width: elmt[prop + "Width"],
+                height: elmt[prop + "Height"]
+            };
         }
-        return {
-            width: elmt[prop + "Width"],
-            height: elmt[prop + "Height"]
-        };
     }
     $.vegas = function(method) {
         if (methods[method]) {
