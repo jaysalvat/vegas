@@ -1,0 +1,12 @@
+{
+    "name": "Vegas",
+    "version": "1.3.4",
+    "main": "dist/jquery.vegas.js",
+    "ignore": [
+        "src",
+        "gruntfile.js"
+    ],
+    "dependencies": {
+        "jquery": ">=1.9"
+    }
+}
