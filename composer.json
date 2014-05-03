@@ -1,0 +1,14 @@
+{
+  "name": "jaysalvat/vegas",
+  "description": "Vegas - Fullscreen Backgrounds and Slideshows with jQuery.",
+  "keywords": ["jquery","vegas","slideshow","fullscreen","background"],
+  "homepage": "http://vegas.jaysalvat.com/",
+  "authors": [
+    {
+      "name": "Jay Salvat",
+      "email": "jay@jaysalvat.com",
+      "homepage": "http://jaysalvat.com/"
+    }
+  ],
+  "license": ["MIT"]
+}
