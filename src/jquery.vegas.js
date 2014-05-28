@@ -412,16 +412,19 @@
     // Get the real viewport size
     function getViewportSize(){
         var elmt = window,
-            prop = 'inner';
+            prop = 'inner',
+            is_iphone = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null),
+            height_offset = 76;
+            // iOS 7 Safari adds 76px to the page height after you start to scroll
+            // there may be better ways to dynamically find this offset. 
 
         if (!('innerWidth' in window)){
             elmt = document.documentElement || document.body;
             prop = 'client';
         }
-
         return {
-            width:  elmt[prop + 'Width' ],
-            height: elmt[prop + 'Height']
+            width: elmt[prop + "Width"],
+            height: is_iphone ? elmt[prop + "Height"] + height_offset : elmt[prop + "Height"]
         };
     }
 
