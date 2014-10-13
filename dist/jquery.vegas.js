@@ -1,15 +1,15 @@
  // ----------------------------------------------------------------------------
  // Vegas - Fullscreen Backgrounds and Slideshows with jQuery.
- // v1.3.4 - released 2013-12-16 13:28
+ // v1.3.4 - released 2014-01-03 23:29
  // Licensed under the MIT license.
  // http://vegas.jaysalvat.com/
  // ----------------------------------------------------------------------------
- // Copyright (C) 2010-2013 Jay Salvat
+ // Copyright (C) 2010-2014 Jay Salvat
  // http://jaysalvat.com/
  // ----------------------------------------------------------------------------
 
 (function($) {
-    var $background = $("<img />").addClass("vegas-background"), $overlay = $("<div />").addClass("vegas-overlay"), $loading = $("<div />").addClass("vegas-loading"), $current = $(), paused = null, backgrounds = [], step = 0, delay = 5e3, walk = function() {}, timer, methods = {
+    var $background = $("<img />").addClass("vegas-background"), $overlay = $("<div />").addClass("vegas-overlay"), $loading = $("<div />").addClass("vegas-loading"), $current = $(), paused = null, backgrounds = [], step = 0, delay = 5e3, walk = function() {}, timer, backgroundTarget = "body", methods = {
         init: function(settings) {
             var options = {
                 src: getBackground(),
@@ -26,7 +26,7 @@
             }
             var $new = $background.clone();
             $new.css({
-                position: "fixed",
+                position: backgroundTarget === "body" ? "fixed" : "absolute",
                 left: "0px",
                 top: "0px"
             }).bind("load", function() {
@@ -40,12 +40,12 @@
                     $current.stop();
                     $new.hide().insertAfter($current).fadeIn(options.fade, function() {
                         $(".vegas-background").not(this).remove();
-                        $("body").trigger("vegascomplete", [ this, step - 1 ]);
+                        $(backgroundTarget).trigger("vegascomplete", [ this, step - 1 ]);
                         options.complete.apply($new, [ step - 1 ]);
                     });
                 } else {
-                    $new.hide().prependTo("body").fadeIn(options.fade, function() {
-                        $("body").trigger("vegascomplete", [ this, step - 1 ]);
+                    $new.hide().prependTo(backgroundTarget).fadeIn(options.fade, function() {
+                        $(backgroundTarget).trigger("vegascomplete", [ this, step - 1 ]);
                         options.complete.apply(this, [ step - 1 ]);
                     });
                 }
@@ -54,10 +54,10 @@
                 if (options.loading) {
                     loaded();
                 }
-                $("body").trigger("vegasload", [ $current.get(0), step - 1 ]);
+                $(backgroundTarget).trigger("vegasload", [ $current.get(0), step - 1 ]);
                 options.load.apply($current.get(0), [ step - 1 ]);
                 if (step) {
-                    $("body").trigger("vegaswalk", [ $current.get(0), step - 1 ]);
+                    $(backgroundTarget).trigger("vegaswalk", [ $current.get(0), step - 1 ]);
                     options.walk.apply($current.get(0), [ step - 1 ]);
                 }
             }).attr("src", options.src);
@@ -100,7 +100,7 @@
             if (options.opacity) {
                 $overlay.css("opacity", options.opacity);
             }
-            $overlay.prependTo("body");
+            $overlay.prependTo(backgroundTarget);
             return $.vegas;
         },
         slideshow: function(settings, keepPause) {
@@ -153,7 +153,7 @@
             doSlideshow();
             if (!keepPause) {
                 paused = false;
-                $("body").trigger("vegasstart", [ $current.get(0), step - 1 ]);
+                $(backgroundTarget).trigger("vegasstart", [ $current.get(0), step - 1 ]);
             }
             if (!paused) {
                 timer = setInterval(doSlideshow, options.delay);
@@ -166,7 +166,7 @@
                 $.vegas("slideshow", {
                     step: step
                 }, true);
-                $("body").trigger("vegasnext", [ $current.get(0), step - 1, from - 1 ]);
+                $(backgroundTarget).trigger("vegasnext", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
         },
@@ -176,7 +176,7 @@
                 $.vegas("slideshow", {
                     step: step - 2
                 }, true);
-                $("body").trigger("vegasprevious", [ $current.get(0), step - 1, from - 1 ]);
+                $(backgroundTarget).trigger("vegasprevious", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
         },
@@ -186,7 +186,7 @@
                 $.vegas("slideshow", {
                     step: s
                 }, true);
-                $("body").trigger("vegasjump", [ $current.get(0), step - 1, from - 1 ]);
+                $(backgroundTarget).trigger("vegasjump", [ $current.get(0), step - 1, from - 1 ]);
             }
             return $.vegas;
         },
@@ -195,13 +195,13 @@
             step = 0;
             paused = null;
             clearInterval(timer);
-            $("body").trigger("vegasstop", [ $current.get(0), from - 1 ]);
+            $(backgroundTarget).trigger("vegasstop", [ $current.get(0), from - 1 ]);
             return $.vegas;
         },
         pause: function() {
             paused = true;
             clearInterval(timer);
-            $("body").trigger("vegaspause", [ $current.get(0), step - 1 ]);
+            $(backgroundTarget).trigger("vegaspause", [ $current.get(0), step - 1 ]);
             return $.vegas;
         },
         get: function(what) {
@@ -279,7 +279,7 @@
         $img.css(properties);
     }
     function loading() {
-        $loading.prependTo("body").fadeIn();
+        $loading.prependTo(backgroundTarget).fadeIn();
     }
     function loaded() {
         $loading.fadeOut("fast", function() {
@@ -287,8 +287,8 @@
         });
     }
     function getBackground() {
-        if ($("body").css("backgroundImage")) {
-            return $("body").css("backgroundImage").replace(/url\("?(.*?)"?\)/i, "$1");
+        if ($(backgroundTarget).css("backgroundImage")) {
+            return $(backgroundTarget).css("backgroundImage").replace(/url\("?(.*?)"?\)/i, "$1");
         }
     }
     function getViewportSize() {
@@ -297,15 +297,31 @@
             elmt = document.documentElement || document.body;
             prop = "client";
         }
-        return {
-            width: elmt[prop + "Width"],
-            height: elmt[prop + "Height"]
-        };
+        if (backgroundTarget === "body") {
+            return {
+                width: elmt[prop + "Width"],
+                height: elmt[prop + "Height"]
+            };
+        } else {
+            return {
+                width: $(backgroundTarget).width(),
+                height: $(backgroundTarget).height()
+            };
+        }
     }
     $.vegas = function(method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === "object" || !method) {
+            if (method.backgroundTarget) {
+                backgroundTarget = method.backgroundTarget;
+            }
+            if (backgroundTarget != "body") {
+                $(backgroundTarget).css({
+                    position: "relative",
+                    overflow: "hidden"
+                });
+            }
             return methods.init.apply(this, arguments);
         } else {
             $.error("Method " + method + " does not exist");

@@ -18,6 +18,7 @@
         delay = 5000,
         walk = function() {},
         timer,
+        backgroundTarget = 'body',
         methods = {
 
         // Init plugin
@@ -40,7 +41,7 @@
 
             var $new = $background.clone();
             $new.css({
-                'position': 'fixed',
+                'position': backgroundTarget === 'body' ? 'fixed' : 'absolute',
                 'left': '0px',
                 'top': '0px'
             })
@@ -63,14 +64,14 @@
                             $('.vegas-background')
                                 .not(this)
                                     .remove();
-                            $('body').trigger('vegascomplete', [this, step - 1]);
+                            $(backgroundTarget).trigger('vegascomplete', [this, step - 1]);
                             options.complete.apply($new, [step - 1]);
                         });
                 } else {
                     $new.hide()
-                        .prependTo('body')
+                        .prependTo(backgroundTarget)
                         .fadeIn(options.fade, function() {
-                            $('body').trigger('vegascomplete', [this, step - 1]);
+                            $(backgroundTarget).trigger('vegascomplete', [this, step - 1]);
                             options.complete.apply(this, [step - 1]);
                         });
                 }
@@ -83,11 +84,11 @@
                     loaded();
                 }
 
-                $('body').trigger('vegasload', [$current.get(0), step - 1]);
+                $(backgroundTarget).trigger('vegasload', [$current.get(0), step - 1]);
                 options.load.apply($current.get(0), [step - 1]);
 
                 if (step) {
-                    $('body').trigger('vegaswalk', [$current.get(0), step - 1]);
+                    $(backgroundTarget).trigger('vegaswalk', [$current.get(0), step - 1]);
                     options.walk.apply($current.get(0), [step - 1]);
                 }
             })
@@ -146,7 +147,7 @@
                 $overlay.css('opacity', options.opacity);
             }
 
-            $overlay.prependTo('body');
+            $overlay.prependTo(backgroundTarget);
 
             return $.vegas;
         },
@@ -218,7 +219,7 @@
             if (!keepPause) {
                 paused = false;
 
-                $('body').trigger('vegasstart', [$current.get(0), step - 1]);
+                $(backgroundTarget).trigger('vegasstart', [$current.get(0), step - 1]);
             }
 
             if (!paused) {
@@ -235,7 +236,7 @@
             if (step) {
                 $.vegas('slideshow', { step: step }, true);
 
-                $('body').trigger('vegasnext', [$current.get(0), step - 1, from - 1]);
+                $(backgroundTarget).trigger('vegasnext', [$current.get(0), step - 1, from - 1]);
             }
 
             return $.vegas;
@@ -248,7 +249,7 @@
             if (step) {
                 $.vegas('slideshow', { step: step - 2 }, true);
 
-                $('body').trigger('vegasprevious', [$current.get(0), step - 1, from - 1]);
+                $(backgroundTarget).trigger('vegasprevious', [$current.get(0), step - 1, from - 1]);
             }
 
             return $.vegas;
@@ -261,7 +262,7 @@
             if (step) {
                 $.vegas('slideshow', { step: s }, true);
 
-                $('body').trigger('vegasjump', [$current.get(0), step - 1, from - 1]);
+                $(backgroundTarget).trigger('vegasjump', [$current.get(0), step - 1, from - 1]);
             }
 
             return $.vegas;
@@ -274,7 +275,7 @@
             paused = null;
             clearInterval(timer);
 
-            $('body').trigger('vegasstop', [$current.get(0), from - 1]);
+            $(backgroundTarget).trigger('vegasstop', [$current.get(0), from - 1]);
 
             return $.vegas;
         },
@@ -284,7 +285,7 @@
             paused = true;
             clearInterval(timer);
 
-            $('body').trigger('vegaspause', [$current.get(0), step - 1]);
+            $(backgroundTarget).trigger('vegaspause', [$current.get(0), step - 1]);
 
             return $.vegas;
         },
@@ -392,7 +393,7 @@
 
     // Display the loading indicator
     function loading() {
-        $loading.prependTo('body').fadeIn();
+        $loading.prependTo(backgroundTarget).fadeIn();
     }
 
     // Hide the loading indicator
@@ -404,8 +405,8 @@
 
     // Get the background image from the body
     function getBackground() {
-        if ($('body').css('backgroundImage')) {
-            return $('body').css('backgroundImage').replace(/url\("?(.*?)"?\)/i, '$1');
+        if ($(backgroundTarget).css('backgroundImage')) {
+            return $(backgroundTarget).css('backgroundImage').replace(/url\("?(.*?)"?\)/i, '$1');
         }
     }
 
@@ -419,10 +420,18 @@
             prop = 'client';
         }
 
-        return {
-            width:  elmt[prop + 'Width' ],
-            height: elmt[prop + 'Height']
-        };
+        if (backgroundTarget === 'body'){
+          return {
+              width:  elmt[prop + 'Width' ],
+              height: elmt[prop + 'Height']
+          };
+        }
+        else{
+          return {
+              width:  $(backgroundTarget).width(),
+              height: $(backgroundTarget).height()
+          };
+        }
     }
 
     // The plugin
@@ -430,6 +439,12 @@
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
+            if(method.backgroundTarget){
+                backgroundTarget = method.backgroundTarget;
+            }
+            if (backgroundTarget != 'body'){
+              $(backgroundTarget).css({position: 'relative', overflow:'hidden'});
+            }
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist');
