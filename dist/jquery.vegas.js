@@ -1,10 +1,10 @@
  // ----------------------------------------------------------------------------
  // Vegas - Fullscreen Backgrounds and Slideshows with jQuery.
- // v1.3.4 - released 2013-12-16 13:28
+ // v1.3.5 - released 2014-10-13 19:56
  // Licensed under the MIT license.
  // http://vegas.jaysalvat.com/
  // ----------------------------------------------------------------------------
- // Copyright (C) 2010-2013 Jay Salvat
+ // Copyright (C) 2010-2014 Jay Salvat
  // http://jaysalvat.com/
  // ----------------------------------------------------------------------------
 
