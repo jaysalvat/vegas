@@ -1,33 +1,52 @@
-Vegas – Fullscreen Backgrounds and Slideshows with jQuery
-=========================================================
+Vegas – Fullscreen Backgrounds and Slideshows
+=============================================
 
-Vegas is a jQuery plugin to add beautiful fullscreen backgrounds to your webpages. You can even create amazing Slideshows.
+Vegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com)/[Pin](http://pin.jaysalvat.com) plugin 
+to add beautiful fullscreen backgrounds and Slideshows to DOM elements.
+
+#### Install
+
+    bower install vegas
+
+#### Get started
+
+First, include either [jQuery](http://jquery.com), [Zepto](http://zeptojs.com) or [Pin](http://pin.jaysalvat.com).
+
+Then...
 
     $(function() {
-	    $.vegas('/img/background.jpg')('overlay');
+	    $('body').vegas({
+            slides: [
+                { src: 'img1.jpg' },
+                { src: 'img2.jpg' },
+                { src: 'img3.jpg' }
+            ]
+        });
 	}
 
-### Official website
+### V1 Official website
 http://vegas.jaysalvat.com/
 
-### Real life demo
+### V1 Real life demo
 http://vegas.jaysalvat.com/demo/
 
-### Documentation
+### V1 Documentation
 http://vegas.jaysalvat.com/documentation/
 
 Contributing
 ------------
 
-Please don't edit files in the `dist` subdirectory as they are generated via Grunt. You'll find source code in the `src` subdirectory!
+Please don't edit files in the `dist` directory as they are generated via [Gulp](http://gulpjs.com). 
+You'll find source code in the `src` directory!
 Regarding code style like indentation and whitespace, **follow the conventions you see used in the source already.**
+Please don't run Gulp task. I will.
 
 License
 -------
 
 **The MIT License (MIT)**
 
-Copyright (c) 2013 Jay Salvat
+Copyright 2015 Jay Salvat
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

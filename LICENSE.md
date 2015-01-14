@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2013 Jay Salvat
+Copyright 2015 Jay Salvat
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

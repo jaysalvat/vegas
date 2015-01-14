@@ -1,23 +1,25 @@
 {
     "name": "Vegas",
-    "version": "1.3.5",
+    "version": "2.0.0-wip",
     "description": "Vegas - Fullscreen Backgrounds and Slideshows with jQuery.",
     "homepage": "http://vegas.jaysalvat.com",
     "author": "Jay Salvat",
     "license": "MIT",
     "main": [
-        "dist/jquery.vegas.js",
-        "dist/jquery.vegas.css"
+        "dist/vegas.min.js",
+        "dist/vegas.min.css"
     ],
     "repository": {
         "type": "git",
         "url": "git@github.com:jaysalvat/vegas.git"
     },
     "keywords": [
-        "jquery",
         "background",
         "slideshow",
         "fullscreen",
-        "vegas"
+        "vegas",
+        "jquery",
+        "zepto",
+        "pin"
     ]
 }
