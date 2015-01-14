@@ -1,12 +1,12 @@
- // ----------------------------------------------------------------------------
- // Vegas - Fullscreen Backgrounds and Slideshows.
- // v2.0.0-wip - released 2015-01-14
- // Licensed under the MIT License.
- // http://vegas.jaysalvat.com/
- // ----------------------------------------------------------------------------
- // Copyright (C) 2010-2015 Jay Salvat
- // http://jaysalvat.com/
- // ----------------------------------------------------------------------------
+/*!-----------------------------------------------------------------------------
+ * Vegas - Fullscreen Backgrounds and Slideshows.
+ * v2.0.0-wip - built 2015-01-14
+ * Licensed under the MIT License.
+ * http://vegas.jaysalvat.com/
+ * ----------------------------------------------------------------------------
+ * Copyright (C) 2010-2015 Jay Salvat
+ * http://jaysalvat.com/
+ * --------------------------------------------------------------------------*/
 
 /* global jQuery, Zepto, Pin */
 

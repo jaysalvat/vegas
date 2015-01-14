@@ -1,10 +1,5 @@
 /* 
- * Pin to jQuery compatibility patch
- *
- * This file is required if you use 
- * Pin instead of jQuery
- *
- * What is Pin?
+ * Pin compatibility patch
  * http://pin.jaysalvat.com
  */
 
