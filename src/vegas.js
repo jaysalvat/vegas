@@ -157,6 +157,7 @@
             if (this.paused || this.noshow) {
                 clearTimeout(this.timeout);
             } else {
+                clearTimeout(this.timeout);
                 this.timeout = setTimeout(function () {
                     self.next();
                 }, this._options('delay')); 
@@ -331,8 +332,17 @@
             }
 
             if (video) {
+                // oncanplay is triggered every time when loop=true
+                // so let's start the slide only once
+                var played = false; 
+
                 video.play();
-                video.oncanplay = go;
+                video.oncanplay = function () {
+                    if (!played) {
+                        played = true;
+                        go();
+                    }
+                };
             } else {
                 img.onload = go;
             }
