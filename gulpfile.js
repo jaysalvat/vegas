@@ -14,6 +14,7 @@
         bump      = require('gulp-bump'),
         header    = require('gulp-header'),
         cssmin    = require('gulp-cssmin'),
+        prefixer  = require('gulp-autoprefixer'),
         uglify    = require('gulp-uglify'),
         sourcemap = require('gulp-sourcemaps'),
         jshint    = require('gulp-jshint'),
@@ -176,6 +177,12 @@
             .pipe(gulp.dest('./dist'));
     });
 
+    gulp.task('autoprefixer', function () {
+        return gulp.src('./dist/**/*.css')
+            .pipe(prefixer())
+            .pipe(gulp.dest('./dist'));
+    });
+
     gulp.task('uglify', function () {
         return gulp.src('./dist/**/!(*.min.js).js')
             .pipe(rename({ suffix: '.min' }))
@@ -193,6 +200,7 @@
 
     gulp.task('cssmin', function () {
         return gulp.src('./dist/**/!(*.min.css).css')
+            .pipe(prefixer())
             .pipe(rename({ suffix: '.min' }))
             .pipe(cssmin())
             .pipe(gulp.dest('./dist/'));
@@ -235,6 +243,7 @@
         'lint',
         'clean', 
         'copy', 
+        'autoprefixer',
         'uglify',
         'cssmin',
         'header'
@@ -248,6 +257,7 @@
         'license',
         'clean',
         'copy',
+        'autoprefixer',
         'uglify',
         'cssmin',
         'header',
@@ -284,6 +294,7 @@ npm install --save-dev gulp
 npm install --save-dev gulp-bump
 npm install --save-dev gulp-header
 npm install --save-dev gulp-cssmin
+npm install --save-dev gulp-autoprefixer
 npm install --save-dev gulp-uglify
 npm install --save-dev gulp-sourcemaps
 npm install --save-dev gulp-jshint

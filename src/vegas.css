@@ -38,8 +38,7 @@
 .vegas-slide {
     padding: 0;
     background: transparent center center no-repeat;
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 body.vegas-container {
@@ -76,147 +75,123 @@ body.vegas-container {
 /* slideLeft */
 
 .vegas-transition-slideLeft {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    transform: translateX(100%);
 }
 
 .vegas-transition-slideLeft-in {
-     -webkit-transform: translateX(0%);
-             transform: translateX(0%); 
+    transform: translateX(0%); 
 }
 
 .vegas-transition-slideLeft-out {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+    transform: translateX(-100%);
 }
 
 /* slideRight */
 
 .vegas-transition-slideRight {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+    transform: translateX(-100%);
 }
 
 .vegas-transition-slideRight-in {
-     -webkit-transform: translateX(0%);
-             transform: translateX(0%); 
+    transform: translateX(0%); 
 }
 
 .vegas-transition-slideRight-out {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    transform: translateX(100%);
 }
 
 /* slideUp */
 
 .vegas-transition-slideUp {
-    -webkit-transform: translateY(100%);
-            transform: translateY(100%);
+    transform: translateY(100%);
 }
 
 .vegas-transition-slideUp-in {
-     -webkit-transform: translateY(0%);
-             transform: translateY(0%); 
+    transform: translateY(0%); 
 }
 
 .vegas-transition-slideUp-out {
-    -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
 /* slideDown */
 
 .vegas-transition-slideDown {
-    -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
 .vegas-transition-slideDown-in {
-     -webkit-transform: translateY(0%);
-             transform: translateY(0%); 
+    transform: translateY(0%); 
 }
 
 .vegas-transition-slideDown-out {
-    -webkit-transform: translateY(100%);
-            transform: translateY(100%);
+    transform: translateY(100%);
 }
 
 /* zoomIn */
 
 .vegas-transition-zoomIn {
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     opacity: 0;
 }
 
 .vegas-transition-zoomIn-in {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 1;
 }
 
 .vegas-transition-zoomIn-out {
-    -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
 }
 
 /* zoomOut */
 
 .vegas-transition-zoomOut {
-    -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
 }
 
 .vegas-transition-zoomOut-in {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 1;
 }
 
 .vegas-transition-zoomOut-out {
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     opacity: 0;
 }
 
 /* swirlLeft */
 
 .vegas-transition-swirlLeft {
-    -webkit-transform: scale(2) rotate(35deg);
-            transform: scale(2) rotate(35deg);
+    transform: scale(2) rotate(35deg);
     opacity: 0;
 }
 
 .vegas-transition-swirlLeft-in {
-     -webkit-transform: scale(1) rotate(0deg);
-             transform: scale(1) rotate(0deg); 
+    transform: scale(1) rotate(0deg); 
     opacity: 1;
 }
 
 .vegas-transition-swirlLeft-out {
-    -webkit-transform: scale(2) rotate(-35deg);
-            transform: scale(2) rotate(-35deg);
+    transform: scale(2) rotate(-35deg);
     opacity: 0;
 }
 
 /* swirlRight */
 
 .vegas-transition-swirlRight {
-    -webkit-transform: scale(2) rotate(-35deg);
-            transform: scale(2) rotate(-35deg);
+    transform: scale(2) rotate(-35deg);
     opacity: 0;
 }
 
 .vegas-transition-swirlRight-in {
-     -webkit-transform: scale(1) rotate(0deg);
-             transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
     opacity: 1;
 }
 
 .vegas-transition-swirlRight-out {
-    -webkit-transform: scale(2) rotate(35deg);
-            transform: scale(2) rotate(35deg);
+    transform: scale(2) rotate(35deg);
     opacity: 0;
 }

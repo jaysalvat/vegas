@@ -28,8 +28,10 @@
         width: 0%;
         height: 100%;
         background: yellowgreen;
-        transition-property: width;
-        transition-timing-function: ease-out;
+        -webkit-transition-property: width;
+                transition-property: width;
+        -webkit-transition-timing-function: ease-out;
+                transition-timing-function: ease-out;
     }
         .vegas-timer-running .vegas-timer-progress {
             width: 100%;
@@ -77,16 +79,19 @@ body.vegas-container {
 
 .vegas-transition-slideLeft {
     -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
             transform: translateX(100%);
 }
 
 .vegas-transition-slideLeft-in {
-     -webkit-transform: translateX(0%);
-             transform: translateX(0%); 
+    -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+            transform: translateX(0%); 
 }
 
 .vegas-transition-slideLeft-out {
     -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
             transform: translateX(-100%);
 }
 
@@ -94,16 +99,19 @@ body.vegas-container {
 
 .vegas-transition-slideRight {
     -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
             transform: translateX(-100%);
 }
 
 .vegas-transition-slideRight-in {
-     -webkit-transform: translateX(0%);
-             transform: translateX(0%); 
+    -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+            transform: translateX(0%); 
 }
 
 .vegas-transition-slideRight-out {
     -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
             transform: translateX(100%);
 }
 
@@ -111,16 +119,19 @@ body.vegas-container {
 
 .vegas-transition-slideUp {
     -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
             transform: translateY(100%);
 }
 
 .vegas-transition-slideUp-in {
-     -webkit-transform: translateY(0%);
-             transform: translateY(0%); 
+    -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+            transform: translateY(0%); 
 }
 
 .vegas-transition-slideUp-out {
     -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
             transform: translateY(-100%);
 }
 
@@ -128,16 +139,19 @@ body.vegas-container {
 
 .vegas-transition-slideDown {
     -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
             transform: translateY(-100%);
 }
 
 .vegas-transition-slideDown-in {
-     -webkit-transform: translateY(0%);
-             transform: translateY(0%); 
+    -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+            transform: translateY(0%); 
 }
 
 .vegas-transition-slideDown-out {
     -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
             transform: translateY(100%);
 }
 
@@ -145,18 +159,21 @@ body.vegas-container {
 
 .vegas-transition-zoomIn {
     -webkit-transform: scale(0);
+        -ms-transform: scale(0);
             transform: scale(0);
     opacity: 0;
 }
 
 .vegas-transition-zoomIn-in {
     -webkit-transform: scale(1);
+        -ms-transform: scale(1);
             transform: scale(1);
     opacity: 1;
 }
 
 .vegas-transition-zoomIn-out {
     -webkit-transform: scale(2);
+        -ms-transform: scale(2);
             transform: scale(2);
     opacity: 0;
 }
@@ -165,18 +182,21 @@ body.vegas-container {
 
 .vegas-transition-zoomOut {
     -webkit-transform: scale(2);
+        -ms-transform: scale(2);
             transform: scale(2);
     opacity: 0;
 }
 
 .vegas-transition-zoomOut-in {
     -webkit-transform: scale(1);
+        -ms-transform: scale(1);
             transform: scale(1);
     opacity: 1;
 }
 
 .vegas-transition-zoomOut-out {
     -webkit-transform: scale(0);
+        -ms-transform: scale(0);
             transform: scale(0);
     opacity: 0;
 }
@@ -185,18 +205,21 @@ body.vegas-container {
 
 .vegas-transition-swirlLeft {
     -webkit-transform: scale(2) rotate(35deg);
+        -ms-transform: scale(2) rotate(35deg);
             transform: scale(2) rotate(35deg);
     opacity: 0;
 }
 
 .vegas-transition-swirlLeft-in {
-     -webkit-transform: scale(1) rotate(0deg);
-             transform: scale(1) rotate(0deg); 
+    -webkit-transform: scale(1) rotate(0deg);
+        -ms-transform: scale(1) rotate(0deg);
+            transform: scale(1) rotate(0deg); 
     opacity: 1;
 }
 
 .vegas-transition-swirlLeft-out {
     -webkit-transform: scale(2) rotate(-35deg);
+        -ms-transform: scale(2) rotate(-35deg);
             transform: scale(2) rotate(-35deg);
     opacity: 0;
 }
@@ -205,18 +228,21 @@ body.vegas-container {
 
 .vegas-transition-swirlRight {
     -webkit-transform: scale(2) rotate(-35deg);
+        -ms-transform: scale(2) rotate(-35deg);
             transform: scale(2) rotate(-35deg);
     opacity: 0;
 }
 
 .vegas-transition-swirlRight-in {
-     -webkit-transform: scale(1) rotate(0deg);
-             transform: scale(1) rotate(0deg);
+    -webkit-transform: scale(1) rotate(0deg);
+        -ms-transform: scale(1) rotate(0deg);
+            transform: scale(1) rotate(0deg);
     opacity: 1;
 }
 
 .vegas-transition-swirlRight-out {
     -webkit-transform: scale(2) rotate(35deg);
+        -ms-transform: scale(2) rotate(35deg);
             transform: scale(2) rotate(35deg);
     opacity: 0;
 }
