@@ -97,8 +97,10 @@
             // Preloading
             if (preload) {
                 for (i = 0; i < this.settings.slides.length; i++) {
-                    img = new Image();
-                    img.src = this.settings.slides[i].src;
+                    if (this.settings.slides[i].src) {
+                        img = new Image();
+                        img.src = this.settings.slides[i].src;
+                    }
                 }
             }
 
