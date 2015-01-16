@@ -102,6 +102,9 @@
                         img.src = this.settings.slides[i].src;
                     }
                 }
+
+                // TODO: 
+                // Preload videos
             }
 
             // Wrapper with content
