@@ -146,9 +146,6 @@
             // Container
             this.$elmt.addClass('vegas-container');
             if (!isBody) {
-                if (position === 'static') {
-                    this.$elmt.css('position', 'relative');
-                }
                 this.$elmt.append($wrapper);
             }
 

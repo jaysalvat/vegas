@@ -1,5 +1,6 @@
 .vegas-container {
     overflow: hidden !important;
+    position: relative;
 }
 
 .vegas-wrapper,
@@ -43,6 +44,7 @@
 
 body.vegas-container {
     overflow: auto;
+    position: static;
 }
     body.vegas-container > .vegas-timer,
     body.vegas-container > .vegas-overlay,
