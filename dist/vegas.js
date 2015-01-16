@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.0.0-wip - built 2015-01-15
+ * v2.0.0-wip - built 2015-01-16
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -106,9 +106,14 @@
             // Preloading
             if (preload) {
                 for (i = 0; i < this.settings.slides.length; i++) {
-                    img = new Image();
-                    img.src = this.settings.slides[i].src;
+                    if (this.settings.slides[i].src) {
+                        img = new Image();
+                        img.src = this.settings.slides[i].src;
+                    }
                 }
+
+                // TODO: 
+                // Preload videos
             }
 
             // Wrapper with content
@@ -150,9 +155,6 @@
             // Container
             this.$elmt.addClass('vegas-container');
             if (!isBody) {
-                if (position === 'static') {
-                    this.$elmt.css('position', 'relative');
-                }
                 this.$elmt.append($wrapper);
             }
 
@@ -166,6 +168,7 @@
             if (this.paused || this.noshow) {
                 clearTimeout(this.timeout);
             } else {
+                clearTimeout(this.timeout);
                 this.timeout = setTimeout(function () {
                     self.next();
                 }, this._options('delay')); 
@@ -340,8 +343,17 @@
             }
 
             if (video) {
+                // oncanplay is triggered every time when loop=true
+                // so let's start the slide only once
+                var played = false; 
+
                 video.play();
-                video.oncanplay = go;
+                video.oncanplay = function () {
+                    if (!played) {
+                        played = true;
+                        go();
+                    }
+                };
             } else {
                 img.onload = go;
             }
