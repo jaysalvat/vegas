@@ -99,7 +99,6 @@
                 timer     = this.settings.timer,
                 overlay   = this.settings.overlay,
                 preload   = this.settings.preload,
-                position  = this.$elmt.css('position'),
                 img,
                 i;
 
@@ -165,10 +164,7 @@
         _slideShow: function () {
             var self = this;
 
-            if (this.paused || this.noshow) {
-                clearTimeout(this.timeout);
-            } else {
-                clearTimeout(this.timeout);
+            if (this.total > 1 && !this.paused && !this.noshow) {
                 this.timeout = setTimeout(function () {
                     self.next();
                 }, this._options('delay')); 
@@ -180,7 +176,7 @@
 
             clearTimeout(this.timeout);
 
-            if (!this.$timer || this.paused || this.noshow) {
+            if (!this.$timer) {
                 return;
             }
 
@@ -188,6 +184,10 @@
                 .removeClass('vegas-timer-running')
                     .find('div')
                         .css('transition-duration', '0ms');
+
+            if (this.paused || this.noshow) {
+                return;
+            }
 
             if (state) {
                 setTimeout(function () {
@@ -468,6 +468,10 @@
             } else {
                 return this.settings;
             }
+
+            // In case slides have changed
+            this.total  = this.settings.slides.length;
+            this.noshow = this.total < 2;
         }
     };
 
