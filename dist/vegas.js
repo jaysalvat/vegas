@@ -337,8 +337,8 @@
                         $slide.fadeIn(duration);
                     }
 
-                    if ($slides.length >= 2) {
-                         $slides.eq(0).remove();
+                   for (var i = 0; i < $slides.length - 2; i++) {
+                        $slides.eq(i).remove();
                     }
 
                     self.trigger('walk');
