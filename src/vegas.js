@@ -203,6 +203,10 @@
         },
 
         _goto: function (nb) {
+            if (typeof this.settings.slides[nb] === 'undefined') {
+                nb = 0;
+            }
+
             this.slide = nb;
 
             var $slide,
