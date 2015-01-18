@@ -302,7 +302,7 @@
                     this.className += ' vegas-transition-' +  transition;
                     this.className += ' vegas-transition-' +  transition + '-in';
                     
-                    if (video) {
+                    if (this.tagName === 'VIDEO') {
                         this.className += ' vegas-video';    
                     }
                 }
@@ -328,8 +328,8 @@
                         $slide.fadeIn(duration);
                     }
 
-                    if ($slides.length >= 2) {
-                         $slides.eq(0).remove();
+                    for (var i = 0; i < $slides.length - 2; i++) {
+                         $slides.eq(i).remove();
                     }
 
                     self.trigger('walk');
