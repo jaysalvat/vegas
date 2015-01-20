@@ -1,5 +1,5 @@
 {
-    "name": "Vegas",
+    "name": "vegas",
     "version": "1.3.6",
     "main": [
         "dist/jquery.vegas.js",
