@@ -413,10 +413,11 @@
     function getViewportSize(){
         var elmt = window,
             prop = 'inner',
-            is_iphone = (navigator.userAgent.match(/iPhone/i) !== null) || (navigator.userAgent.match(/iPod/i) !== null),
+            isIPhone = /iPhone|iPod/i.test(navigator.userAgent),
             height_offset = 76;
-            // iOS 7 Safari adds 76px to the page height after you start to scroll
-            // there may be better ways to dynamically find this offset. 
+            // iOS 7/8 Safari adds 76px to the page height after you start to scroll.
+            // This causes the background image to rescale after you scroll.
+            // there may be better ways to dynamically find this offset.
 
         if (!('innerWidth' in window)){
             elmt = document.documentElement || document.body;
@@ -424,7 +425,7 @@
         }
         return {
             width: elmt[prop + "Width"],
-            height: is_iphone ? elmt[prop + "Height"] + height_offset : elmt[prop + "Height"]
+            height: isIPhone ? elmt[prop + "Height"] + height_offset : elmt[prop + "Height"]
         };
     }
 

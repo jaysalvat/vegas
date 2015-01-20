@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 1.3.6 2015-01-19
+
+* Fixed backgrounds from rescaling on iPhone and iPods after you begin scrolling the page.
+
 ### Vegas 1.3.4 2013-12-16
 
 * Allow overlay(false) to disable overlay when vegas is already running
