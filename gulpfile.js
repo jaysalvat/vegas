@@ -239,6 +239,10 @@
         );
     });
 
+    gulp.task("watch", function() {
+        gulp.watch("./src/**/*", [ "build" ]);
+    });
+
     gulp.task('build', sync([
         'lint',
         'clean', 
