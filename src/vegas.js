@@ -62,13 +62,15 @@
             var sheet = document.styleSheets[i],
                 rules = sheet.rules ? sheet.rules : sheet.cssRules;
 
-            if (/vegas(\.min)?\.css$/.test(sheet.href)) {
+            if (/vegas(\..*?)?(\.min)?\.css$/.test(sheet.href)) {
                 for (var j = 0; j < rules.length; j++) {
                     var rule  = rules[j],
                         match = /vegas\-transition\-(.*)-|\b/gi.exec(rule.selectorText);
                 
                     if (match && match[1]) {
-                        this.transitions.push(match[1]);
+                        if (this.transitions.indexOf(match[1]) === -1) {
+                            this.transitions.push(match[1]);
+                        }
                     }
                 }
             }
