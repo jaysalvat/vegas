@@ -6,7 +6,6 @@
 // Copyright (C) 2013 Jay Salvat
 // http://jaysalvat.com/
 // ----------------------------------------------------------------------------
-
 (function($) {
     var $background = $('<img />').addClass('vegas-background'),
         $overlay = $('<div />').addClass('vegas-overlay'),
@@ -18,8 +17,9 @@
         delay = 5000,
         walk = function() {},
         timer,
+        isIPhone = (navigator.userAgent.match(/iPod|iPhone/i)),
+        IPhoneHeightOffset = 76,
         methods = {
-
         // Init plugin
         init : function(settings) {
             var options = {
@@ -420,8 +420,8 @@
         }
 
         return {
-            width:  elmt[prop + 'Width' ],
-            height: elmt[prop + 'Height']
+            width:  elmt[prop + "Width"],
+            height: isIPhone ? elmt[prop + "Height"] + IPhoneHeightOffset : elmt[prop + "Height"]
         };
     }
 
