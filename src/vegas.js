@@ -65,7 +65,7 @@
             if (/vegas(\..*?)?(\.min)?\.css$/.test(sheet.href)) {
                 for (var j = 0; j < rules.length; j++) {
                     var rule  = rules[j],
-                        match = /vegas\-transition\-(.*)-|\b/gi.exec(rule.selectorText);
+                        match = /vegas\-transition\-([a-z0-9]*)/gi.exec(rule.selectorText);
                 
                     if (match && match[1]) {
                         if (this.transitions.indexOf(match[1]) === -1) {
