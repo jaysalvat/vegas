@@ -90,23 +90,10 @@
                 $timer,
                 isBody    = this.elmt.tagName === 'BODY',
                 timer     = this.settings.timer,
-                overlay   = this.settings.overlay,
-                preload   = this.settings.preload,
-                img,
-                i;
+                overlay   = this.settings.overlay;
 
             // Preloading
-            if (preload) {
-                for (i = 0; i < this.settings.slides.length; i++) {
-                    if (this.settings.slides[i].src) {
-                        img = new Image();
-                        img.src = this.settings.slides[i].src;
-                    }
-                }
-
-                // TODO: 
-                // Preload videos
-            }
+            this._preload();
 
             // Wrapper with content
             if (!isBody) {
@@ -152,6 +139,24 @@
 
             this.trigger('init');
             this._goto(this.slide);
+        },
+
+        _preload: function () {
+            var preload = this.settings.preload,
+                img,
+                i;
+
+            if (preload) {
+                for (i = 0; i < this.settings.slides.length; i++) {
+                    if (this.settings.slides[i].src) {
+                        img = new Image();
+                        img.src = this.settings.slides[i].src;
+                    }
+                }
+
+                // TODO: 
+                // Preload videos
+            }
         },
 
         _slideShow: function () {
@@ -451,6 +456,8 @@
         },
 
         options: function (key, value) {
+            var oldSlides = this.settings.slides;
+
             if (typeof key === 'object') {
                 this.settings = $.extend({}, defaults, $.vegas.defaults, key);
             } else if (typeof key === 'string') {
@@ -463,8 +470,11 @@
             }
 
             // In case slides have changed
-            this.total  = this.settings.slides.length;
-            this.noshow = this.total < 2;
+            if (this.settings.slides !== oldSlides) {
+                this.total  = this.settings.slides.length;
+                this.noshow = this.total < 2;
+                this._preload();   
+            }
         }
     };
 
