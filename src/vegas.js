@@ -451,13 +451,13 @@
         },
 
         options: function (key, value) {
-            if (typeof key === 'string') {
+            if (typeof key === 'object') {
+                this.settings = $.extend({}, defaults, $.vegas.defaults, key);
+            } else if (typeof key === 'string') {
                 if (value === undefined) {
                     return this.settings[key];
                 }
-                this.settings[key] = value;
-            } else if (typeof key === 'object') {
-                this.settings = key;
+                this.settings[key] = value; 
             } else {
                 return this.settings;
             }
