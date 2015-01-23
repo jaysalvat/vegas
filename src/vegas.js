@@ -7,7 +7,9 @@
     var defaults = {
         slide:           0,
         delay:           5000,
-        preload:         true,
+        preload:         false,
+        preloadImage:    false,
+        preloadVideo:    false,
         timer:           true,
         overlay:         false,
         autoplay:        true,
@@ -37,6 +39,8 @@
             // ...
         ]
     };
+
+    var videoCache = {};
 
     var Vegas = function (elmt, options) {
         this.elmt         = elmt;
@@ -142,20 +146,24 @@
         },
 
         _preload: function () {
-            var preload = this.settings.preload,
-                img,
-                i;
+            var video, img, i;
 
-            if (preload) {
-                for (i = 0; i < this.settings.slides.length; i++) {
+            for (i = 0; i < this.settings.slides.length; i++) {
+                if (this.settings.preload || this.settings.preloadImages) {
                     if (this.settings.slides[i].src) {
                         img = new Image();
                         img.src = this.settings.slides[i].src;
                     }
                 }
 
-                // TODO: 
-                // Preload videos
+                if (this.settings.preload || this.settings.preloadVideos) {
+                    if (this.support.video && this.settings.slides[i].video) {
+                        video = this._video(this.settings.slides[i].video);
+                        video.preload = true;
+
+                        videoCache[this.settings.slides[i].video.toString()] = video;
+                    }
+                }
             }
         },
 
@@ -197,6 +205,29 @@
             }
         },
 
+        _video: function (srcs) {
+            var video, 
+                source;
+
+            if (videoCache[srcs.toString()]) {
+                return videoCache[srcs.toString()];
+            }
+
+            if (srcs instanceof Array === false) {
+                srcs = [ srcs ];
+            }
+
+            video = document.createElement('video');
+
+            srcs.forEach(function (src) {
+                source = document.createElement('source');
+                source.src = src;
+                video.appendChild(source);
+            });
+
+            return video;
+        },
+
         _options: function (key, i) {
             if (i === undefined) {
                 i = this.slide;
@@ -231,7 +262,6 @@
                 transition = this._options('transition'),
                 isRandom   = transition === 'random',
                 video,
-                source,
                 img;
 
             if (isRandom) {
@@ -247,20 +277,10 @@
             }
 
             if (this.support.video && videos) {
-                if (videos instanceof Array === false) {
-                    videos = [ videos ];
-                }
-
-                video = document.createElement('video');
+                video = this._video(videos);
                 video.muted = true;
                 video.loop = true;
                 video.autoplay = true;
-
-                videos.forEach(function (src) {
-                    source = document.createElement('source');
-                    source.src = src;
-                    video.appendChild(source);
-                });
 
                 $slide = $(video)
                     .addClass('vegas-video')
