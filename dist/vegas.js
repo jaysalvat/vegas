@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.0.0-wip - built 2015-01-23
+ * v2.0.0-wip - built 2015-01-29
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -169,6 +169,7 @@
                     if (this.support.video && this.settings.slides[i].video) {
                         video = this._video(this.settings.slides[i].video);
                         video.preload = true;
+                        video.muted = true;
 
                         videoCache[this.settings.slides[i].video.toString()] = video;
                     }
@@ -257,9 +258,8 @@
             this.slide = nb;
 
             var $slide,
-                $slides    = this.$elmt.children('.vegas-slide'),
-                total      = $slides.length,
                 self       = this,
+                $slides    = this.$elmt.children('.vegas-slide'),
                 src        = this.settings.slides[nb].src,
                 videos     = this.settings.slides[nb].video,
                 delay      = this._options('delay'),
@@ -269,6 +269,7 @@
                 color      = this._options('color') || this.$elmt.css('background-color'),
                 fill       = this._options('fill') ? 'cover' : 'contain',
                 transition = this._options('transition'),
+                total      = $slides.length,
                 isRandom   = transition === 'random',
                 video,
                 img;
@@ -285,11 +286,10 @@
                 duration = delay;
             }
 
+            // Video ?
+
             if (this.support.video && videos) {
                 video = this._video(videos);
-                video.muted = true;
-                video.loop = true;
-                video.autoplay = true;
 
                 $slide = $(video)
                     .addClass('vegas-video')
@@ -308,9 +308,11 @@
                         .css('width',  '100%')
                         .css('height', '100%');
                 }
+
+            // Image ?
+
             } else {
                 img = new Image();
-                img.src = src;
 
                 $slide = $('<div></div>')
                     .addClass('vegas-slide')
@@ -364,7 +366,7 @@
                         $slide.fadeIn(duration);
                     }
 
-                    for (var i = 0; i < $slides.length - 2; i++) {
+                    for (var i = 0; i < $slides.length - 1; i++) {
                          $slides.eq(i).remove();
                     }
 
@@ -374,18 +376,21 @@
             }
 
             if (video) {
-                // oncanplay is triggered every time when loop=true
-                // so let's start the slide only once
-                var played = false; 
-
-                video.play();
-                video.oncanplay = function () {
-                    if (!played) {
-                        played = true;
-                        go();
-                    }
-                };
+                if (video.readyState === 4) {
+                    video.currentTime = 0;
+                    video.play();
+                    go();
+                } else {
+                    video.oncanplay = function () {
+                        video.play();
+                        if (!video._started) {
+                            video._started = true;
+                            go();
+                        }
+                    };
+                }
             } else {
+                img.src = src;
                 img.onload = go;
             }
         },
