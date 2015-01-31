@@ -541,7 +541,7 @@
     $.vegas.defaults = defaults;
 
     $.vegas.isVideoCompatible = function () {
-        return !('ontouchstart' in window || 'onmsgesturechange' in window);
+        return /(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
     };
 
 })(typeof jQuery !== 'undefined' ? jQuery :
