@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.0.0-wip - built 2015-01-29
+ * v2.0.0-wip - built 2015-01-31
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -8,7 +8,7 @@
  * http://jaysalvat.com/
  * --------------------------------------------------------------------------*/
 
-/* global jQuery, Zepto, Pin */
+/* global jQuery, Zepto */
 
 (function ($) {
     'use strict';
@@ -123,7 +123,7 @@
                         .css('padding-right',  this.$elmt.css('padding-right'));
                 }
 
-                $wrapper[0].innerHTML = this.elmt.innerHTML;
+                this.$elmt.clone(true).appendTo($wrapper);
                 this.elmt.innerHTML = '';
             }
 
@@ -550,10 +550,9 @@
     $.vegas.defaults = defaults;
 
     $.vegas.isVideoCompatible = function () {
-        return !('ontouchstart' in window || 'onmsgesturechange' in window);
+        return /(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
     };
 
 })(typeof jQuery !== 'undefined' ? jQuery :
-   typeof Zepto  !== 'undefined' ? Zepto  :
-   typeof Pin    !== 'undefined' ? Pin    : null
+   typeof Zepto  !== 'undefined' ? Zepto  : null
 );
