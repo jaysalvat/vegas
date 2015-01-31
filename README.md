@@ -1,7 +1,7 @@
 Vegas – Fullscreen Backgrounds and Slideshows
 =============================================
 
-Vegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com)/[Pin](http://pin.jaysalvat.com) plugin 
+Vegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com) plugin 
 to add beautiful fullscreen backgrounds and Slideshows to DOM elements.
 
 #### Install

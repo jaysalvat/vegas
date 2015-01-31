@@ -1,5 +1,5 @@
 
-/* global jQuery, Zepto, Pin */
+/* global jQuery, Zepto */
 
 (function ($) {
     'use strict';
@@ -545,6 +545,5 @@
     };
 
 })(typeof jQuery !== 'undefined' ? jQuery :
-   typeof Zepto  !== 'undefined' ? Zepto  :
-   typeof Pin    !== 'undefined' ? Pin    : null
+   typeof Zepto  !== 'undefined' ? Zepto  : null
 );
