@@ -114,7 +114,7 @@
                         .css('padding-right',  this.$elmt.css('padding-right'));
                 }
 
-                this.$elmt.clone(true).appendTo($wrapper);
+                this.$elmt.clone(true).children().appendTo($wrapper);
                 this.elmt.innerHTML = '';
             }
 
