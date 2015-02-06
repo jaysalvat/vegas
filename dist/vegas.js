@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.0.0-wip - built 2015-01-31
+ * v2.0.0-wip - built 2015-02-06
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -123,7 +123,7 @@
                         .css('padding-right',  this.$elmt.css('padding-right'));
                 }
 
-                this.$elmt.clone(true).appendTo($wrapper);
+                this.$elmt.clone(true).children().appendTo($wrapper);
                 this.elmt.innerHTML = '';
             }
 

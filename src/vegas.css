@@ -57,6 +57,13 @@ body.vegas-container {
         z-index: -1;
     }
 
+    /* Target Safari IOS7+ in order to add 76px */
+    _::-webkit-full-page-media, _:future, 
+    :root body.vegas-container > .vegas-slide,
+    :root body.vegas-container > .vegas-overlay {
+        bottom: -76px;
+    }
+    
 .vegas-video {
     min-width: 100%; 
     min-height: 100%;
