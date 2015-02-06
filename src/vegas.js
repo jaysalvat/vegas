@@ -64,8 +64,14 @@
 
         for (var i = 0; i < document.styleSheets.length; i++) {
             var sheet = document.styleSheets[i],
-                rules = sheet.rules ? sheet.rules : sheet.cssRules;
+                rules;
 
+            try {
+                rules = (sheet.cssRules || sheet.rules);
+            } catch(e) {
+                continue;
+            }
+            
             if (/vegas(\..*?)?(\.min)?\.css$/.test(sheet.href)) {
                 for (var j = 0; j < rules.length; j++) {
                     var rule  = rules[j],
