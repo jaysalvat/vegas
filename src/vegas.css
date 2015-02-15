@@ -1,8 +1,3 @@
-.vegas-container {
-    overflow: hidden !important;
-    position: relative;
-}
-
 .vegas-wrapper,
 .vegas-overlay,
 .vegas-timer,
@@ -45,6 +40,19 @@
     transform: translateZ(0);
 }
 
+body .vegas-container {
+    overflow: hidden !important;
+    position: relative;
+}
+    
+.vegas-video {
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+}
+
+
 body.vegas-container {
     overflow: auto;
     position: static;
@@ -63,13 +71,10 @@ body.vegas-container {
     :root body.vegas-container > .vegas-overlay {
         bottom: -76px;
     }
-    
-.vegas-video {
-    min-width: 100%; 
-    min-height: 100%;
-    width: auto; 
-    height: auto;
-}
+
+/*************************
+    Transitions
+ *************************/
 
 /* fade */
 .vegas-transition-fade,
