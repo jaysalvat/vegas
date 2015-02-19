@@ -1,7 +1,8 @@
 .vegas-wrapper,
 .vegas-overlay,
 .vegas-timer,
-.vegas-slide {
+.vegas-slide,
+.vegas-slide-inner {
     position: absolute;
     top: 0;
     left: 0;
@@ -26,18 +27,18 @@
         width: 0%;
         height: 100%;
         background: yellowgreen;
-        transition-property: width;
-        transition-timing-function: ease-out;
+        transition: width ease-out;
     }
         .vegas-timer-running .vegas-timer-progress {
             width: 100%;
         }
 
-.vegas-slide {
+.vegas-slide,
+.vegas-slide-inner {
     margin: 0;
     padding: 0;
-    background: transparent center center no-repeat;
     transform: translateZ(0);
+    background: transparent center center no-repeat;
 }
 
 body .vegas-container {
@@ -52,7 +53,6 @@ body .vegas-container {
     height: auto;
 }
 
-
 body.vegas-container {
     overflow: auto;
     position: static;
@@ -66,7 +66,7 @@ body.vegas-container {
     }
 
     /* Target Safari IOS7+ in order to add 76px */
-    _::-webkit-full-page-media, _:future, 
+    _::full-page-media, _:future, 
     :root body.vegas-container > .vegas-slide,
     :root body.vegas-container > .vegas-overlay {
         bottom: -76px;
@@ -221,4 +221,116 @@ body.vegas-container {
 .vegas-transition-swirlRight2-out {
     transform: scale(2) rotate(35deg);
     opacity: 0;
+}
+
+/*************************
+    Animations
+ *************************/
+
+.vegas-animation-kenburns {
+    animation: kenburns ease-out;
+}
+@keyframes kenburns {
+    0% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.vegas-animation-kenburnsUp {
+    animation: kenburnsUp ease-out;
+}
+@keyframes kenburnsUp {
+    0% {
+        transform: scale(1.5) translate(0, 10%);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.vegas-animation-kenburnsDown {
+    animation: kenburnsDown ease-out;
+}
+@keyframes kenburnsDown {
+    0% {
+        transform: scale(1.5) translate(0, -10%);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.vegas-animation-kenburnsLeft {
+    animation: kenburnsLeft ease-out;
+}
+@keyframes kenburnsLeft {
+    0% {
+        transform: scale(1.5) translate(10%, 0);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.vegas-animation-kenburnsRight {
+    animation: kenburnsRight ease-out;
+}
+@keyframes kenburnsRight {
+    0% {
+        transform: scale(1.5) translate(-10%, 0);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.vegas-animation-kenburnsUpLeft {
+    animation: kenburnsUpLeft ease-out;
+}
+@keyframes kenburnsUpLeft {
+    0% {
+        transform: scale(1.5) translate(10%, 10%);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.vegas-animation-kenburnsUpRight {
+    animation: kenburnsUpRight ease-out;
+}
+@keyframes kenburnsUpRight {
+    0% {
+        transform: scale(1.5) translate(-10%, 10%);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.vegas-animation-kenburnsDownLeft {
+    animation: kenburnsDownLeft ease-out;
+}
+@keyframes kenburnsDownLeft {
+    0% {
+        transform: scale(1.5) translate(10%, -10%);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.vegas-animation-kenburnsDownRight {
+    animation: kenburnsDownRight ease-out;
+}
+@keyframes kenburnsDownRight {
+    0% {
+        transform: scale(1.5) translate(-10%, -10%);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
 }
