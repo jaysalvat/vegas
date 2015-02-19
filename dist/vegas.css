@@ -294,7 +294,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburns {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5);
                 transform: scale(1.5);
     }
@@ -321,7 +321,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsUp {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(0, 10%);
                 transform: scale(1.5) translate(0, 10%);
     }
@@ -348,7 +348,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsDown {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(0, -10%);
                 transform: scale(1.5) translate(0, -10%);
     }
@@ -375,7 +375,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsLeft {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(10%, 0);
                 transform: scale(1.5) translate(10%, 0);
     }
@@ -402,7 +402,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsRight {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(-10%, 0);
                 transform: scale(1.5) translate(-10%, 0);
     }
@@ -429,7 +429,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsUpLeft {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(10%, 10%);
                 transform: scale(1.5) translate(10%, 10%);
     }
@@ -456,7 +456,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsUpRight {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(-10%, 10%);
                 transform: scale(1.5) translate(-10%, 10%);
     }
@@ -483,7 +483,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsDownLeft {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(10%, -10%);
                 transform: scale(1.5) translate(10%, -10%);
     }
@@ -510,7 +510,7 @@ body.vegas-container {
     }
 }
 @keyframes kenburnsDownRight {
-    0%   {
+    0% {
         -webkit-transform: scale(1.5) translate(-10%, -10%);
                 transform: scale(1.5) translate(-10%, -10%);
     }

@@ -128,6 +128,8 @@
 
             // Wrapper with content
             if (!isBody) {
+                this.$elmt.css('height', this.$elmt.css('height'));
+                
                 $wrapper = $('<div class="vegas-wrapper">')
                     .css('overflow', this.$elmt.css('overflow'))
                     .css('padding',  this.$elmt.css('padding'));
@@ -315,11 +317,9 @@
                 console.error("Vegas: Animation " + animation + " doesn't exist.");
             }
 
-            if (animationDuration === 'auto' || animationDuration > delay) {
+            if (animationDuration === 'auto') {
                 animationDuration = delay;
             }
-
-            console.log(animationDuration);
 
             // Video ?
 
@@ -596,7 +596,7 @@
     $.vegas.defaults = defaults;
 
     $.vegas.isVideoCompatible = function () {
-        return /(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
+        return !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
     };
 
 })(typeof jQuery !== 'undefined' ? jQuery :
