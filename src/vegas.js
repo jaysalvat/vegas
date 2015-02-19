@@ -306,11 +306,9 @@
                 console.error("Vegas: Animation " + animation + " doesn't exist.");
             }
 
-            if (animationDuration === 'auto' || animationDuration > delay) {
+            if (animationDuration === 'auto') {
                 animationDuration = delay;
             }
-
-            console.log(animationDuration);
 
             // Video ?
 
