@@ -585,7 +585,7 @@
     $.vegas.defaults = defaults;
 
     $.vegas.isVideoCompatible = function () {
-        return /(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
+        return !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
     };
 
 })(typeof jQuery !== 'undefined' ? jQuery :
