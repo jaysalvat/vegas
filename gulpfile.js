@@ -183,12 +183,6 @@
             .pipe(gulp.dest('./dist'));
     });
 
-    gulp.task('autoprefixer-src', function () {
-        return gulp.src('./src/**/*.css')
-            .pipe(prefixer())
-            .pipe(gulp.dest('./src'));
-    });
-
     gulp.task('uglify', function () {
         return gulp.src('./dist/**/!(*.min.js).js')
             .pipe(rename({ suffix: '.min' }))

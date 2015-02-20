@@ -93,6 +93,88 @@ body.vegas-container {
     opacity: 0;
 }
 
+/* blur */
+.vegas-transition-blur,
+.vegas-transition-blur2 {
+    opacity: 0;
+    -webkit-filter: blur(32px);
+            filter: blur(32px);
+}
+
+.vegas-transition-blur-in,
+.vegas-transition-blur2-in {
+    opacity: 1;
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+}
+
+.vegas-transition-blur2-out {
+    opacity: 0;
+}
+
+/* flash */
+.vegas-transition-flash,
+.vegas-transition-flash2 {
+    opacity: 0;
+    -webkit-filter: brightness(25);
+            filter: brightness(25);
+}
+
+.vegas-transition-flash-in,
+.vegas-transition-flash2-in {
+    opacity: 1;
+    -webkit-filter: brightness(1);
+            filter: brightness(1);
+}
+
+.vegas-transition-flash2-out {
+    opacity: 0;
+    -webkit-filter: brightness(25);
+            filter: brightness(25);
+}
+
+/* negative */
+.vegas-transition-negative,
+.vegas-transition-negative2 {
+    opacity: 0;
+    -webkit-filter: invert(100%);
+            filter: invert(100%);
+}
+
+.vegas-transition-negative-in,
+.vegas-transition-negative2-in {
+    opacity: 1;
+    -webkit-filter: invert(0);
+            filter: invert(0);
+}
+
+.vegas-transition-negative2-out {
+    opacity: 0;
+    -webkit-filter: invert(100%);
+            filter: invert(100%);
+}
+
+/* burn */
+.vegas-transition-burn,
+.vegas-transition-burn2 {
+    opacity: 0;
+    -webkit-filter: contrast(1000%) saturate(1000%);
+            filter: contrast(1000%) saturate(1000%);
+}
+
+.vegas-transition-burn-in,
+.vegas-transition-burn2-in {
+    opacity: 1;
+    -webkit-filter: contrast(100%) saturate(100%);
+            filter: contrast(100%) saturate(100%);
+}
+
+.vegas-transition-burn2-out {
+    opacity: 0;
+    -webkit-filter: contrast(1000%) saturate(1000%);
+            filter: contrast(1000%) saturate(1000%);
+}
+
 /* slideLeft */
 .vegas-transition-slideLeft,
 .vegas-transition-slideLeft2 {
