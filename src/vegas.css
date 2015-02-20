@@ -15,6 +15,7 @@
 }
 
 .vegas-overlay {
+    opacity: .5;
     background: transparent url(overlays/02.png) center center repeat;
 }
 
@@ -37,8 +38,8 @@
 .vegas-slide-inner {
     margin: 0;
     padding: 0;
-    transform: translateZ(0);
     background: transparent center center no-repeat;
+    transform: translateZ(0);
 }
 
 body .vegas-container {
