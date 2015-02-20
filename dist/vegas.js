@@ -197,6 +197,10 @@
             }
         },
 
+        _random: function (array) {
+            return array[Math.floor(Math.random() * (array.length - 1))];
+        },
+
         _slideShow: function () {
             var self = this;
 
@@ -287,7 +291,7 @@
                 align   = this._options('align'),
                 valign  = this._options('valign'),
                 color   = this._options('color') || this.$elmt.css('background-color'),
-                cover    = this._options('cover') ? 'cover' : 'contain',
+                cover   = this._options('cover') ? 'cover' : 'contain',
                 total   = $slides.length,
                 video,
                 img;
@@ -297,8 +301,12 @@
                 animation          = this._options('animation' ),
                 animationDuration  = this._options('animationDuration');
 
-            if (transition === 'random') {
-                transition = this.transitions[Math.floor(Math.random() * (this.transitions.length - 1))];
+            if (transition === 'random' || transition instanceof Array) {
+                if (transition instanceof Array) {
+                    transition = this._random(transition);
+                } else {
+                    transition = this._random(this.transitions);
+                }
             }
 
             if (transition && transition !== 'none' && this.transitions.indexOf(transition) < 0) {
@@ -309,8 +317,12 @@
                 transitionDuration = delay;
             }
 
-            if (animation === 'random') {
-                animation = this.animations[Math.floor(Math.random() * (this.animations.length - 1))];
+            if (animation === 'random' || animation instanceof Array) {
+                if (animation instanceof Array) {
+                    animation = this._random(animation);
+                } else {
+                    animation = this._random(this.animations);
+                }
             }
 
             if (animation && animation !== 'none' && this.animations.indexOf(animation) < 0) {
