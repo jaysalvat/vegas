@@ -110,9 +110,10 @@
             var $wrapper,
                 $overlay,
                 $timer,
-                isBody    = this.elmt.tagName === 'BODY',
-                timer     = this.settings.timer,
-                overlay   = this.settings.overlay;
+                isBody  = this.elmt.tagName === 'BODY',
+                timer   = this.settings.timer,
+                overlay = this.settings.overlay,
+                self    = this;
 
             // Preloading
             this._preload();
@@ -157,12 +158,19 @@
 
             // Container
             this.$elmt.addClass('vegas-container');
+
             if (!isBody) {
                 this.$elmt.append($wrapper);
             }
 
-            this.trigger('init');
-            this._goto(this.slide);
+            setTimeout(function () {
+                self.trigger('init');
+                self._goto(self.slide);
+
+                if (self.settings.autoplay) {
+                    self.trigger('play');
+                }
+            }, 1);
         },
 
         _preload: function () {
@@ -530,7 +538,9 @@
         trigger: function (fn) {
             var params = [];
 
-            if (fn !== 'init') {
+            if (fn === 'init') {
+                params = [ this.settings ];
+            } else {
                 params = [ 
                     this.slide, 
                     this.settings.slides[this.slide]
