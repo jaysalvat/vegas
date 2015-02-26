@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.0.0-wip - built 2015-02-20
+ * v2.0.0-wip - built 2015-02-26
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -564,7 +564,7 @@
         },
 
         options: function (key, value) {
-            var oldSlides = this.settings.slides;
+            var oldSlides = this.settings.slides.slice();
 
             if (typeof key === 'object') {
                 this.settings = $.extend({}, defaults, $.vegas.defaults, key);

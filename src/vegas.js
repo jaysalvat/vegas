@@ -555,7 +555,7 @@
         },
 
         options: function (key, value) {
-            var oldSlides = this.settings.slides;
+            var oldSlides = this.settings.slides.slice();
 
             if (typeof key === 'object') {
                 this.settings = $.extend({}, defaults, $.vegas.defaults, key);
