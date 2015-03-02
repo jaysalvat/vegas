@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.0.0-wip - built 2015-02-26
+ * v2.0.0-wip - built 2015-03-02
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -158,9 +158,11 @@
             // Overlay
             if (overlay) {
                 $overlay = $('<div class="vegas-overlay">');
+
                 if (typeof overlay === 'string') {
                     $overlay.css('background-image', 'url(' + overlay + ')');
                 }
+
                 this.$overlay = $overlay;
                 this.$elmt.prepend($overlay);
             }
@@ -345,7 +347,7 @@
 
             $slide = $('<div class="vegas-slide"></div>');
             
-            if (transition) {
+            if (this.support.transition && transition) {
                 $slide.addClass('vegas-transition-' + transition);
             }
 
@@ -383,7 +385,7 @@
                     .css('background-position', align + ' ' + valign)
                     .css('background-size',     cover);
 
-                if (animation) {
+                if (this.support.transition && animation) {
                     $inner
                         .addClass('vegas-animation-' + animation)
                         .css('animation-duration',  animationDuration + 'ms');
@@ -392,7 +394,7 @@
                 $slide.append($inner);
             }
 
-            if (!self.support.transition) {
+            if (!this.support.transition) {
                 $slide.css('display', 'none');
             }
 

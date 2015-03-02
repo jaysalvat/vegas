@@ -338,7 +338,7 @@
 
             $slide = $('<div class="vegas-slide"></div>');
             
-            if (this.support.transtion && transition) {
+            if (this.support.transition && transition) {
                 $slide.addClass('vegas-transition-' + transition);
             }
 
