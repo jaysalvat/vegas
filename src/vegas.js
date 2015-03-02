@@ -149,9 +149,11 @@
             // Overlay
             if (overlay) {
                 $overlay = $('<div class="vegas-overlay">');
+
                 if (typeof overlay === 'string') {
                     $overlay.css('background-image', 'url(' + overlay + ')');
                 }
+
                 this.$overlay = $overlay;
                 this.$elmt.prepend($overlay);
             }
@@ -336,7 +338,7 @@
 
             $slide = $('<div class="vegas-slide"></div>');
             
-            if (transition) {
+            if (this.support.transtion && transition) {
                 $slide.addClass('vegas-transition-' + transition);
             }
 
@@ -374,7 +376,7 @@
                     .css('background-position', align + ' ' + valign)
                     .css('background-size',     cover);
 
-                if (animation) {
+                if (this.support.transition && animation) {
                     $inner
                         .addClass('vegas-animation-' + animation)
                         .css('animation-duration',  animationDuration + 'ms');
@@ -383,7 +385,7 @@
                 $slide.append($inner);
             }
 
-            if (!self.support.transition) {
+            if (!this.support.transition) {
                 $slide.css('display', 'none');
             }
 
