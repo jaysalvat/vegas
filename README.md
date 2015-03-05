@@ -33,6 +33,15 @@ http://vegas.jaysalvat.com/demo/
 ### V2 Documentation
 http://vegas.jaysalvat.com/documentation/
 
+Looking for Vegas v1?
+---------------------
+
+### V1 old website
+http://v1.vegas.jaysalvat.com/
+
+### V1 old documentation
+http://v1.vegas.jaysalvat.com/documentation/
+
 Contributing
 ------------
 
