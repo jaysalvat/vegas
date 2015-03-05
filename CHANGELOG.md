@@ -2,7 +2,11 @@
 
 ## CHANGE LOG
 
-### Vegas 2.0.0
+### Vegas 2.0.1 2015-03-05
+
+* Remove dev folder
+
+### Vegas 2.0.0 2015-03-05
 
 * Brand new Vegas V2
 
