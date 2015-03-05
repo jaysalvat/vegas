@@ -122,11 +122,11 @@
             { src: 'vegas/bg2.jpg', title: 'Two'},
             { src: 'vegas/bg3.jpg', title: 'Three' },
             { src: 'vegas/bg4.jpg', title: 'Four' },
-            { src: 'img/background4.jpg', title: 'Video', video: [
-                'vegas/video1.mp4', 'vegas/video1.webm'
-                // 'http://localhost:3000/demo/img/intro.mp4'
-            ]
-            }
+            // { src: 'img/background4.jpg', title: 'Video', video: [
+            //     'vegas/video1.mp4', 'vegas/video1.webm'
+            //     // 'http://localhost:3000/demo/img/intro.mp4'
+            // ]
+            // }
         ];
 
         // $('body').vegas({
@@ -143,11 +143,16 @@
         //     overlay: true,
         //     slides: slides
         // });
+        // 
+        $('#two').on('click', function() {
+            $('#two .slider').vegas('next');
+        });
 
         $('#two .slider').vegas({
             preload: true,
-            transition: 'fade',
-            transitionDuration: 'auto',
+            transition: 'fade2',
+            delay: 10000,
+            transitionDuration: 2000,
             animation: 'random',
             slides: slides
         }).on('vegaswalk', function (e, slide, data) {

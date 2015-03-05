@@ -1,0 +1,17 @@
+{
+    "name": "Vegas",
+    "version": "2.0.0-wip",
+    "main": [
+        "dist/vegas.min.js",
+        "dist/vegas.min.css"
+    ],
+    "ignore": [
+        "src",
+        "gulpfile.js",
+        "package.json",
+        "component.json"
+    ],
+    "dependencies": {
+        "jquery": ">=1.9"
+    }
+}
