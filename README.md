@@ -11,6 +11,10 @@ to add beautiful backgrounds and Slideshows to DOM elements.
 
     bower install vegas
 
+Or...
+
+    npm install vegas
+
 #### Get started
 
 First, include either [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com).
