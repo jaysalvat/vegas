@@ -258,7 +258,7 @@
       [ 'fail-if-not-master', 'fail-if-dirty' ],
         'git-pull',
         'bump',
-        'license',
+        'year',
         'clean',
         'copy',
         'autoprefixer',
