@@ -24,13 +24,13 @@ Then...
         });
 	}
 
-### V1 Official website
+### V2 Official website
 http://vegas.jaysalvat.com/
 
-### V1 Real life demo
+### V2 Real life demo
 http://vegas.jaysalvat.com/demo/
 
-### V1 Documentation
+### V2 Documentation
 http://vegas.jaysalvat.com/documentation/
 
 Contributing
