@@ -1,7 +1,7 @@
 {
     "name": "Vegas",
     "version": "2.0.0-wip",
-    "description": "Vegas - Fullscreen Backgrounds and Slideshows with jQuery.",
+    "description": "Vegas - Fullscreen Backgrounds and Slideshows.",
     "homepage": "http://vegas.jaysalvat.com",
     "author": "Jay Salvat",
     "license": "MIT",
@@ -18,8 +18,8 @@
         "slideshow",
         "fullscreen",
         "vegas",
+        "jquery-plugin",
         "jquery",
         "zepto",
-        "pin"
     ]
 }
