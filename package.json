@@ -20,7 +20,7 @@
     "vegas",
     "jquery-plugin",
     "jquery",
-    "zepto",
+    "zepto"
   ],
   "devDependencies": {
     "del": "^1.1.1",
