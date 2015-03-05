@@ -20,6 +20,6 @@
         "vegas",
         "jquery-plugin",
         "jquery",
-        "zepto",
+        "zepto"
     ]
 }
