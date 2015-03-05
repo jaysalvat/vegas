@@ -18,9 +18,9 @@
     "slideshow",
     "fullscreen",
     "vegas",
+    "jquery-plugin",
     "jquery",
     "zepto",
-    "pin"
   ],
   "devDependencies": {
     "del": "^1.1.1",
