@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Vegas 2</title>
+    <link rel="stylesheet" href="../dist/vegas.min.css">
+<!--     <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script> -->
+    <style>
+        body {
+            font: 12px Arial;
+            color: #fff;
+            background: #000;
+            line-height: 1.7;
+        }
+
+        h2 {
+            padding: 0;
+            margin: 0;
+            -webkit-transition: width 1s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .navigation {
+            padding: 5px 10px;
+        }
+
+        .slider {
+            padding: 20px;
+            width: 350px; 
+            height: 200px;
+            margin: 10px;
+            color: #fff;
+            border: 2px solid #fff;
+            box-shadow: 0 0 10px #000;
+            overflow: auto;
+            background: #000;
+        }
+
+        .active {
+            color: yellowgreen;
+            font-weight: bold;
+        }
+
+        #one .vegas-timer {
+            top: 0 !important;
+            bottom: auto !important;
+        }
+
+        #one .vegas-overlay {
+            background: rgba(0,0,0,0.5);
+        }
+
+        #two h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            text-shadow: 1px 1px 1px #000;
+            background: rgba(0,0,0,0.7);
+            padding: 2px 20px;
+            border-radius: 20px;
+            -webkit-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="one" class="container">
+        <div class="slider">
+            <h2>Scrolling content</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores adipisci aliquam debitis perspiciatis at deleniti repellat delectus et unde assumenda. Obcaecati voluptas cumque, nisi reprehenderit perspiciatis libero! Quis, provident cum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores adipisci aliquam debitis perspiciatis at deleniti repellat delectus et unde assumenda. Obcaecati voluptas cumque, nisi reprehenderit perspiciatis libero! Quis, provident cum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores adipisci aliquam debitis perspiciatis at deleniti repellat delectus et unde assumenda. Obcaecati voluptas cumque, nisi reprehenderit perspiciatis libero! Quis, provident cum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores adipisci aliquam debitis perspiciatis at deleniti repellat delectus et unde assumenda. Obcaecati voluptas cumque, nisi reprehenderit perspiciatis libero! Quis, provident cum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores adipisci aliquam debitis perspiciatis at deleniti repellat delectus et unde assumenda. Obcaecati voluptas cumque, nisi reprehenderit perspiciatis libero! Quis, provident cum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores adipisci aliquam debitis perspiciatis at deleniti repellat delectus et unde assumenda. Obcaecati voluptas cumque, nisi reprehenderit perspiciatis libero! Quis, provident cum!</p>
+        </div>
+        <div class="navigation">
+            <a class="nav-previous" href="#">Previous</a> 
+            <a class="nav-next" href="#">Next</a>
+            <a class="nav-play" href="#">Play</a>
+            <a class="nav-pause" href="#">Pause</a> 
+            <a class="nav" href="#">1</a>
+            <a class="nav" href="#">2</a>
+            <a class="nav" href="#">3</a>
+            <a class="nav" href="#">4</a>
+        </div>
+    </div>
+
+    <div id="two" class="container">
+        <div class="slider">
+            <h2></h2>
+        </div>
+        <div class="navigation">
+            <a class="nav-previous" href="#">Previous</a> 
+            <a class="nav-next" href="#">Next</a>
+            <a class="nav-play" href="#">Play</a>
+            <a class="nav-pause" href="#">Pause</a> 
+            <a class="nav" href="#">1</a>
+            <a class="nav" href="#">2</a>
+            <a class="nav" href="#">3</a>
+            <a class="nav" href="#">4</a>
+        </div>
+    </div>
+
+<!--<script src="js/zepto.js"></script>-->
+<!--     <script src="js/jquery.js"></script> -->
+    <script src="js/jquery.js"></script>
+<!--     <script src="../src/patch/vegas.pin.js"></script> -->
+    <script src="../src/vegas.js"></script>
+    <script>
+        /* globals $: true */
+        /* jshint strict: false */
+
+        var slides = [
+            { src: 'vegas/bg1.jpg', title: 'One' },
+            { src: 'vegas/bg2.jpg', title: 'Two'},
+            { src: 'vegas/bg3.jpg', title: 'Three' },
+            { src: 'vegas/bg4.jpg', title: 'Four' },
+            { src: 'img/background4.jpg', title: 'Video', video: [
+                'vegas/video1.mp4', 'vegas/video1.webm'
+                // 'http://localhost:3000/demo/img/intro.mp4'
+            ]
+            }
+        ];
+
+        // $('body').vegas({
+        //     delay: 10000,
+        //     transition: 'blur',
+        //     animation: 'random',
+        //     overlay: true,
+        //     preload: true,
+        //     slides: slides
+        // });
+
+        // $('#one .slider').vegas({
+        //     transition: 'random',
+        //     overlay: true,
+        //     slides: slides
+        // });
+
+        $('#two .slider').vegas({
+            preload: true,
+            transition: 'fade',
+            transitionDuration: 'auto',
+            animation: 'random',
+            slides: slides
+        }).on('vegaswalk', function (e, slide, data) {
+            var h2 = $(this).parent().find('h2');
+            h2[0].textContent = data.title;
+        });
+
+        $('body').on('vegaswalk', function (e, slide) {
+            var $target = $(e.target);
+
+            if (e.target.tagName === 'body') {
+                return;
+            }
+
+            $target.parent().find('.navigation .nav').each(function (i) {
+                if (slide === i) {
+                    this.className = 'nav active';
+                } else {
+                    this.className = 'nav';
+                }
+            });
+        });
+
+        // Navigation
+
+        $('.nav-play').on('click', function (e) {
+            e.preventDefault();
+            $(this).parents('.container').find('.slider').vegas('toggle');
+        });
+        
+        $('.nav-pause').on('click', function (e) {
+            e.preventDefault();
+            $(this).parents('.container').find('.slider').vegas('pause');
+        });
+
+        $('.nav-next').on('click', function (e) {
+            e.preventDefault();
+
+            $('#two .slider').vegas('options', 'transition', 'slideLeft');
+
+            $(this).parents('.container').find('.slider').vegas('next');
+        });
+
+        $('.nav-previous').on('click', function (e) {
+            e.preventDefault();
+
+            $('#two .slider').vegas('options', 'transition', 'slideRight');
+
+            $(this).parents('.container').find('.slider').vegas('previous');
+        });
+
+        $('.nav').on('click', function (e) {
+            e.preventDefault();
+            var $parent = $(this).parents('.container'),
+                slide   = $parent.find('.nav').index(this);
+            
+            $parent.find('.slider').vegas('jump', slide);
+        });
+    </script>
+</body>
+</html>
