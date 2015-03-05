@@ -9,9 +9,13 @@ to add beautiful backgrounds and Slideshows to DOM elements.
 
 #### Install
 
+Download the [last version](http://jaysalvat.github.io/vegas/releases/latest/vegas.zip).
+
+Or use [Bower](http://bower.io/):
+
     bower install vegas
 
-Or...
+Or use [NPM](https://www.npmjs.org/):
 
     npm install vegas
 
