@@ -137,6 +137,16 @@
         });
     });
 
+    gulp.task("npm-publish", function (cb) {
+        exec('npm publish', function (err, output, code) {
+                if (code !== 0) {
+                    return cb(err + output);
+                }
+                return cb();
+            }
+        );
+    });
+
     gulp.task('meta', [ 'tmp-create' ], function (cb) {
         var  metadata = {
                 date: gutil.date('yyyy-mm-dd HH:MM'),
@@ -269,7 +279,8 @@
         'git-commit',
         'git-tag',
         'git-push',
-        'publish'
+        'publish',
+        'npm-publish'
     ], 
     'releasing'));
 
