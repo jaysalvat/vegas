@@ -1,8 +1,11 @@
-Vegas – Fullscreen Backgrounds and Slideshows
-=============================================
+Vegas – Backgrounds and Slideshows
+==================================
+
+[![NPM version](https://badge.fury.io/js/vegas.svg)](http://badge.fury.io/js/vegas)
+[![Bower version](https://badge.fury.io/bo/vegas.svg)](http://badge.fury.io/bo/vegas)
 
 Vegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com) plugin 
-to add beautiful fullscreen backgrounds and Slideshows to DOM elements.
+to add beautiful backgrounds and Slideshows to DOM elements.
 
 #### Install
 
@@ -24,23 +27,18 @@ Then...
         });
     }
 
-### V2 Official website
+### Official website
 http://vegas.jaysalvat.com/
 
-### V2 Real life demo
+### Real life demo
 http://vegas.jaysalvat.com/demo/
 
-### V2 Documentation
+### Documentation
 http://vegas.jaysalvat.com/documentation/
 
-Looking for Vegas v1?
----------------------
+#### Looking for Vegas v1?
 
-### V1 old website
-http://v1.vegas.jaysalvat.com/
-
-### V1 old documentation
-http://v1.vegas.jaysalvat.com/documentation/
+The [Vegas v1 website](http://v1.vegas.jaysalvat.com) is still available but this version is not maintened anymore.
 
 Contributing
 ------------
