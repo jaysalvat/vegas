@@ -1,0 +1,181 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.4.6
+3 info using node@v0.10.26
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/jay/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+12 verbose folder .
+13 info prepublish Vegas@2.0.0
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/jay/.npm/1f1177db-tar.lock
+16 silly lockFile c6467c85-1043-0-15358027233742177-tmp-tgz tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+17 verbose lock tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz /Users/jay/.npm/c6467c85-1043-0-15358027233742177-tmp-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile c6467c85-1043-0-15358027233742177-tmp-tgz tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+21 silly lockFile c6467c85-1043-0-15358027233742177-tmp-tgz tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+22 verbose tar unpack /var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+23 silly lockFile 2b650b07-1043-0-15358027233742177-package tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package
+24 verbose lock tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package /Users/jay/.npm/2b650b07-1043-0-15358027233742177-package.lock
+25 silly lockFile c6467c85-1043-0-15358027233742177-tmp-tgz tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+26 verbose lock tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz /Users/jay/.npm/c6467c85-1043-0-15358027233742177-tmp-tgz.lock
+27 silly gunzTarPerm modes [ '755', '644' ]
+28 silly gunzTarPerm extractEntry package.json
+29 silly gunzTarPerm extractEntry README.md
+30 silly gunzTarPerm extractEntry gulpfile.js
+31 silly gunzTarPerm extractEntry component.json
+32 silly gunzTarPerm extractEntry LICENSE.md
+33 silly gunzTarPerm extractEntry dist/vegas.js
+34 silly gunzTarPerm extractEntry dist/vegas.min.js
+35 silly gunzTarPerm extractEntry dist/overlays/01.png
+36 silly gunzTarPerm extractEntry dist/overlays/02.png
+37 silly gunzTarPerm extractEntry dist/overlays/09.png
+38 silly gunzTarPerm extractEntry dist/vegas.css
+39 silly gunzTarPerm extractEntry dist/vegas.min.css
+40 silly gunzTarPerm extractEntry dist/vegas.min.js.map
+41 silly gunzTarPerm extractEntry CHANGELOG.md
+42 silly gunzTarPerm extractEntry bower.json
+43 silly gunzTarPerm extractEntry src/vegas.js
+44 silly gunzTarPerm extractEntry src/overlays/01.png
+45 silly gunzTarPerm extractEntry src/overlays/02.png
+46 silly gunzTarPerm extractEntry src/overlays/09.png
+47 silly gunzTarPerm extractEntry src/vegas.css
+48 silly lockFile 2b650b07-1043-0-15358027233742177-package tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package
+49 silly lockFile 2b650b07-1043-0-15358027233742177-package tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package
+50 silly lockFile c6467c85-1043-0-15358027233742177-tmp-tgz tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+51 silly lockFile c6467c85-1043-0-15358027233742177-tmp-tgz tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/tmp.tgz
+52 verbose tar pack [ '/Users/jay/.npm/Vegas/2.0.0/package.tgz',
+52 verbose tar pack   '/var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package' ]
+53 verbose tarball /Users/jay/.npm/Vegas/2.0.0/package.tgz
+54 verbose folder /var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package
+55 silly lockFile 2b650b07-1043-0-15358027233742177-package tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package
+56 verbose lock tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package /Users/jay/.npm/2b650b07-1043-0-15358027233742177-package.lock
+57 silly lockFile bacdc747--jay-npm-Vegas-2-0-0-package-tgz tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz
+58 verbose lock tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz /Users/jay/.npm/bacdc747--jay-npm-Vegas-2-0-0-package-tgz.lock
+59 silly lockFile 2b650b07-1043-0-15358027233742177-package tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package
+60 silly lockFile 2b650b07-1043-0-15358027233742177-package tar:///var/folders/3m/4n2nfxhd3yx6kk2c_k17nyz00000gn/T/npm-6559-KG9GOYUF/1425573361043-0.15358027233742177/package
+61 silly lockFile bacdc747--jay-npm-Vegas-2-0-0-package-tgz tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz
+62 silly lockFile bacdc747--jay-npm-Vegas-2-0-0-package-tgz tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz
+63 silly lockFile 3cf58d15-sers-jay-npm-Vegas-2-0-0-package /Users/jay/.npm/Vegas/2.0.0/package
+64 verbose lock /Users/jay/.npm/Vegas/2.0.0/package /Users/jay/.npm/3cf58d15-sers-jay-npm-Vegas-2-0-0-package.lock
+65 silly lockFile 3cf58d15-sers-jay-npm-Vegas-2-0-0-package /Users/jay/.npm/Vegas/2.0.0/package
+66 silly lockFile 3cf58d15-sers-jay-npm-Vegas-2-0-0-package /Users/jay/.npm/Vegas/2.0.0/package
+67 verbose tar unpack /Users/jay/.npm/Vegas/2.0.0/package.tgz
+68 silly lockFile 56661110-sers-jay-npm-Vegas-2-0-0-package tar:///Users/jay/.npm/Vegas/2.0.0/package
+69 verbose lock tar:///Users/jay/.npm/Vegas/2.0.0/package /Users/jay/.npm/56661110-sers-jay-npm-Vegas-2-0-0-package.lock
+70 silly lockFile bacdc747--jay-npm-Vegas-2-0-0-package-tgz tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz
+71 verbose lock tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz /Users/jay/.npm/bacdc747--jay-npm-Vegas-2-0-0-package-tgz.lock
+72 silly gunzTarPerm modes [ '755', '644' ]
+73 silly gunzTarPerm extractEntry package.json
+74 silly gunzTarPerm extractEntry README.md
+75 silly gunzTarPerm extractEntry gulpfile.js
+76 silly gunzTarPerm extractEntry CHANGELOG.md
+77 silly gunzTarPerm extractEntry LICENSE.md
+78 silly gunzTarPerm extractEntry bower.json
+79 silly gunzTarPerm extractEntry component.json
+80 silly gunzTarPerm extractEntry dist/vegas.js
+81 silly gunzTarPerm extractEntry dist/vegas.min.js
+82 silly gunzTarPerm extractEntry dist/overlays/01.png
+83 silly gunzTarPerm extractEntry dist/overlays/02.png
+84 silly gunzTarPerm extractEntry dist/overlays/09.png
+85 silly gunzTarPerm extractEntry dist/vegas.css
+86 silly gunzTarPerm extractEntry dist/vegas.min.css
+87 silly gunzTarPerm extractEntry dist/vegas.min.js.map
+88 silly gunzTarPerm extractEntry src/vegas.js
+89 silly gunzTarPerm extractEntry src/overlays/01.png
+90 silly gunzTarPerm extractEntry src/overlays/02.png
+91 silly gunzTarPerm extractEntry src/overlays/09.png
+92 silly gunzTarPerm extractEntry src/vegas.css
+93 silly lockFile 56661110-sers-jay-npm-Vegas-2-0-0-package tar:///Users/jay/.npm/Vegas/2.0.0/package
+94 silly lockFile 56661110-sers-jay-npm-Vegas-2-0-0-package tar:///Users/jay/.npm/Vegas/2.0.0/package
+95 silly lockFile bacdc747--jay-npm-Vegas-2-0-0-package-tgz tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz
+96 silly lockFile bacdc747--jay-npm-Vegas-2-0-0-package-tgz tar:///Users/jay/.npm/Vegas/2.0.0/package.tgz
+97 verbose chmod /Users/jay/.npm/Vegas/2.0.0/package.tgz 644
+98 verbose chown /Users/jay/.npm/Vegas/2.0.0/package.tgz [ 501, 20 ]
+99 silly lockFile 3a52ce78- .
+100 silly lockFile 3a52ce78- .
+101 silly publish { name: 'Vegas',
+101 silly publish   version: '2.0.0',
+101 silly publish   description: 'Vegas - Fullscreen Backgrounds and Slideshows.',
+101 silly publish   homepage: 'http://vegas.jaysalvat.com',
+101 silly publish   author: { name: 'Jay Salvat' },
+101 silly publish   license: 'MIT',
+101 silly publish   main: [ 'dist/vegas.min.js', 'dist/vegas.min.css' ],
+101 silly publish   repository: { type: 'git', url: 'git@github.com:jaysalvat/vegas.git' },
+101 silly publish   keywords:
+101 silly publish    [ 'background',
+101 silly publish      'slideshow',
+101 silly publish      'fullscreen',
+101 silly publish      'vegas',
+101 silly publish      'jquery-plugin',
+101 silly publish      'jquery',
+101 silly publish      'zepto' ],
+101 silly publish   devDependencies:
+101 silly publish    { del: '^1.1.1',
+101 silly publish      exec: '^0.1.3',
+101 silly publish      fs: '0.0.2',
+101 silly publish      gulp: '^3.8.10',
+101 silly publish      'gulp-autoprefixer': '^2.1.0',
+101 silly publish      'gulp-bump': '^0.1.11',
+101 silly publish      'gulp-cssmin': '^0.1.6',
+101 silly publish      'gulp-header': '^1.2.2',
+101 silly publish      'gulp-jshint': '^1.9.0',
+101 silly publish      'gulp-rename': '^1.2.0',
+101 silly publish      'gulp-replace': '^0.5.0',
+101 silly publish      'gulp-sourcemaps': '^1.3.0',
+101 silly publish      'gulp-sync': '^0.1.4',
+101 silly publish      'gulp-uglify': '^1.0.2',
+101 silly publish      'gulp-util': '^3.0.2',
+101 silly publish      'gulp-zip': '^2.0.2',
+101 silly publish      yargs: '^1.3.3' },
+101 silly publish   readme: 'Vegas – Fullscreen Backgrounds and Slideshows\n=============================================\n\nVegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com) plugin \nto add beautiful fullscreen backgrounds and Slideshows to DOM elements.\n\n#### Install\n\n    bower install vegas\n\n#### Get started\n\nFirst, include either [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com).\n\nThen...\n\n    $(function() {\n        $(\'body\').vegas({\n            slides: [\n                { src: \'img1.jpg\' },\n                { src: \'img2.jpg\' },\n                { src: \'img3.jpg\' }\n            ]\n        });\n    }\n\n### V2 Official website\nhttp://vegas.jaysalvat.com/\n\n### V2 Real life demo\nhttp://vegas.jaysalvat.com/demo/\n\n### V2 Documentation\nhttp://vegas.jaysalvat.com/documentation/\n\nContributing\n------------\n\nPlease don\'t edit files in the `dist` directory as they are generated via [Gulp](http://gulpjs.com). \nYou\'ll find source code in the `src` directory!\nRegarding code style like indentation and whitespace, **follow the conventions you see used in the source already.**\nPlease don\'t run Gulp task. I will.\n\nLicense\n-------\n\n**The MIT License (MIT)**\n\nCopyright 2015 Jay Salvat\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the "Software"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n',
+101 silly publish   readmeFilename: 'README.md',
+101 silly publish   bugs: { url: 'https://github.com/jaysalvat/vegas/issues' },
+101 silly publish   _id: 'Vegas@2.0.0',
+101 silly publish   dist: { shasum: 'f16fc67b1708dadc44c636a1dd4614f331ce6204' },
+101 silly publish   _from: '.' }
+102 verbose url raw Vegas
+103 verbose url resolving [ 'https://registry.npmjs.org/', './Vegas' ]
+104 verbose url resolved https://registry.npmjs.org/Vegas
+105 info trying registry request attempt 1 at 17:36:01
+106 http PUT https://registry.npmjs.org/Vegas
+107 http 403 https://registry.npmjs.org/Vegas
+108 error publish Failed PUT 403
+109 error Error: forbidden New packages must have all-lowercase names: Vegas
+109 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:254:14)
+109 error     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:192:65)
+109 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:123:22)
+109 error     at Request.EventEmitter.emit (events.js:98:17)
+109 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:893:14)
+109 error     at Request.EventEmitter.emit (events.js:117:20)
+109 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:844:12)
+109 error     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+109 error     at _stream_readable.js:920:16
+109 error     at process._tickCallback (node.js:415:13)
+110 error If you need help, you may report this *entire* log,
+110 error including the npm and node versions, at:
+110 error     <http://github.com/npm/npm/issues>
+111 error System Darwin 14.1.0
+112 error command "node" "/usr/local/bin/npm" "publish"
+113 error cwd /Users/jay/Sites/www/personnel/vegas
+114 error node -v v0.10.26
+115 error npm -v 1.4.6
+116 verbose exit [ 1, true ]
