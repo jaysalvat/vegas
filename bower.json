@@ -1,6 +1,6 @@
 {
     "name": "Vegas",
-    "version": "2.0.0-wip",
+    "version": "2.0.0",
     "main": [
         "dist/vegas.min.js",
         "dist/vegas.min.css"
