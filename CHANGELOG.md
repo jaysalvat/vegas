@@ -2,6 +2,16 @@
 
 ## CHANGE LOG
 
+### Vegas 2.0.3 2015-03-06
+
+* Restore missing overlays
+
+### Vegas 2.0.2 2015-03-06
+
+* Fix a bug with random transitions
+* Remove Transition/Animation auto-detection 
+* Aad TransitionRegister/AnimationRegister options instead
+
 ### Vegas 2.0.1 2015-03-05
 
 * Remove dev folder
