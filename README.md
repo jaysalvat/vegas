@@ -7,7 +7,7 @@ Vegas – Backgrounds and Slideshows
 Vegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com) plugin 
 to add beautiful backgrounds and Slideshows to DOM elements.
 
-**Important note:*** Vegas 2 is not a drop-in replacement for version 1.x. It's a brand new plugin.
+**Important note:** Vegas 2 is not a drop-in replacement for version 1.x. It's a brand new plugin.
 
 #### Install
 
@@ -48,7 +48,7 @@ http://vegas.jaysalvat.com/documentation/
 
 #### Looking for Vegas v1?
 
-The [Vegas v1 website](http://v1.vegas.jaysalvat.com) is still available but this version is not maintened anymore.
+The [Vegas v1 website](http://v1.vegas.jaysalvat.com) is still available but this version is not maintained anymore.
 
 Contributing
 ------------
