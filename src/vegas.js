@@ -311,7 +311,7 @@
                 if (transition instanceof Array) {
                     transition = this._random(transition);
                 } else {
-                    transition = this._random(this.animations);
+                    transition = this._random(this.transitions);
                 }
             }
 
