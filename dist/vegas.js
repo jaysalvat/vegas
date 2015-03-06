@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.0.1 - built 2015-03-05
+ * v2.0.1 - built 2015-03-06
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -29,8 +29,10 @@
         valign:             'center',
         transition:         'fade',
         transitionDuration: 1000,
+        transitionRegister: [],
         animation:          null,
         animationDuration:  'auto',
+        animationRegister:  [],
         init:  function () {},
         play:  function () {},
         pause: function () {},
@@ -67,45 +69,46 @@
         this.$overlay     = null;
         this.$slide       = null;
         this.timeout      = null;
-        this.transitions  = [];
-        this.animations   = [];
+
+        this.transitions = [
+            'fade', 'fade2',
+            'blur', 'blur2',
+            'flash', 'flash2',
+            'negative', 'negative2',
+            'burn', 'burn2',
+            'slideLeft', 'slideLeft2',
+            'slideRight', 'slideRight2',
+            'slideUp', 'slideUp2',
+            'slideDown', 'slideDown2',
+            'zoomIn', 'zoomIn2',
+            'zoomOut', 'zoomOut2',
+            'swirlLeft', 'swirlLeft2',
+            'swirlRight', 'swirlRight2'
+        ];
+
+        this.animations = [
+            'kenburns',
+            'kenburnsLeft', 'kenburnsRight',
+            'kenburnsUp', 'kenburnsUpLeft', 'kenburnsUpRight',
+            'kenburnsDown', 'kenburnsDownLeft', 'kenburnsDownRight'
+        ];
+
+        if (this.settings.transitionRegister instanceof Array === false) {
+            this.settings.transitionRegister = [ this.settings.transitionRegister ];
+        }
+
+        if (this.settings.animationRegister instanceof Array === false) {
+            this.settings.animationRegister = [ this.settings.animationRegister ];
+        }
+        
+        this.transitions = this.transitions.concat(this.settings.transitionRegister);
+        this.animations  = this.animations.concat(this.settings.animationRegister);
 
         this.support = {
             objectFit:  'objectFit'  in document.body.style,
             transition: 'transition' in document.body.style || 'WebkitTransition' in document.body.style,
             video:      $.vegas.isVideoCompatible()
         };
-
-        for (var i = 0; i < document.styleSheets.length; i++) {
-            var sheet = document.styleSheets[i],
-                rules;
-
-            try {
-                rules = (sheet.cssRules || sheet.rules);
-            } catch(e) {
-                continue;
-            }
-            
-            if (/vegas(\..*?)?(\.min)?\.css$/.test(sheet.href)) {
-                for (var j = 0; j < rules.length; j++) {
-                    var rule  = rules[j],
-                        matchTransition = /vegas\-transition\-([a-z0-9]*)/gi.exec(rule.selectorText),
-                        matchAnimation  = /vegas\-animation\-([a-z0-9]*)/gi.exec(rule.selectorText);
-                
-                    if (matchTransition && matchTransition[1]) {
-                        if (this.transitions.indexOf(matchTransition[1]) === -1) {
-                            this.transitions.push(matchTransition[1]);
-                        }
-                    }
-
-                    if (matchAnimation && matchAnimation[1]) {
-                        if (this.animations.indexOf(matchAnimation[1]) === -1) {
-                            this.animations.push(matchAnimation[1]);
-                        }
-                    }
-                }
-            }
-        }
 
         if (this.settings.shuffle === true) {
             this.shuffle();
@@ -317,7 +320,7 @@
                 if (transition instanceof Array) {
                     transition = this._random(transition);
                 } else {
-                    transition = this._random(this.transitions);
+                    transition = this._random(this.animations);
                 }
             }
 
@@ -327,14 +330,6 @@
                 } else {
                     animation = this._random(this.animations);
                 }
-            }
-
-            if (transition && transition !== 'none' && this.transitions.indexOf(transition) < 0) {
-                console.error("Vegas: Transition " + transition + " doesn't exist.");
-            }
-
-            if (animation && animation !== 'none' && this.animations.indexOf(animation) < 0) {
-                console.error("Vegas: Animation " + animation + " doesn't exist.");
             }
 
             if (transitionDuration === 'auto' || transitionDuration > delay) {
@@ -629,6 +624,4 @@
         return !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
     };
 
-})(typeof jQuery !== 'undefined' ? jQuery :
-   typeof Zepto  !== 'undefined' ? Zepto  : null
-);
+})(window.jQuery || window.Zepto);
