@@ -5,6 +5,7 @@
 ### Vegas 2.0.4 2015-03-12
 
 * New video options mute and loop
+* Enhance quick transition change
 
 ### Vegas 2.0.3 2015-03-06
 
