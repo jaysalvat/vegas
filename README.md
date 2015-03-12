@@ -1,11 +1,41 @@
-Vegas – Fullscreen Backgrounds and Slideshows with jQuery
-=========================================================
+Vegas – Backgrounds and Slideshows
+==================================
 
-Vegas is a jQuery plugin to add beautiful fullscreen backgrounds to your webpages. You can even create amazing Slideshows.
+[![NPM version](https://badge.fury.io/js/vegas.svg)](http://badge.fury.io/js/vegas)
+[![Bower version](https://badge.fury.io/bo/vegas.svg)](http://badge.fury.io/bo/vegas)
+
+Vegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com) plugin 
+to add beautiful backgrounds and Slideshows to DOM elements.
+
+**Important note:** Vegas 2 is not a drop-in replacement for version 1.x. It's a brand new plugin.
+
+#### Install
+
+Download the [last version](http://jaysalvat.github.io/vegas/releases/latest/vegas.zip).
+
+Or use [Bower](http://bower.io/):
+
+    bower install vegas
+
+Or use [NPM](https://www.npmjs.org/):
+
+    npm install vegas
+
+#### Get started
+
+First, include either [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com).
+
+Then...
 
     $(function() {
-	    $.vegas('/img/background.jpg')('overlay');
-	}
+        $('body').vegas({
+            slides: [
+                { src: 'img1.jpg' },
+                { src: 'img2.jpg' },
+                { src: 'img3.jpg' }
+            ]
+        });
+    }
 
 ### Official website
 http://vegas.jaysalvat.com/
@@ -16,10 +46,24 @@ http://vegas.jaysalvat.com/demo/
 ### Documentation
 http://vegas.jaysalvat.com/documentation/
 
+#### Looking for Vegas v1?
+
+The [Vegas v1 website](http://v1.vegas.jaysalvat.com) is still available but this version is not maintained anymore.
+
 Contributing
 ------------
 
-Please don't edit files in the `dist` subdirectory as they are generated via Grunt. You'll find source code in the `src` subdirectory!
+Please don't edit files in the `dist` directory as they are generated via [Gulp](http://gulpjs.com). 
+You'll find source code in the `src` directory!
+
+Install dependencies.
+
+    npm install
+
+Run watch task before editing code. 
+
+    gulp watch
+
 Regarding code style like indentation and whitespace, **follow the conventions you see used in the source already.**
 
 License
@@ -27,7 +71,7 @@ License
 
 **The MIT License (MIT)**
 
-Copyright (c) 2013 Jay Salvat
+Copyright 2015 Jay Salvat
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

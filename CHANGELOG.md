@@ -2,6 +2,28 @@
 
 ## CHANGE LOG
 
+### Vegas 2.0.4 2015-03-12
+
+* New video options mute and loop
+
+### Vegas 2.0.3 2015-03-06
+
+* Restore missing overlays
+
+### Vegas 2.0.2 2015-03-06
+
+* Fix a bug with random transitions
+* Remove Transition/Animation auto-detection 
+* Aad TransitionRegister/AnimationRegister options instead
+
+### Vegas 2.0.1 2015-03-05
+
+* Remove dev folder
+
+### Vegas 2.0.0 2015-03-05
+
+* Brand new Vegas V2
+
 ### Vegas 1.3.4 2013-12-16
 
 * Allow overlay(false) to disable overlay when vegas is already running
