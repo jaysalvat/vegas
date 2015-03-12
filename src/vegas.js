@@ -390,21 +390,21 @@
                 this.$elmt.prepend($slide);
             }
 
-            $slides
-                .css('transition', 'all 0ms')
-                .each(function () {
-                    this.className  = 'vegas-slide';
+            // $slides
+            //     .css('transition', 'all 0ms')
+            //     .each(function () {
+            //         this.className  = 'vegas-slide';
 
-                    if (this.tagName === 'VIDEO') {
-                        this.className += ' vegas-video';    
-                    }
+            //         if (this.tagName === 'VIDEO') {
+            //             this.className += ' vegas-video';    
+            //         }
 
-                    if (transition) {
-                        this.className += ' vegas-transition-' + transition;
-                        this.className += ' vegas-transition-' + transition + '-in';
-                    }
-                }
-            );
+            //         if (transition) {
+            //             this.className += ' vegas-transition-' + transition;
+            //             this.className += ' vegas-transition-' + transition + '-in';
+            //         }
+            //     }
+            // );
 
             self._timer(false);
 
@@ -426,7 +426,7 @@
                         }
                     }
 
-                    for (var i = 0; i < $slides.length - 3; i++) {
+                    for (var i = 0; i < $slides.length - 4; i++) {
                          $slides.eq(i).remove();
                     }
 
