@@ -40,7 +40,10 @@
             //  animation:          null,
             //  animationDuration:  null,
             //  cover:              true,
-            //  videos:             []
+            //  video: {
+            //      src: [],
+            //      mute: true,
+            //      loop: true
             // }
             // ...
         ]
@@ -253,7 +256,7 @@
             }
 
             video = document.createElement('video');
-            video.muted = true;
+            // video.muted = true;
             video.preload = true;
 
             srcs.forEach(function (src) {
@@ -265,6 +268,47 @@
             videoCache[cacheKey] = video;
 
             return video;
+        },
+
+        _fadeOutSound: function (video, duration) {
+            var self   = this,
+                delay  = duration / 10,
+                volume = video.volume - 0.09;
+
+            var src = video.getElementsByTagName('source')[0].src;
+
+            if (volume > 0) {
+                if (src === 'http://localhost/personnel/vegas/dev/videos/bg2.mp4') {
+                    console.log('----', Math.round(volume * 100));
+                }
+                video.volume = volume;
+
+                setTimeout(function () {
+                    self._fadeOutSound(video, duration);
+                }, delay);
+            } else {
+                video.pause();
+            }
+        },
+
+        _fadeInSound: function (video, duration) {
+            var self   = this,
+                delay  = duration / 10,
+                volume = video.volume + 0.09;
+            
+            var src = video.getElementsByTagName('source')[0].src;
+
+            if (volume < 1) {
+                if (src === 'http://localhost/personnel/vegas/dev/videos/bg2.mp4') {
+                    console.log('++++', Math.round(volume * 100));
+                }
+
+                video.volume = volume;
+
+                setTimeout(function () {
+                    self._fadeInSound(video, duration);
+                }, delay);
+            }
         },
 
         _options: function (key, i) {
@@ -289,16 +333,16 @@
             var $slide,
                 $inner,
                 $video,
-                $slides = this.$elmt.children('.vegas-slide'),
-                src     = this.settings.slides[nb].src,
-                videos  = this.settings.slides[nb].video,
-                delay   = this._options('delay'),
-                align   = this._options('align'),
-                valign  = this._options('valign'),
-                color   = this._options('color') || this.$elmt.css('background-color'),
-                cover   = this._options('cover') ? 'cover' : 'contain',
-                self    = this,
-                total   = $slides.length,
+                $slides       = this.$elmt.children('.vegas-slide'),
+                src           = this.settings.slides[nb].src,
+                videoSettings = this.settings.slides[nb].video,
+                delay         = this._options('delay'),
+                align         = this._options('align'),
+                valign        = this._options('valign'),
+                color         = this._options('color') || this.$elmt.css('background-color'),
+                cover         = this._options('cover') ? 'cover' : 'contain',
+                self          = this,
+                total         = $slides.length,
                 video,
                 img;
 
@@ -337,10 +381,24 @@
                 $slide.addClass('vegas-transition-' + transition);
             }
 
-            // Video ?
+            // Video
 
-            if (this.support.video && videos) {
-                video = this._video(videos);
+            if (this.support.video && videoSettings) {
+                if (videoSettings instanceof Array) {
+                    video = this._video(videoSettings);
+                } else {
+                    video = this._video(videoSettings.src);
+                }
+
+                video.loop  = videoSettings.loop !== undefined ? videoSettings.loop : true;
+                video.muted = videoSettings.mute !== undefined ? videoSettings.mute : true;
+
+                if (video.muted === false) {
+                    video.volume = 0;
+                    this._fadeInSound(video, transitionDuration);
+                } else {
+                    video.pause();
+                }
 
                 $video = $(video)
                     .addClass('vegas-video')
@@ -360,7 +418,7 @@
 
                 $slide.append($video);
 
-            // Image ?
+            // Image
 
             } else {
                 img = new Image();
@@ -390,22 +448,6 @@
                 this.$elmt.prepend($slide);
             }
 
-            // $slides
-            //     .css('transition', 'all 0ms')
-            //     .each(function () {
-            //         this.className  = 'vegas-slide';
-
-            //         if (this.tagName === 'VIDEO') {
-            //             this.className += ' vegas-video';    
-            //         }
-
-            //         if (transition) {
-            //             this.className += ' vegas-transition-' + transition;
-            //             this.className += ' vegas-transition-' + transition + '-in';
-            //         }
-            //     }
-            // );
-
             self._timer(false);
 
             function go () {
@@ -417,6 +459,15 @@
                             $slides
                                 .css('transition', 'all ' + transitionDuration + 'ms')
                                 .addClass('vegas-transition-' + transition + '-out');
+
+                            $slides.each(function () {
+                                var video = $slides.find('video').get(0);
+
+                                if (video) {
+                                    video.volume = 1;
+                                    self._fadeOutSound(video, transitionDuration);
+                                }
+                            });
 
                             $slide
                                 .css('transition', 'all ' + transitionDuration + 'ms')

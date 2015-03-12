@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.0.4 2015-03-12
+
+* New video options mute and loop
+
 ### Vegas 2.0.3 2015-03-06
 
 * Restore missing overlays
