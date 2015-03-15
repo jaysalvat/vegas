@@ -2,6 +2,8 @@
 
 ## CHANGE LOG
 
+* Timer color set to neutral white by default
+
 ### Vegas 2.0.4 2015-03-12
 
 * New video options mute and loop
