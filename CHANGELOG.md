@@ -2,6 +2,9 @@
 
 ## CHANGE LOG
 
+### Vegas 2.0.5 2015-03-18
+
+* Remove video canplay event not triggered properly on Firefox
 * Timer color set to neutral white by default
 
 ### Vegas 2.0.4 2015-03-12
