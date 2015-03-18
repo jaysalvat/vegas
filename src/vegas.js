@@ -256,7 +256,6 @@
             }
 
             video = document.createElement('video');
-            // video.muted = true;
             video.preload = true;
 
             srcs.forEach(function (src) {
@@ -275,12 +274,7 @@
                 delay  = duration / 10,
                 volume = video.volume - 0.09;
 
-            var src = video.getElementsByTagName('source')[0].src;
-
             if (volume > 0) {
-                if (src === 'http://localhost/personnel/vegas/dev/videos/bg2.mp4') {
-                    console.log('----', Math.round(volume * 100));
-                }
                 video.volume = volume;
 
                 setTimeout(function () {
@@ -296,13 +290,7 @@
                 delay  = duration / 10,
                 volume = video.volume + 0.09;
             
-            var src = video.getElementsByTagName('source')[0].src;
-
             if (volume < 1) {
-                if (src === 'http://localhost/personnel/vegas/dev/videos/bg2.mp4') {
-                    console.log('++++', Math.round(volume * 100));
-                }
-
                 video.volume = volume;
 
                 setTimeout(function () {
@@ -485,21 +473,13 @@
                     self._slideShow();
                 }, 100);
             }
-
             if (video) {
                 if (video.readyState === 4) {
                     video.currentTime = 0;
-                    video.play();
-                    go();
-                } else {
-                    video.oncanplay = function () {
-                        video.play();
-                        if (!video._started) {
-                            video._started = true;
-                            go();
-                        }
-                    };
                 }
+                
+                video.play();
+                go();
             } else {
                 img.src = src;
                 img.onload = go;
@@ -513,6 +493,7 @@
             for (var i = this.total - 1; i > 0; i--) {
                 rand = Math.floor(Math.random() * (i + 1));
                 temp = this.settings.slides[i];
+
                 this.settings.slides[i] = this.settings.slides[rand];
                 this.settings.slides[rand] = temp;
             }
