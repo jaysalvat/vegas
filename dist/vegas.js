@@ -265,7 +265,6 @@
             }
 
             video = document.createElement('video');
-            // video.muted = true;
             video.preload = true;
 
             srcs.forEach(function (src) {
@@ -483,21 +482,13 @@
                     self._slideShow();
                 }, 100);
             }
-
             if (video) {
                 if (video.readyState === 4) {
                     video.currentTime = 0;
-                    video.play();
-                    go();
-                } else {
-                    video.oncanplay = function () {
-                        video.play();
-                        if (!video._started) {
-                            video._started = true;
-                            go();
-                        }
-                    };
                 }
+                
+                video.play();
+                go();
             } else {
                 img.src = src;
                 img.onload = go;
@@ -511,6 +502,7 @@
             for (var i = this.total - 1; i > 0; i--) {
                 rand = Math.floor(Math.random() * (i + 1));
                 temp = this.settings.slides[i];
+
                 this.settings.slides[i] = this.settings.slides[rand];
                 this.settings.slides[rand] = temp;
             }
