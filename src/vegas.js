@@ -275,12 +275,7 @@
                 delay  = duration / 10,
                 volume = video.volume - 0.09;
 
-            var src = video.getElementsByTagName('source')[0].src;
-
             if (volume > 0) {
-                if (src === 'http://localhost/personnel/vegas/dev/videos/bg2.mp4') {
-                    console.log('----', Math.round(volume * 100));
-                }
                 video.volume = volume;
 
                 setTimeout(function () {
@@ -296,13 +291,7 @@
                 delay  = duration / 10,
                 volume = video.volume + 0.09;
             
-            var src = video.getElementsByTagName('source')[0].src;
-
             if (volume < 1) {
-                if (src === 'http://localhost/personnel/vegas/dev/videos/bg2.mp4') {
-                    console.log('++++', Math.round(volume * 100));
-                }
-
                 video.volume = volume;
 
                 setTimeout(function () {
