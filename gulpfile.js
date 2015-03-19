@@ -10,6 +10,7 @@
         yargs     = require('yargs'),
         exec      = require('exec'),
         fs        = require('fs'),
+        spawn     = require('child_process').spawn,
         gulp      = require('gulp'),
         bump      = require('gulp-bump'),
         header    = require('gulp-header'),
@@ -249,8 +250,45 @@
         );
     });
 
-    gulp.task("watch", function() {
-        gulp.watch("./src/**/*", [ "build" ]);
+    gulp.task('changelog', function (cb) {
+        var filename  = 'CHANGELOG.md',
+            editor    = process.env.EDITOR || 'vim',
+            version   = getPackageJson().version,
+            date      = gutil.date('yyyy-mm-dd'),
+            changelog = fs.readFileSync(filename).toString(),
+            lastDate  = /\d{4}-\d{2}-\d{2}/.exec(changelog)[0];
+
+        exec('git log --since="' + lastDate + '" --oneline --pretty=format:"%s"', function (err, stdout, stderr) {
+            if (err) {
+                return cb(err);
+            }
+
+            if (!stdout) {
+                return cb();
+            }
+
+            var updates = [
+                '### Vegas ' + version + ' ' + date,
+                '',
+                '* ' + stdout.replace(/\n/g, '\n* ')
+            ].join('\n');
+
+            changelog = changelog.replace(/(## CHANGE LOG)/, '$1\n\n' + updates);
+
+            fs.writeFileSync(filename, changelog);
+
+            var vim = spawn(editor, [ filename, '-n', '+7' ], {
+                stdio: 'inherit'
+            });
+
+            vim.on('close', function (e, code) {
+                return cb();
+            });
+        });
+    });
+
+    gulp.task('watch', function() {
+        gulp.watch("./src/**/*", [ 'build' ]);
     });
 
     gulp.task('build', sync([
@@ -268,6 +306,7 @@
       [ 'fail-if-not-master', 'fail-if-dirty' ],
         'git-pull',
         'bump',
+        'changelog',
         'year',
         'clean',
         'copy',
