@@ -1,6 +1,4 @@
 
-/* global jQuery, Zepto */
-
 (function ($) {
     'use strict';
 
@@ -603,6 +601,18 @@
                 this.noshow = this.total < 2;
                 this._preload();   
             }
+        },
+
+        destroy: function () {
+            clearTimeout(this.timeout); 
+
+            this.$elmt.removeClass('vegas-container');
+            this.$elmt.find('> .vegas-slide').remove();
+            this.$elmt.find('> .vegas-wrapper').clone(true).children().appendTo(this.$elmt);
+            this.$elmt.find('> .vegas-wrapper').remove();
+            this.$timer.remove();
+
+            this.elmt._vegas = null;
         }
     };
 
