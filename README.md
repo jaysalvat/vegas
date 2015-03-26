@@ -40,7 +40,7 @@ Then...
 ### Official website
 http://vegas.jaysalvat.com/
 
-### Real life demo
+### Sin City demo
 http://vegas.jaysalvat.com/demo/
 
 ### Documentation
