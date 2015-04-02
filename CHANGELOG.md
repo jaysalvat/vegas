@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.1.0 2015-04-02
+
+* Add `destroy` method
+
 ### Vegas 2.0.5 2015-03-18
 
 * Remove video canplay event not triggered properly on Firefox
