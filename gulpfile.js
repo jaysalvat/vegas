@@ -1,5 +1,5 @@
 /* Utlimate Jay Mega Gulpfile */
-/* global require:true */
+/* global require:true, process:true */
 /* jshint laxbreak:true */
 
 (function () {
@@ -258,7 +258,7 @@
             changelog = fs.readFileSync(filename).toString(),
             lastDate  = /\d{4}-\d{2}-\d{2}/.exec(changelog)[0];
 
-        exec('git log --since="' + lastDate + '" --oneline --pretty=format:"%s"', function (err, stdout, stderr) {
+        exec('git log --since="' + lastDate + '" --oneline --pretty=format:"%s"', function (err, stdout) {
             if (err) {
                 return cb(err);
             }
@@ -281,7 +281,7 @@
                 stdio: 'inherit'
             });
 
-            vim.on('close', function (e, code) {
+            vim.on('close', function () {
                 return cb();
             });
         });
