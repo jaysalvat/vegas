@@ -1,0 +1,56 @@
+{
+  "name": "gulp-sync",
+  "version": "0.1.4",
+  "description": "sync for dependency tasks of gulp.task method",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kaminaly/gulp-sync.git"
+  },
+  "keywords": [
+    "gulpfriendly",
+    "gulp",
+    "sync",
+    "async"
+  ],
+  "author": {
+    "name": "kaminaly",
+    "url": "http://github.com/kaminaly"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-coffee": "*",
+    "gulp-mocha": "*",
+    "coffee-script": "*",
+    "should": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/kaminaly/gulp-sync/issues"
+  },
+  "homepage": "https://github.com/kaminaly/gulp-sync",
+  "gitHead": "29d9eab20fd7a37043353d8d722d45d0f23fbaf9",
+  "_id": "gulp-sync@0.1.4",
+  "_shasum": "22eb9528f95737d4715c01272180a08f24133db5",
+  "_from": "gulp-sync@>=0.1.4 <0.2.0",
+  "_npmVersion": "1.4.14",
+  "_npmUser": {
+    "name": "kaminaly",
+    "email": "yasutomo@shiftbrain.co.jp"
+  },
+  "maintainers": [
+    {
+      "name": "kaminaly",
+      "email": "yasutomo@shiftbrain.co.jp"
+    }
+  ],
+  "dist": {
+    "shasum": "22eb9528f95737d4715c01272180a08f24133db5",
+    "tarball": "http://registry.npmjs.org/gulp-sync/-/gulp-sync-0.1.4.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/gulp-sync/-/gulp-sync-0.1.4.tgz"
+}

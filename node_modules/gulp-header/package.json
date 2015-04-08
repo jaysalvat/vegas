@@ -1,0 +1,76 @@
+{
+  "name": "gulp-header",
+  "version": "1.2.2",
+  "description": "Gulp extension to add header to file(s) in the pipeline.",
+  "main": "./index.js",
+  "proxy": null,
+  "https-proxy": null,
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tracker1/gulp-header.git"
+  },
+  "keywords": [
+    "header",
+    "gulpplugin",
+    "eventstream"
+  ],
+  "author": {
+    "name": "Michael J. Ryan",
+    "email": "mxryan@godaddy.com",
+    "url": "http://github.com/tracker1"
+  },
+  "contributors": [
+    {
+      "name": "GoDaddy.com",
+      "url": "http://github.com/godaddy"
+    },
+    {
+      "name": "Douglas Duteil",
+      "email": "douglasduteil@gmail.com",
+      "url": "http://github.com/douglasduteil"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tracker1/gulp-header/issues"
+  },
+  "dependencies": {
+    "gulp-util": "*",
+    "object-assign": "*",
+    "through2": "*"
+  },
+  "devDependencies": {
+    "event-stream": "^3.1.7",
+    "mocha": "*",
+    "should": "*",
+    "vinyl": "*"
+  },
+  "gitHead": "e25a0ab4dced7e6f87b4e478f4fdb084b9e47e01",
+  "homepage": "https://github.com/tracker1/gulp-header",
+  "_id": "gulp-header@1.2.2",
+  "_shasum": "c1c1980c5ddf30ccee84bb03b8d991612da1e92f",
+  "_from": "gulp-header@>=1.2.2 <2.0.0",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "tracker1",
+    "email": "tracker1@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "tracker1",
+      "email": "tracker1@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "c1c1980c5ddf30ccee84bb03b8d991612da1e92f",
+    "tarball": "http://registry.npmjs.org/gulp-header/-/gulp-header-1.2.2.tgz"
+  },
+  "_resolved": "https://registry.npmjs.org/gulp-header/-/gulp-header-1.2.2.tgz",
+  "readme": "ERROR: No README data found!"
+}
