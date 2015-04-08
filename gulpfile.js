@@ -4,7 +4,7 @@
 
 (function () {
     'use strict';
- 
+
     var pkg       = require('./package.json'),
         del       = require('del'),
         yargs     = require('yargs'),
@@ -164,8 +164,8 @@
     gulp.task('bump', function () {
         return gulp.src([ 'package.json', 'bower.json', 'component.json' ])
             .pipe(bump(
-                /^[a-z]+$/.test(bumpVersion) 
-                    ? { type: bumpVersion } 
+                /^[a-z]+$/.test(bumpVersion)
+                    ? { type: bumpVersion }
                     : { version: bumpVersion }
             ))
             .pipe(gulp.dest('.'));
@@ -293,13 +293,13 @@
 
     gulp.task('build', sync([
         'lint',
-        'clean', 
-        'copy', 
+        'clean',
+        'copy',
         'autoprefixer',
         'uglify',
         'cssmin',
         'header'
-    ], 
+    ],
     'building'));
 
     gulp.task('release', sync([
@@ -320,7 +320,7 @@
         'git-push',
         'publish',
         'npm-publish'
-    ], 
+    ],
     'releasing'));
 
     gulp.task('publish', sync([
@@ -331,7 +331,7 @@
         'zip',
         'gh-pages',
         'tmp-clean'
-    ], 
+    ],
     'publising'));
 })();
 
