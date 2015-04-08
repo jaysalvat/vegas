@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.1.1 2015-04-08
+
+* Fix overlay destruction #74 (sumomostudio)
+
 ### Vegas 2.1.0 2015-04-02
 
 * Add `destroy` method
