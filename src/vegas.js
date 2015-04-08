@@ -611,6 +611,7 @@
             this.$elmt.find('> .vegas-wrapper').clone(true).children().appendTo(this.$elmt);
             this.$elmt.find('> .vegas-wrapper').remove();
             this.$timer.remove();
+            this.$overlay.remove();
 
             this.elmt._vegas = null;
         }
