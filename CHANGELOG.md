@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.1.2 2015-04-15
+
+* Fix #76 with video preloading issue
+
 ### Vegas 2.1.1 2015-04-08
 
 * Fix overlay destruction #74 (sumomostudio)
