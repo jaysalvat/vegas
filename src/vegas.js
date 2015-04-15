@@ -192,7 +192,11 @@
 
                 if (this.settings.preload || this.settings.preloadVideos) {
                     if (this.support.video && this.settings.slides[i].video) {
-                        video = this._video(this.settings.slides[i].video);
+                        if (this.settings.slides[i].video instanceof Array) {
+                            video = this._video(this.settings.slides[i].video);
+                        } else {
+                            video = this._video(this.settings.slides[i].video.src);
+                        }
                     }
                 }
             }
