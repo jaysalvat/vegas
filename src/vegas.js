@@ -614,12 +614,15 @@
             this.$elmt.find('> .vegas-slide').remove();
             this.$elmt.find('> .vegas-wrapper').clone(true).children().appendTo(this.$elmt);
             this.$elmt.find('> .vegas-wrapper').remove();
+
             if (this.settings.timer) {
-              this.$timer.remove();    
+                this.$timer.remove();
             }
+
             if (this.settings.overlay) {
-              this.$overlay.remove();    
+                this.$overlay.remove();
             }
+            
             this.elmt._vegas = null;
         }
     };
