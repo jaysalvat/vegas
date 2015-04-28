@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.1.3 2015-04-28
+
+* Fix 'TypeError' on destroy #79
+
 ### Vegas 2.1.2 2015-04-15
 
 * Fix #76 with video preloading issue
