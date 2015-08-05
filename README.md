@@ -35,7 +35,7 @@ Then...
                 { src: 'img3.jpg' }
             ]
         });
-    }
+    });
 
 ### Official website
 http://vegas.jaysalvat.com/
