@@ -1,10 +1,10 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.1.3 - built 2015-04-28
+ * v2.1.3 - built 2016-01-11
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
- * Copyright (C) 2010-2015 Jay Salvat
+ * Copyright (C) 2010-2016 Jay Salvat
  * http://jaysalvat.com/
  * --------------------------------------------------------------------------*/
 
@@ -36,7 +36,7 @@
         pause: function () {},
         walk:  function () {},
         slides: [
-            // {   
+            // {
             //  src:                null,
             //  color:              null,
             //  delay:              null,
@@ -101,7 +101,7 @@
         if (this.settings.animationRegister instanceof Array === false) {
             this.settings.animationRegister = [ this.settings.animationRegister ];
         }
-        
+
         this.transitions = this.transitions.concat(this.settings.transitionRegister);
         this.animations  = this.animations.concat(this.settings.animationRegister);
 
@@ -134,7 +134,7 @@
             // Wrapper with content
             if (!isBody) {
                 this.$elmt.css('height', this.$elmt.css('height'));
-                
+
                 $wrapper = $('<div class="vegas-wrapper">')
                     .css('overflow', this.$elmt.css('overflow'))
                     .css('padding',  this.$elmt.css('padding'));
@@ -189,7 +189,7 @@
         },
 
         _preload: function () {
-            var video, img, i;
+            var img, i;
 
             for (i = 0; i < this.settings.slides.length; i++) {
                 if (this.settings.preload || this.settings.preloadImages) {
@@ -202,9 +202,9 @@
                 if (this.settings.preload || this.settings.preloadVideos) {
                     if (this.support.video && this.settings.slides[i].video) {
                         if (this.settings.slides[i].video instanceof Array) {
-                            video = this._video(this.settings.slides[i].video);
+                            this._video(this.settings.slides[i].video);
                         } else {
-                            video = this._video(this.settings.slides[i].video.src);
+                            this._video(this.settings.slides[i].video.src);
                         }
                     }
                 }
@@ -221,7 +221,7 @@
             if (this.total > 1 && !this.paused && !this.noshow) {
                 this.timeout = setTimeout(function () {
                     self.next();
-                }, this._options('delay')); 
+                }, this._options('delay'));
             }
         },
 
@@ -254,7 +254,7 @@
         },
 
         _video: function (srcs) {
-            var video, 
+            var video,
                 source,
                 cacheKey = srcs.toString();
 
@@ -300,7 +300,7 @@
             var self   = this,
                 delay  = duration / 10,
                 volume = video.volume + 0.09;
-            
+
             if (volume < 1) {
                 video.volume = volume;
 
@@ -338,8 +338,8 @@
                 delay         = this._options('delay'),
                 align         = this._options('align'),
                 valign        = this._options('valign'),
+                cover         = this._options('cover'),
                 color         = this._options('color') || this.$elmt.css('background-color'),
-                cover         = this._options('cover') ? 'cover' : 'contain',
                 self          = this,
                 total         = $slides.length,
                 video,
@@ -347,8 +347,16 @@
 
             var transition         = this._options('transition'),
                 transitionDuration = this._options('transitionDuration'),
-                animation          = this._options('animation' ),
+                animation          = this._options('animation'),
                 animationDuration  = this._options('animationDuration');
+
+            if (cover !== 'repeat') {
+                if (cover === true) {
+                    cover = 'cover';
+                } else if (cover === false) {
+                    cover = 'contain';
+                }
+            }
 
             if (transition === 'random' || transition instanceof Array) {
                 if (transition instanceof Array) {
@@ -375,7 +383,7 @@
             }
 
             $slide = $('<div class="vegas-slide"></div>');
-            
+
             if (this.support.transition && transition) {
                 $slide.addClass('vegas-transition-' + transition);
             }
@@ -425,8 +433,13 @@
                 $inner = $('<div class="vegas-slide-inner"></div>')
                     .css('background-image',    'url(' + src + ')')
                     .css('background-color',    color)
-                    .css('background-position', align + ' ' + valign)
-                    .css('background-size',     cover);
+                    .css('background-position', align + ' ' + valign);
+
+                if (cover === 'repeat') {
+                    $inner.css('background-repeat', 'repeat');
+                } else {
+                    $inner.css('background-size', cover);
+                }
 
                 if (this.support.transition && animation) {
                     $inner
@@ -488,7 +501,7 @@
                 if (video.readyState === 4) {
                     video.currentTime = 0;
                 }
-                
+
                 video.play();
                 go();
             } else {
@@ -581,8 +594,8 @@
             if (fn === 'init') {
                 params = [ this.settings ];
             } else {
-                params = [ 
-                    this.slide, 
+                params = [
+                    this.slide,
                     this.settings.slides[this.slide]
                 ];
             }
@@ -603,7 +616,7 @@
                 if (value === undefined) {
                     return this.settings[key];
                 }
-                this.settings[key] = value; 
+                this.settings[key] = value;
             } else {
                 return this.settings;
             }
@@ -612,12 +625,12 @@
             if (this.settings.slides !== oldSlides) {
                 this.total  = this.settings.slides.length;
                 this.noshow = this.total < 2;
-                this._preload();   
+                this._preload();
             }
         },
 
         destroy: function () {
-            clearTimeout(this.timeout); 
+            clearTimeout(this.timeout);
 
             this.$elmt.removeClass('vegas-container');
             this.$elmt.find('> .vegas-slide').remove();
@@ -631,7 +644,7 @@
             if (this.settings.overlay) {
                 this.$overlay.remove();
             }
-            
+
             this.elmt._vegas = null;
         }
     };

@@ -329,8 +329,8 @@
                 delay         = this._options('delay'),
                 align         = this._options('align'),
                 valign        = this._options('valign'),
+                cover         = this._options('cover'),
                 color         = this._options('color') || this.$elmt.css('background-color'),
-                cover         = this._options('cover') ? 'cover' : 'contain',
                 self          = this,
                 total         = $slides.length,
                 video,
@@ -338,8 +338,16 @@
 
             var transition         = this._options('transition'),
                 transitionDuration = this._options('transitionDuration'),
-                animation          = this._options('animation' ),
+                animation          = this._options('animation'),
                 animationDuration  = this._options('animationDuration');
+
+            if (cover !== 'repeat') {
+                if (cover === true) {
+                    cover = 'cover';
+                } else if (cover === false) {
+                    cover = 'contain';
+                }
+            }
 
             if (transition === 'random' || transition instanceof Array) {
                 if (transition instanceof Array) {
@@ -416,8 +424,13 @@
                 $inner = $('<div class="vegas-slide-inner"></div>')
                     .css('background-image',    'url(' + src + ')')
                     .css('background-color',    color)
-                    .css('background-position', align + ' ' + valign)
-                    .css('background-size',     cover);
+                    .css('background-position', align + ' ' + valign);
+
+                if (cover === 'repeat') {
+                    $inner.css('background-repeat', 'repeat');
+                } else {
+                    $inner.css('background-size', cover);
+                }
 
                 if (this.support.transition && animation) {
                     $inner
