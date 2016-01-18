@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.2.0 2016-01-18
+
+* Add cover:repeat option to display background as tiled and not resized #75
+
 ### Vegas 2.1.3 2015-04-28
 
 * Fix 'TypeError' on destroy #79
