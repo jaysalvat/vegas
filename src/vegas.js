@@ -203,7 +203,7 @@
         },
 
         _random: function (array) {
-            return array[Math.floor(Math.random() * (array.length - 1))];
+            return array[Math.floor(Math.random() * array.length)];
         },
 
         _slideShow: function () {
