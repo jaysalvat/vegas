@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.2.0 - built 2016-01-18
+ * v2.2.1 - built 2016-05-04
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -212,7 +212,7 @@
         },
 
         _random: function (array) {
-            return array[Math.floor(Math.random() * (array.length - 1))];
+            return array[Math.floor(Math.random() * array.length)];
         },
 
         _slideShow: function () {

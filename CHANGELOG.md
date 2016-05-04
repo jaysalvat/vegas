@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.2.1 2016-05-04
+
+* Fixed _random to match last item also.
+
 ### Vegas 2.2.0 2016-01-18
 
 * Add cover:repeat option to display background as tiled and not resized #75
