@@ -21,6 +21,12 @@ Or use [NPM](https://www.npmjs.org/):
 
     npm install vegas
 
+Or use [Meteor](https://www.meteor.com/):
+
+    meteor add las:vegas
+
+More info in the [Meteor README](meteor/README.md).
+
 #### Get started
 
 First, include either [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com).

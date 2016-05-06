@@ -148,6 +148,43 @@
         );
     });
 
+    gulp.task('meteor-init', function (cb) {
+      exec('cp meteor/package.js .', function (err, output, code) {
+          if (code !== 0) {
+              return cb(err + output);
+          }
+          return cb();
+      });
+    });
+
+    gulp.task('meteor-test', ['meteor-init'], function (cb) {
+      exec('node_modules/.bin/spacejam --mongo-url mongodb:// test-packages ./', function (err, output, code) {
+          if (code !== 0) {
+              return cb(err + output);
+          }
+          return cb();
+      });
+    });
+
+    gulp.task('meteor-publish', ['meteor-init'], function (cb) {
+      exec('meteor publish', function (err, output, code) {
+          if (code !== 0) {
+              console.log('argh');
+              return cb(err + output);
+          }
+          return cb();
+      });
+    });
+
+    gulp.task('meteor-cleanup', function () {
+      exec('rm -rf .build.* versions.json package.js', function (err, output, code) {
+          if (code !== 0) {
+              return cb(err + output);
+          }
+          return cb();
+      });
+    });
+
     gulp.task('meta', [ 'tmp-create' ], function (cb) {
         var  metadata = {
                 date: gutil.date('yyyy-mm-dd HH:MM'),
@@ -319,7 +356,8 @@
         'git-tag',
         'git-push',
         'publish',
-        'npm-publish'
+        'npm-publish',
+        'meteor'
     ], 
     'releasing'));
 
@@ -333,6 +371,13 @@
         'tmp-clean'
     ], 
     'publising'));
+
+    gulp.task('meteor', sync([
+        'meteor-test',
+        'meteor-publish',
+        'meteor-cleanup'
+    ],
+    'Meteor test/publish'));
 })();
 
 /*
