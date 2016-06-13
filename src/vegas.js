@@ -497,7 +497,12 @@
                 go();
             } else {
                 img.src = src;
-                img.onload = go;
+
+                if (img.complete) {
+                    go();
+                } else {
+                    img.onload = go;
+                }
             }
         },
 
