@@ -4,7 +4,7 @@
 
 ### Vegas 2.2.1 2016-05-04
 
-* Fixed _random to match last item also.
+* Fixed _random to match last item also
 
 ### Vegas 2.2.0 2016-01-18
 
@@ -43,7 +43,7 @@
 ### Vegas 2.0.2 2015-03-06
 
 * Fix a bug with random transitions
-* Remove Transition/Animation auto-detection 
+* Remove Transition/Animation auto-detection
 * Aad TransitionRegister/AnimationRegister options instead
 
 ### Vegas 2.0.1 2015-03-05
