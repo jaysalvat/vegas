@@ -1,0 +1,17 @@
+/*******************************************/
+/* swirlLeft transition
+/*******************************************/
+
+.vegas-transition-swirlLeft,
+.vegas-transition-swirlLeft2
+    transform: scale($vegas-swirl-scale) rotate($vegas-swirl-degree)
+    opacity: 0
+
+.vegas-transition-swirlLeft-in,
+.vegas-transition-swirlLeft2-in
+    transform: scale(1) rotate(0deg)
+    opacity: 1
+
+.vegas-transition-swirlLeft2-out
+    transform: scale($vegas-swirl-scale) rotate(-$vegas-swirl-degree)
+    opacity: 0

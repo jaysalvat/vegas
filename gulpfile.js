@@ -4,7 +4,7 @@
 
 (function () {
     'use strict';
- 
+
     var pkg       = require('./package.json'),
         del       = require('del'),
         yargs     = require('yargs'),
@@ -12,17 +12,8 @@
         fs        = require('fs'),
         spawn     = require('child_process').spawn,
         gulp      = require('gulp'),
-        bump      = require('gulp-bump'),
-        header    = require('gulp-header'),
-        cssmin    = require('gulp-cssmin'),
-        prefixer  = require('gulp-autoprefixer'),
-        uglify    = require('gulp-uglify'),
-        sourcemap = require('gulp-sourcemaps'),
-        jshint    = require('gulp-jshint'),
+        plugins   = require('gulp-load-plugins')(),
         gutil     = require('gulp-util'),
-        zip       = require('gulp-zip'),
-        rename    = require('gulp-rename'),
-        replace   = require('gulp-replace'),
         gsync     = require('gulp-sync'),
         sync      = gsync(gulp).sync;
 
@@ -76,7 +67,7 @@
         var filename = settings.name + '.zip';
 
         return gulp.src('./dist/**/*')
-            .pipe(zip(filename))
+            .pipe(plugins.zip(filename))
             .pipe(gulp.dest('./tmp'));
     });
 
@@ -163,9 +154,9 @@
 
     gulp.task('bump', function () {
         return gulp.src([ 'package.json', 'bower.json', 'component.json' ])
-            .pipe(bump(
-                /^[a-z]+$/.test(bumpVersion) 
-                    ? { type: bumpVersion } 
+            .pipe(plugins.bump(
+                /^[a-z]+$/.test(bumpVersion)
+                    ? { type: bumpVersion }
                     : { version: bumpVersion }
             ))
             .pipe(gulp.dest('.'));
@@ -173,55 +164,62 @@
 
     gulp.task('year', function () {
         return gulp.src([ './LICENSE.md', './README.md' ])
-            .pipe(replace(/(Copyright )(\d{4})/g, '$1' + gutil.date('yyyy')))
+            .pipe(plugins.replace(/(Copyright )(\d{4})/g, '$1' + gutil.date('yyyy')))
             .pipe(gulp.dest('.'));
     });
 
     gulp.task('lint', function() {
         return gulp.src('./src/**.js')
-            .pipe(jshint())
-            .pipe(jshint.reporter('default'));
+            .pipe(plugins.jshint())
+            .pipe(plugins.jshint.reporter('default'));
     });
 
     gulp.task('copy', function () {
-        return gulp.src('./src/**/*')
-            .pipe(gulp.dest('./dist'));
-    });
-
-    gulp.task('autoprefixer', function () {
-        return gulp.src('./dist/**/*.css')
-            .pipe(prefixer())
+        return gulp.src([ './src/**/*', '!./src/sass', '!./src/sass/**' ])
             .pipe(gulp.dest('./dist'));
     });
 
     gulp.task('uglify', function () {
         return gulp.src('./dist/**/!(*.min.js).js')
-            .pipe(rename({ suffix: '.min' }))
-            .pipe(sourcemap.init())
-            .pipe(uglify({
+            .pipe(plugins.rename({ suffix: '.min' }))
+            .pipe(plugins.sourcemaps.init())
+            .pipe(plugins.uglify({
                 compress: {
                     warnings: false
                 },
                 mangle: true,
                 outSourceMap: true
             }))
-            .pipe(sourcemap.write('.'))
+            .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest('./dist/'));
     });
 
     gulp.task('cssmin', function () {
         return gulp.src('./dist/**/!(*.min.css).css')
-            .pipe(prefixer())
-            .pipe(rename({ suffix: '.min' }))
-            .pipe(cssmin())
+            .pipe(plugins.sourcemaps.init())
+            .pipe(plugins.rename({ suffix: '.min' }))
+            .pipe(plugins.cssmin())
+            .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest('./dist/'));
+    });
+
+    gulp.task('sass', function () {
+        return gulp.src("./src/sass/vegas.sass")
+            // .pipe(plugins.sourcemaps.init())
+            .pipe(plugins.sass({
+                outputStyle: 'expanded',
+                indentWidth: 4
+            }).on('error', plugins.sass.logError))
+            .pipe(plugins.autoprefixer())
+           // .pipe(plugins.sourcemaps.write('.'))
+            .pipe(gulp.dest("./dist/"));
     });
 
     gulp.task('header', function () {
         settings.banner.vars.pkg = getPackageJson();
 
         return gulp.src('./dist/*.js')
-            .pipe(header(settings.banner.content, settings.banner.vars ))
+            .pipe(plugins.header(settings.banner.content, settings.banner.vars ))
             .pipe(gulp.dest('./dist/'));
     });
 
@@ -293,13 +291,13 @@
 
     gulp.task('build', sync([
         'lint',
-        'clean', 
-        'copy', 
-        'autoprefixer',
-        'uglify',
+        'clean',
+        'copy',
+        'sass',
         'cssmin',
+        'uglify',
         'header'
-    ], 
+    ],
     'building'));
 
     gulp.task('release', sync([
@@ -310,7 +308,7 @@
         'year',
         'clean',
         'copy',
-        'autoprefixer',
+        'sass',
         'uglify',
         'cssmin',
         'header',
@@ -320,7 +318,7 @@
         'git-push',
         'publish',
         'npm-publish'
-    ], 
+    ],
     'releasing'));
 
     gulp.task('publish', sync([
@@ -331,7 +329,7 @@
         'zip',
         'gh-pages',
         'tmp-clean'
-    ], 
+    ],
     'publising'));
 })();
 
@@ -343,8 +341,10 @@ NPM Installation
 npm install --save-dev del
 npm install --save-dev yargs
 npm install --save-dev exec
-npm install --save-dev fs
+npm install --save-dev jshint
 npm install --save-dev gulp
+npm install --save-dev gulp-sass
+npm install --save-dev gulp-load-plugins
 npm install --save-dev gulp-bump
 npm install --save-dev gulp-header
 npm install --save-dev gulp-cssmin
