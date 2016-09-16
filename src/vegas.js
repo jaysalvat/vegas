@@ -422,7 +422,7 @@
                 img = new Image();
 
                 $inner = $('<div class="vegas-slide-inner"></div>')
-                    .css('background-image',    'url(' + src + ')')
+                    .css('background-image',    'url("' + src + '")')
                     .css('background-color',    color)
                     .css('background-position', align + ' ' + valign);
 
