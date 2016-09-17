@@ -2,6 +2,12 @@
 
 ## CHANGE LOG
 
+### Vegas 2.3.0 2016-09-17
+
+* Add firstTransition and firstTransitionDuration options
+* Add Loop option to settings and end callback
+* Check image complete property in addition to onload before changing slide.
+
 ### Vegas 2.2.1 2016-05-04
 
 * Fixed _random to match last item also
