@@ -5,6 +5,7 @@
     var defaults = {
         slide:              0,
         delay:              5000,
+        loop:               true,
         preload:            false,
         preloadImage:       false,
         preloadVideo:       false,
@@ -56,6 +57,7 @@
         this.total        = this.settings.slides.length;
         this.noshow       = this.total < 2;
         this.paused       = !this.settings.autoplay || this.noshow;
+        this.ended        = false;
         this.$elmt        = $(elmt);
         this.$timer       = null;
         this.$overlay     = null;
@@ -209,7 +211,7 @@
         _slideShow: function () {
             var self = this;
 
-            if (this.total > 1 && !this.paused && !this.noshow) {
+            if (this.total > 1 && !this.ended && !this.paused && !this.noshow) {
                 this.timeout = setTimeout(function () {
                     self.next();
                 }, this._options('delay'));
@@ -230,7 +232,7 @@
                     .find('div')
                         .css('transition-duration', '0ms');
 
-            if (this.paused || this.noshow) {
+            if (this.ended || this.paused || this.noshow) {
                 return;
             }
 
@@ -451,6 +453,22 @@
                 this.$elmt.prepend($slide);
             }
 
+            $slides
+                .css('transition', 'all 0ms')
+                .each(function () {
+                    this.className  = 'vegas-slide';
+
+                    if (this.tagName === 'VIDEO') {
+                        this.className += ' vegas-video';    
+                    }
+
+                    if (transition) {
+                        this.className += ' vegas-transition-' + transition;
+                        this.className += ' vegas-transition-' + transition + '-in';
+                    }
+                }
+            );
+
             self._timer(false);
 
             function go () {
@@ -504,6 +522,12 @@
                     img.onload = go;
                 }
             }
+        },
+
+        _end: function () {
+            this.ended = true;
+            this._timer(false);
+            this.trigger('end');
         },
 
         shuffle: function () {
@@ -568,6 +592,10 @@
             this.slide++;
 
             if (this.slide >= this.total) {
+                if (!this.settings.loop) {
+                    return this._end();
+                }
+
                 this.slide = 0;
             }
 
@@ -578,7 +606,12 @@
             this.slide--;
 
             if (this.slide < 0) {
-                this.slide = this.total - 1;
+                if (!this.settings.loop) {
+                    this.slide++;
+                    return;
+                } else {
+                    this.slide = this.total - 1;
+                }
             }
 
             this._goto(this.slide);
