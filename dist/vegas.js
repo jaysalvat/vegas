@@ -12,26 +12,28 @@
     'use strict';
 
     var defaults = {
-        slide:              0,
-        delay:              5000,
-        loop:               true,
-        preload:            false,
-        preloadImage:       false,
-        preloadVideo:       false,
-        timer:              true,
-        overlay:            false,
-        autoplay:           true,
-        shuffle:            false,
-        cover:              true,
-        color:              null,
-        align:              'center',
-        valign:             'center',
-        transition:         'fade',
-        transitionDuration: 1000,
-        transitionRegister: [],
-        animation:          null,
-        animationDuration:  'auto',
-        animationRegister:  [],
+        slide:                   0,
+        delay:                   5000,
+        loop:                    true,
+        preload:                 false,
+        preloadImage:            false,
+        preloadVideo:            false,
+        timer:                   true,
+        overlay:                 false,
+        autoplay:                true,
+        shuffle:                 false,
+        cover:                   true,
+        color:                   null,
+        align:                   'center',
+        valign:                  'center',
+        firstTransition:         null,
+        firstTransitionDuration: null,
+        transition:              'fade',
+        transitionDuration:      1000,
+        transitionRegister:      [],
+        animation:               null,
+        animationDuration:       'auto',
+        animationRegister:       [],
         init:  function () {},
         play:  function () {},
         pause: function () {},
@@ -72,6 +74,7 @@
         this.$overlay     = null;
         this.$slide       = null;
         this.timeout      = null;
+        this.first        = true;
 
         this.transitions = [
             'fade', 'fade2',
@@ -351,6 +354,18 @@
                 transitionDuration = this._options('transitionDuration'),
                 animation          = this._options('animation'),
                 animationDuration  = this._options('animationDuration');
+
+            if (this.settings.firstTransition && this.first) {
+                transition = this.settings.firstTransition || transition;
+            }
+
+            if (this.settings.firstTransitionDuration && this.first) {
+                transitionDuration = this.settings.firstTransitionDuration || transitionDuration;
+            }
+
+            if (this.first) {
+                this.first = false;
+            }
 
             if (cover !== 'repeat') {
                 if (cover === true) {
