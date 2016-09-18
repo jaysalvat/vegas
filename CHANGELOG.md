@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.3.1 2016-09-18
+
+Fix slide src path names that contain blank characters
+
 ### Vegas 2.3.0 2016-09-17
 
 * Add firstTransition and firstTransitionDuration options

@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.3.0 - built 2016-09-17
+ * v2.3.1 - built 2016-09-18
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -448,7 +448,7 @@
                 img = new Image();
 
                 $inner = $('<div class="vegas-slide-inner"></div>')
-                    .css('background-image',    'url(' + src + ')')
+                    .css('background-image',    'url("' + src + '")')
                     .css('background-color',    color)
                     .css('background-position', align + ' ' + valign);
 
