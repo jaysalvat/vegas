@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.3.1 - built 2016-09-18
+ * v2.3.1 - built 2016-09-28
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
@@ -34,6 +34,7 @@
         animation:               null,
         animationDuration:       'auto',
         animationRegister:       [],
+        slidesToKeep:            1,
         init:  function () {},
         play:  function () {},
         pause: function () {},
@@ -522,7 +523,7 @@
                         }
                     }
 
-                    for (var i = 0; i < $slides.length - 4; i++) {
+                    for (var i = 0; i < $slides.length - self.settings.slidesToKeep; i++) {
                          $slides.eq(i).remove();
                     }
 

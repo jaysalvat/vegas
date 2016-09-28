@@ -25,6 +25,7 @@
         animation:               null,
         animationDuration:       'auto',
         animationRegister:       [],
+        slidesToKeep:            1,
         init:  function () {},
         play:  function () {},
         pause: function () {},
@@ -513,7 +514,7 @@
                         }
                     }
 
-                    for (var i = 0; i < $slides.length - 4; i++) {
+                    for (var i = 0; i < $slides.length - self.settings.slidesToKeep; i++) {
                          $slides.eq(i).remove();
                     }
 
