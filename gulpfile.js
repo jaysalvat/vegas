@@ -256,7 +256,7 @@
             changelog = fs.readFileSync(filename).toString(),
             lastDate  = /\d{4}-\d{2}-\d{2}/.exec(changelog)[0];
 
-        exec('git log --since="' + lastDate + '" --oneline --pretty=format:"%s"', function (err, stdout) {
+        exec('git log --since="' + lastDate + ' 00:00:00" --oneline --pretty=format:"%s"', function (err, stdout) {
             if (err) {
                 return cb(err);
             }
@@ -294,9 +294,9 @@
         'clean',
         'copy',
         'sass',
+        'header',
         'cssmin',
         'uglify',
-        'header'
     ],
     'building'));
 
@@ -309,9 +309,9 @@
         'clean',
         'copy',
         'sass',
+        'header',
         'uglify',
         'cssmin',
-        'header',
         'git-add',
         'git-commit',
         'git-tag',
