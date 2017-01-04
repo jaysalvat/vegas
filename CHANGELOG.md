@@ -2,6 +2,11 @@
 
 ## CHANGE LOG
 
+### Vegas 2.4.0 2017-01-04
+
+* Add will-change CSS property to slides
+* Add slidesToKeep option to set the number of slides kept behind the main slide
+
 ### Vegas 2.3.1 2016-09-18
 
 Fix slide src path names that contain blank characters
