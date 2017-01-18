@@ -573,9 +573,16 @@
             this.trigger('pause');
         },
 
+        resume: function () {
+            this.paused = false;
+            this._goto(this.slide);
+            this._timer(true);
+            this.trigger('resume');
+        },
+
         toggle: function () {
             if (this.paused) {
-                this.play();
+                this.resume();
             } else {
                 this.pause();
             }
