@@ -541,7 +541,11 @@
         },
 
         _end: function () {
-            this.ended = true;
+            if (this.settings.autoplay) {
+                this.ended = false;
+            } else {
+                this.ended = true;
+            }
             this._timer(false);
             this.trigger('end');
         },
