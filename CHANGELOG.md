@@ -2,6 +2,12 @@
 
 ## CHANGE LOG
 
+### Vegas 2.4.1 2018-09-17
+
+* Optimise overlay png with tinypng
+* Fix a glitch on blur transition effect
+* Autplay Enabled - Jump to a specific slide fix
+
 ### Vegas 2.4.0 2017-01-04
 
 * Add will-change CSS property to slides
