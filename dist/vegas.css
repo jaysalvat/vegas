@@ -29,7 +29,6 @@
     width: 0%;
     height: 100%;
     background: white;
-    -webkit-transition: width ease-out;
     transition: width ease-out;
 }
 
@@ -73,12 +72,6 @@ body.vegas-container > .vegas-slide {
 }
 
 /* Target Safari IOS7+ in order to add 76px */
-_::full-page-media, _:future,
-:root body.vegas-container > .vegas-slide,
-:root body.vegas-container > .vegas-overlay {
-    bottom: -76px;
-}
-
 /*******************************************/
 /* blur transition */
 /*******************************************/

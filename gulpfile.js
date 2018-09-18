@@ -5,17 +5,17 @@
 (function () {
     'use strict';
 
-    var pkg       = require('./package.json'),
-        del       = require('del'),
-        yargs     = require('yargs'),
-        exec      = require('exec'),
-        fs        = require('fs'),
-        spawn     = require('child_process').spawn,
-        gulp      = require('gulp'),
-        plugins   = require('gulp-load-plugins')(),
-        gutil     = require('gulp-util'),
-        gsync     = require('gulp-sync'),
-        sync      = gsync(gulp).sync;
+    var pkg        = require('./package.json'),
+        del        = require('del'),
+        yargs      = require('yargs'),
+        exec       = require('exec'),
+        fs         = require('fs'),
+        dateFormat = require('date-format'),
+        spawn      = require('child_process').spawn,
+        gulp       = require('gulp'),
+        plugins    = require('gulp-load-plugins')(),
+        gsync      = require('gulp-sync'),
+        sync       = gsync(gulp).sync;
 
     var bumpVersion = yargs.argv.type || 'patch';
 
@@ -36,8 +36,8 @@
             ].join('\n'),
             vars: {
                 pkg: pkg,
-                datetime: gutil.date('yyyy-mm-dd'),
-                year: gutil.date('yyyy')
+                datetime: dateFormat.asString('yyyy-mm-dd'),
+                year: dateFormat.asString('yyyy')
             }
         }
     };
@@ -72,7 +72,7 @@
     });
 
     gulp.task('fail-if-dirty', function (cb) {
-        return exec('git diff-index HEAD --', function (err, output) { // err, output, code
+        return exec('git diff-index HEAD --', function (err, output) {
             if (err) {
                 return cb(err);
             }
@@ -84,7 +84,7 @@
     });
 
     gulp.task('fail-if-not-master', function (cb) {
-        exec('git symbolic-ref -q HEAD', function (err, output) { // err, output, code
+        exec('git symbolic-ref -q HEAD', function (err, output) {
             if (err) {
                 return cb(err);
             }
@@ -141,7 +141,7 @@
 
     gulp.task('meta', [ 'tmp-create' ], function (cb) {
         var  metadata = {
-                date: gutil.date('yyyy-mm-dd HH:MM'),
+                date: dateFormat.asString('yyyy-mm-dd HH:MM'),
                 version: 'v' + getPackageJson().version
             },
             json = JSON.stringify(metadata, null, 4);
@@ -164,7 +164,7 @@
 
     gulp.task('year', function () {
         return gulp.src([ './LICENSE.md', './README.md' ])
-            .pipe(plugins.replace(/(Copyright )(\d{4})/g, '$1' + gutil.date('yyyy')))
+            .pipe(plugins.replace(/(Copyright )(\d{4})/g, '$1' + dateFormat.asString('yyyy')))
             .pipe(gulp.dest('.'));
     });
 
@@ -188,8 +188,11 @@
                     warnings: false
                 },
                 mangle: true,
-                outSourceMap: true
+                output: {
+                    comments: /^!/
+                }
             }))
+            .on('error', function (err) { console.log(err) })
             .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest('./dist/'));
     });
@@ -211,7 +214,7 @@
                 indentWidth: 4
             }).on('error', plugins.sass.logError))
             .pipe(plugins.autoprefixer())
-           // .pipe(plugins.sourcemaps.write('.'))
+            // .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest("./dist/"));
     });
 
@@ -252,7 +255,7 @@
         var filename  = 'CHANGELOG.md',
             editor    = process.env.EDITOR || 'vim',
             version   = getPackageJson().version,
-            date      = gutil.date('yyyy-mm-dd'),
+            date      = dateFormat.asString('yyyy-mm-dd'),
             changelog = fs.readFileSync(filename).toString(),
             lastDate  = /\d{4}-\d{2}-\d{2}/.exec(changelog)[0];
 
