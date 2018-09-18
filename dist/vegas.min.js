@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.4.1 - built 2018-15-18
+ * v2.4.2 - built 2018-20-18
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------

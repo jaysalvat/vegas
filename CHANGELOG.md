@@ -2,6 +2,12 @@
 
 ## CHANGE LOG
 
+### Vegas 2.4.2 2018-20-18
+
+* Update dev packages
+* Code formating
+* Remove IOS7 css hack.
+
 ### Vegas 2.4.1 2018-09-17
 
 * Optimise overlay png with tinypng
