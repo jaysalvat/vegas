@@ -36,7 +36,7 @@
             ].join('\n'),
             vars: {
                 pkg: pkg,
-                datetime: dateFormat.asString('yyyy-mm-dd'),
+                datetime: dateFormat.asString('yyyy-MM-dd'),
                 year: dateFormat.asString('yyyy')
             }
         }
@@ -141,7 +141,7 @@
 
     gulp.task('meta', [ 'tmp-create' ], function (cb) {
         var  metadata = {
-                date: dateFormat.asString('yyyy-mm-dd HH:MM'),
+                date: dateFormat.asString('yyyy-MM-dd HH:MM'),
                 version: 'v' + getPackageJson().version
             },
             json = JSON.stringify(metadata, null, 4);
@@ -255,7 +255,7 @@
         var filename  = 'CHANGELOG.md',
             editor    = process.env.EDITOR || 'vim',
             version   = getPackageJson().version,
-            date      = dateFormat.asString('yyyy-mm-dd'),
+            date      = dateFormat.asString('yyyy-MM-dd'),
             changelog = fs.readFileSync(filename).toString(),
             lastDate  = /\d{4}-\d{2}-\d{2}/.exec(changelog)[0];
 
