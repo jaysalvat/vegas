@@ -1,7 +1,7 @@
 Vegas – Backgrounds and Slideshows
 ==================================
 
-[![NPM version](httpss://badge.fury.io/js/vegas.svg)](https://badge.fury.io/js/vegas)
+[![NPM version](https://badge.fury.io/js/vegas.svg)](https://badge.fury.io/js/vegas)
 [![Bower version](https://badge.fury.io/bo/vegas.svg)](https://badge.fury.io/bo/vegas)
 
 Vegas is a [jQuery](https://jquery.com)/[Zepto](https://zeptojs.com) plugin 
