@@ -1,19 +1,19 @@
 Vegas – Backgrounds and Slideshows
 ==================================
 
-[![NPM version](https://badge.fury.io/js/vegas.svg)](http://badge.fury.io/js/vegas)
-[![Bower version](https://badge.fury.io/bo/vegas.svg)](http://badge.fury.io/bo/vegas)
+[![NPM version](https://badge.fury.io/js/vegas.svg)](https://badge.fury.io/js/vegas)
+[![Bower version](https://badge.fury.io/bo/vegas.svg)](https://badge.fury.io/bo/vegas)
 
-Vegas is a [jQuery](http://jquery.com)/[Zepto](http://zeptojs.com) plugin 
+Vegas is a [jQuery](https://jquery.com)/[Zepto](https://zeptojs.com) plugin 
 to add beautiful backgrounds and Slideshows to DOM elements.
 
 **Important note:** Vegas 2 is not a drop-in replacement for version 1.x. It's a brand new plugin.
 
 #### Install
 
-Download the [last version](http://jaysalvat.github.io/vegas/releases/latest/vegas.zip).
+Download the [last version](https://jaysalvat.github.io/vegas/releases/latest/vegas.zip).
 
-Or use [Bower](http://bower.io/):
+Or use [Bower](https://bower.io/):
 
     bower install vegas
 
@@ -23,7 +23,7 @@ Or use [NPM](https://www.npmjs.org/):
 
 #### Get started
 
-First, include either [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com).
+First, include either [jQuery](https://jquery.com) or [Zepto](https://zeptojs.com).
 
 Then...
 
@@ -38,13 +38,13 @@ Then...
     });
 
 ### Official website
-http://vegas.jaysalvat.com/
+https://vegas.jaysalvat.com/
 
 ### Sin City demo
-http://vegas.jaysalvat.com/demo/
+https://vegas.jaysalvat.com/demo/
 
 ### Documentation
-http://vegas.jaysalvat.com/documentation/
+https://vegas.jaysalvat.com/documentation/
 
 #### Looking for Vegas v1?
 
@@ -53,7 +53,7 @@ The [Vegas v1 website](http://v1.vegas.jaysalvat.com) is still available but thi
 Contributing
 ------------
 
-Please don't edit files in the `dist` directory as they are generated via [Gulp](http://gulpjs.com). 
+Please don't edit files in the `dist` directory as they are generated via [Gulp](https://gulpjs.com). 
 You'll find source code in the `src` directory!
 
 Install dependencies.
