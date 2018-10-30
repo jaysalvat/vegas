@@ -2,6 +2,12 @@
 
 ## CHANGE LOG
 
+### Vegas 2.4.4 2018-10-30
+
+* Merge pull request #182 from davide93/patch-1
+* Update README.md
+* Update README.md http:// to https:// link.
+
 ### Vegas 2.4.2 2018-20-18
 
 * Update dev packages
