@@ -408,6 +408,9 @@
 
                 video.loop  = videoSettings.loop !== undefined ? videoSettings.loop : true;
                 video.muted = videoSettings.mute !== undefined ? videoSettings.mute : true;
+                if (videoSettings.playsinline === true) {
+                    video.setAttribute('playsinline', '');
+                }
 
                 if (video.muted === false) {
                     video.volume = 0;
