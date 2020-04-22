@@ -185,7 +185,7 @@
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.uglify({
                 compress: {
-                    warnings: false
+
                 },
                 mangle: true,
                 output: {
