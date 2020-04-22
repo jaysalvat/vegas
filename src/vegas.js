@@ -739,4 +739,4 @@
         return !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
     };
 
-})(window.jQuery || window.Zepto);
+})(window.jQuery || window.Zepto || window.m4q);
