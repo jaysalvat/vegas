@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.5.1 2020-04-24
+
+* Fix the height of the container when Vegas is in a div
+
 ### Vegas 2.5.0 2020-04-24
 
 * add metro 4 support
