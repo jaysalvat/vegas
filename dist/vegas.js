@@ -126,7 +126,8 @@
 
   Vegas.prototype = {
     _init: function () {
-      var $wrapper,
+      var $content,
+        $contentScroll,
         $overlay,
         $timer,
         isBody  = this.elmt.tagName === 'BODY',
@@ -137,22 +138,26 @@
       // Preloading
       this._preload();
 
-      // Wrapper with content
+      // Div with scrollable content
       if (!isBody) {
-        $wrapper = $('<div class="vegas-wrapper">')
+        $contentScroll = $('<div class="vegas-content-scrollable">');
+
+        $content = $('<div class="vegas-content">')
           .css('overflow', this.$elmt.css('overflow'))
           .css('padding',  this.$elmt.css('padding'));
 
+        this.$elmt.css('padding', 0);
+
         // Some browsers don't compute padding shorthand
         if (!this.$elmt.css('padding')) {
-          $wrapper
+          $content
             .css('padding-top',    this.$elmt.css('padding-top'))
             .css('padding-bottom', this.$elmt.css('padding-bottom'))
             .css('padding-left',   this.$elmt.css('padding-left'))
             .css('padding-right',  this.$elmt.css('padding-right'));
         }
 
-        this.$elmt.clone(true).children().appendTo($wrapper);
+        this.$elmt.clone(true).children().appendTo($content);
         this.elmt.innerHTML = '';
       }
 
@@ -179,7 +184,8 @@
       this.$elmt.addClass('vegas-container');
 
       if (!isBody) {
-        this.$elmt.append($wrapper);
+        this.$elmt.append($contentScroll);
+        $contentScroll.append($content);
       }
 
       setTimeout(function () {

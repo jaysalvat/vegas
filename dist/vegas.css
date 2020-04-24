@@ -1,5 +1,5 @@
-.vegas-wrapper,
 .vegas-overlay,
+.vegas-content-scrollable,
 .vegas-timer,
 .vegas-slide,
 .vegas-slide-inner {
@@ -12,6 +12,12 @@
     border: none;
     padding: 0;
     margin: 0;
+}
+
+.vegas-content-scrollable {
+    position: relative;
+    height: 100%;
+    overflow: auto;
 }
 
 .vegas-overlay {
