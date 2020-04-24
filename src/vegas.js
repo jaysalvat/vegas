@@ -91,11 +91,11 @@
       'kenburnsDown', 'kenburnsDownLeft', 'kenburnsDownRight'
     ];
 
-    if (this.settings.transitionRegister instanceof Array === false) {
+    if (!(this.settings.transitionRegister instanceof Array)) {
       this.settings.transitionRegister = [ this.settings.transitionRegister ];
     }
 
-    if (this.settings.animationRegister instanceof Array === false) {
+    if (!(this.settings.animationRegister instanceof Array)) {
       this.settings.animationRegister = [ this.settings.animationRegister ];
     }
 
@@ -257,7 +257,7 @@
         return videoCache[cacheKey];
       }
 
-      if (srcs instanceof Array === false) {
+      if (!srcs instanceof Array) {
         srcs = [ srcs ];
       }
 
@@ -539,11 +539,7 @@
     },
 
     _end: function () {
-      if (this.settings.autoplay) {
-        this.ended = false;
-      } else {
-        this.ended = true;
-      }
+      this.ended = !this.settings.autoplay;
       this._timer(false);
       this.trigger('end');
     },
@@ -737,4 +733,4 @@
     return !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
   };
 
-})(window.jQuery || window.Zepto);
+})(window.jQuery || window.Zepto || window.m4q);
