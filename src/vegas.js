@@ -257,7 +257,7 @@
         return videoCache[cacheKey];
       }
 
-      if (!srcs instanceof Array) {
+      if (!(srcs instanceof Array)) {
         srcs = [ srcs ];
       }
 

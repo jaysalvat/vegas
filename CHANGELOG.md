@@ -8,7 +8,7 @@
 * Update README.md
 * Update README.md http:// to https:// link.
 
-### Vegas 2.4.2 2018-20-18
+### Vegas 2.4.2 2018-09-18
 
 * Update dev packages
 * Code formating
