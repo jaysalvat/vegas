@@ -2,6 +2,11 @@
 
 ## CHANGE LOG
 
+### Vegas 2.5.0 2020-04-24
+
+* add metro 4 support
+* Try to fix some responsive issues on Vegas in a div
+
 ### Vegas 2.4.4 2018-10-30
 
 * Merge pull request #182 from davide93/patch-1
