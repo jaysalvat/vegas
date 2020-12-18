@@ -2,7 +2,7 @@
 /* global require:true, process:true */
 /* jshint laxbreak:true */
 
-(function () {
+(function() {
     'use strict';
 
     var pkg        = require('./package.json'),
@@ -13,9 +13,7 @@
         dateFormat = require('date-format'),
         spawn      = require('child_process').spawn,
         gulp       = require('gulp'),
-        plugins    = require('gulp-load-plugins')(),
-        gsync      = require('gulp-sync'),
-        sync       = gsync(gulp).sync;
+        plugins    = require('gulp-load-plugins')();
 
     var bumpVersion = yargs.argv.type || 'patch';
 
@@ -42,37 +40,47 @@
         }
     };
 
-    var getPackageJson = function () {
+    const getPackageJson = function() {
         return JSON.parse(fs.readFileSync('./package.json'));
     };
 
-    gulp.task('clean', function (cb) {
+    function clean(cb) {
         return del([ './dist' ], cb);
-    });
+    }
 
-    gulp.task('tmp-clean', function (cb) {
+    exports.clean = clean;
+
+    function tmpClean(cb) {
         return del([ './tmp' ], cb);
-    });
+    }
 
-    gulp.task('tmp-create', function (cb) {
+    exports.tmpClean = tmpClean;
+
+    function tmpCreate(cb) {
         return exec('mkdir -p ./tmp', cb);
-    });
+    }
 
-    gulp.task('tmp-copy', [ 'tmp-create' ], function () {
+    exports.tmpCreate = tmpCreate;
+
+    function tmpCopy() {
         return gulp.src('./dist/**/*')
             .pipe(gulp.dest('./tmp'));
-    });
+    }
 
-    gulp.task('zip', [ 'tmp-create' ], function () {
-        var filename = settings.name + '.zip';
+    exports.tmpCopy = gulp.series(tmpCreate, tmpCopy);    
+
+    function zip() {
+        const filename = settings.name + '.zip';
 
         return gulp.src('./dist/**/*')
             .pipe(plugins.zip(filename))
             .pipe(gulp.dest('./tmp'));
-    });
+    }
 
-    gulp.task('fail-if-dirty', function (cb) {
-        return exec('git diff-index HEAD --', function (err, output) {
+    exports.zip = gulp.series(tmpCreate, zip);   
+
+    function failIfDirty(cb) {
+        return exec('git diff-index HEAD --', function(err, output) {
             if (err) {
                 return cb(err);
             }
@@ -81,10 +89,12 @@
             }
             return cb();
         });
-    });
+    }
 
-    gulp.task('fail-if-not-master', function (cb) {
-        exec('git symbolic-ref -q HEAD', function (err, output) {
+    exports.zip = failIfDirty;
+
+    function failIfNotMaster(cb) {
+        exec('git symbolic-ref -q HEAD', function(err, output) {
             if (err) {
                 return cb(err);
             }
@@ -93,54 +103,67 @@
             }
             return cb();
         });
-    });
+    }
 
-    gulp.task('git-tag', function (cb) {
-        var message = 'v' + getPackageJson().version;
+    exports.failIfNotMaster = failIfNotMaster;
+
+    function gitTag(cb) {
+        const message = 'v' + getPackageJson().version;
 
         return exec('git tag ' + message, cb);
-    });
+    }
 
-    gulp.task('git-add', function (cb) {
+    exports.gitTag = gitTag;
+
+    function gitAdd(cb) {
         return exec('git add -A', cb);
-    });
+    }
 
-    gulp.task('git-commit', [ 'git-add' ], function (cb) {
-        var message = 'Build v' + getPackageJson().version;
+    exports.gitAdd = gitAdd;
+
+    function gitCommit(cb) {
+        const message = 'Build v' + getPackageJson().version;
 
         return exec('git commit -m "' + message + '"', cb);
-    });
+    }
 
-    gulp.task('git-pull', function (cb) {
-        return exec('git pull origin master', function (err, output, code) {
+    exports.gitCommit = gulp.series(gitAdd, gitCommit);
+
+    function gitPull(cb) {
+        return exec('git pull origin master', function(err, output, code) {
             if (code !== 0) {
                 return cb(err + output);
             }
             return cb();
         });
-    });
+    }
 
-    gulp.task('git-push', [ 'git-commit' ], function (cb) {
-        return exec('git push origin master --tags', function (err, output, code) {
+    exports.gitPull = gitPull;
+
+    function gitPush(cb) {
+        return exec('git push origin master --tags', function(err, output, code) {
             if (code !== 0) {
                 return cb(err + output);
             }
             return cb();
         });
-    });
+    }
 
-    gulp.task("npm-publish", function (cb) {
-        exec('npm publish', function (err, output, code) {
-                if (code !== 0) {
-                    return cb(err + output);
-                }
-                return cb();
+    exports.gitCommit = gulp.series(gitAdd, gitCommit, gitPush);
+
+    function npmPublish(cb) {
+        exec('npm publish', function(err, output, code) {
+            if (code !== 0) {
+                return cb(err + output);
             }
-        );
-    });
+            return cb();
+        });
+    }
 
-    gulp.task('meta', [ 'tmp-create' ], function (cb) {
-        var  metadata = {
+    exports.npmPublish = npmPublish;
+
+    function meta(cb) {
+        const metadata = {
                 date: dateFormat.asString('yyyy-MM-dd HH:MM'),
                 version: 'v' + getPackageJson().version
             },
@@ -150,9 +173,11 @@
         fs.writeFileSync('tmp/metadata.js', '__metadata(' + json + ');');
 
         return cb();
-    });
+    }
 
-    gulp.task('bump', function () {
+    exports.npmPublish = gulp.series(tmpCreate, meta);
+
+    function bump() {
         return gulp.src([ 'package.json', 'bower.json', 'component.json' ])
             .pipe(plugins.bump(
                 /^[a-z]+$/.test(bumpVersion)
@@ -160,26 +185,34 @@
                     : { version: bumpVersion }
             ))
             .pipe(gulp.dest('.'));
-    });
+    }
 
-    gulp.task('year', function () {
+    exports.npmPublish = npmPublish;
+
+    function year() {
         return gulp.src([ './LICENSE.md', './README.md' ])
             .pipe(plugins.replace(/(Copyright )(\d{4})/g, '$1' + dateFormat.asString('yyyy')))
             .pipe(gulp.dest('.'));
-    });
+    }
 
-    gulp.task('lint', function() {
+    exports.year = year;
+
+    function lint() {
         return gulp.src('./src/**.js')
             .pipe(plugins.jshint())
             .pipe(plugins.jshint.reporter('default'));
-    });
+    }
 
-    gulp.task('copy', function () {
+    exports.lint = lint;
+
+    function copy() {
         return gulp.src([ './src/**/*', '!./src/sass', '!./src/sass/**' ])
             .pipe(gulp.dest('./dist'));
-    });
+    }
 
-    gulp.task('uglify', function () {
+    exports.copy = copy;
+
+    function uglify() {
         return gulp.src('./dist/**/!(*.min.js).js')
             .pipe(plugins.rename({ suffix: '.min' }))
             .pipe(plugins.sourcemaps.init())
@@ -192,21 +225,25 @@
                     comments: /^!/
                 }
             }))
-            .on('error', function (err) { console.log(err) })
+            .on('error', function(err) { console.log(err) })
             .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest('./dist/'));
-    });
+    }
 
-    gulp.task('cssmin', function () {
+    exports.copy = copy;
+
+    function cssmin() {
         return gulp.src('./dist/**/!(*.min.css).css')
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.rename({ suffix: '.min' }))
             .pipe(plugins.cssmin())
             .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest('./dist/'));
-    });
+    }
 
-    gulp.task('sass', function () {
+    exports.cssmin = cssmin;
+
+    function sass() {
         return gulp.src("./src/sass/vegas.sass")
             // .pipe(plugins.sourcemaps.init())
             .pipe(plugins.sass({
@@ -216,17 +253,21 @@
             .pipe(plugins.autoprefixer())
             // .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest("./dist/"));
-    });
+    }
 
-    gulp.task('header', function () {
+    exports.sass = sass;
+
+    function header() {
         settings.banner.vars.pkg = getPackageJson();
 
         return gulp.src('./dist/*.js')
             .pipe(plugins.header(settings.banner.content, settings.banner.vars ))
             .pipe(gulp.dest('./dist/'));
-    });
+    }
 
-    gulp.task('gh-pages', function (cb) {
+    exports.header = header;
+
+    function ghPages(cb) {
         var version = getPackageJson().version;
 
         exec([  'git checkout gh-pages',
@@ -242,16 +283,18 @@
                 'git push origin gh-pages',
                 'git checkout -'
             ].join(' && '),
-            function (err, output, code) {
+            function(err, output, code) {
                 if (code !== 0) {
                     return cb(err + output);
                 }
                 return cb();
             }
         );
-    });
+    }
 
-    gulp.task('changelog', function (cb) {
+    exports.ghPages = ghPages;
+
+    function changelog(cb) {
         var filename  = 'CHANGELOG.md',
             editor    = process.env.EDITOR || 'vim',
             version   = getPackageJson().version,
@@ -259,7 +302,7 @@
             changelog = fs.readFileSync(filename).toString(),
             lastDate  = /\d{4}-\d{2}-\d{2}/.exec(changelog)[0];
 
-        exec('git log --since="' + lastDate + ' 00:00:00" --oneline --pretty=format:"%s"', function (err, stdout) {
+        exec('git log --since="' + lastDate + ' 00:00:00" --oneline --pretty=format:"%s"', function(err, stdout) {
             if (err) {
                 return cb(err);
             }
@@ -268,7 +311,7 @@
                 return cb();
             }
 
-            var updates = [
+            const updates = [
                 '### Vegas ' + version + ' ' + date,
                 '',
                 '* ' + stdout.replace(/\n/g, '\n* ')
@@ -278,62 +321,72 @@
 
             fs.writeFileSync(filename, changelog);
 
-            var vim = spawn(editor, [ filename, '-n', '+7' ], {
+            const vim = spawn(editor, [ filename, '-n', '+7' ], {
                 stdio: 'inherit'
             });
 
-            vim.on('close', function () {
+            vim.on('close', function() {
                 return cb();
             });
         });
-    });
+    }
 
-    gulp.task('watch', function() {
-        gulp.watch("./src/**/*", [ 'build' ]);
-    });
+    exports.changelog = changelog;
 
-    gulp.task('build', sync([
-        'lint',
-        'clean',
-        'copy',
-        'sass',
-        'header',
-        'cssmin',
-        'uglify',
-    ],
-    'building'));
+    function watch() {
+        return gulp.watch("./src/**/*", build);
+    }
 
-    gulp.task('release', sync([
-      [ 'fail-if-not-master', 'fail-if-dirty' ],
-        'git-pull',
-        'bump',
-        'changelog',
-        'year',
-        'clean',
-        'copy',
-        'sass',
-        'header',
-        'uglify',
-        'cssmin',
-        'git-add',
-        'git-commit',
-        'git-tag',
-        'git-push',
-        'publish',
-        'npm-publish'
-    ],
-    'releasing'));
+    exports.watch = watch;
+    exports.default = watch;
 
-    gulp.task('publish', sync([
-      [ 'fail-if-not-master', 'fail-if-dirty' ],
-        'tmp-create',
-        'tmp-copy',
-        'meta',
-        'zip',
-        'gh-pages',
-        'tmp-clean'
-    ],
-    'publising'));
+    const build = gulp.series(
+        lint,
+        clean,
+        copy,
+        sass,
+        header,
+        cssmin,
+        uglify,
+    );
+
+    exports.build = build;
+
+    const publish = gulp.series(
+        failIfNotMaster, 
+        failIfDirty,
+        tmpCreate,
+        tmpCopy,
+        meta,
+        zip,
+        ghPages,
+        tmpClean
+    );
+
+    exports.publish = publish;
+
+    const release = gulp.series(
+        failIfNotMaster, 
+        failIfDirty,
+        gitPull,
+        bump,
+        changelog,
+        year,
+        clean,
+        copy,
+        sass,
+        header,
+        uglify,
+        cssmin,
+        gitAdd,
+        gitCommit,
+        gitTag,
+        gitPush,
+        publish,
+        npmPublish
+    );
+
+    exports.release = release;
 })();
 
 /*
@@ -359,7 +412,6 @@ npm install --save-dev gulp-util
 npm install --save-dev gulp-zip
 npm install --save-dev gulp-rename
 npm install --save-dev gulp-replace
-npm install --save-dev gulp-sync
 
 Gh-pages creation
 -----------------
