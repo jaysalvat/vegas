@@ -190,7 +190,7 @@
     exports.npmPublish = npmPublish;
 
     function year() {
-        return gulp.src([ './LICENSE.md', './README.md' ])
+        return gulp.src([ './README.md' ])
             .pipe(plugins.replace(/(Copyright )(\d{4})/g, '$1' + dateFormat.asString('yyyy')))
             .pipe(gulp.dest('.'));
     }

@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.5.2 2020-12-18
+
+* Fix padding issue on Firefox (Thanks qzminski)
+
 ### Vegas 2.5.1 2020-04-24
 
 * Fix the height of the container when Vegas is in a div
