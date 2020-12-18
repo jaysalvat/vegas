@@ -2,7 +2,7 @@
 
 ## CHANGE LOG
 
-### Vegas 2.5.2 2020-12-18
+### Vegas 2.5.3 2020-12-18
 
 * Fix padding issue on Firefox (Thanks qzminski)
 
