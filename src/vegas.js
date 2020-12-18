@@ -137,8 +137,6 @@
           .css('overflow', this.$elmt.css('overflow'))
           .css('padding',  this.$elmt.css('padding'));
 
-        this.$elmt.css('padding', 0);
-
         // Some browsers don't compute padding shorthand
         if (!this.$elmt.css('padding')) {
           $content
@@ -147,6 +145,8 @@
             .css('padding-left',   this.$elmt.css('padding-left'))
             .css('padding-right',  this.$elmt.css('padding-right'));
         }
+
+        this.$elmt.css('padding', 0);
 
         this.$elmt.clone(true).children().appendTo($content);
         this.elmt.innerHTML = '';
