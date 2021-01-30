@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.5.4 2021-01-30
+
+* Use relative URL for overlay image (Thanks paescuj)
+
 ### Vegas 2.5.3 2020-12-18
 
 * Fix padding issue on Firefox (Thanks qzminski)
