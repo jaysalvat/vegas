@@ -10,6 +10,13 @@
     "type": "git",
     "url": "git@github.com:jaysalvat/vegas.git"
   },
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build",
+    "release:patch": "gulp release --type patch",
+    "release:minor": "gulp release --type minor",
+    "release:major": "gulp release --type major"
+  },
   "keywords": [
     "background",
     "slideshow",
