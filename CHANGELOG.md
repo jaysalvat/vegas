@@ -2,6 +2,10 @@
 
 ## CHANGE LOG
 
+### Vegas 2.6.0 2024-07-30
+
+* Play video inline
+
 ### Vegas 2.5.4 2021-01-30
 
 * Use relative URL for overlay image (Thanks paescuj)
