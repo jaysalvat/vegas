@@ -1,10 +1,10 @@
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
- * v2.5.4 - built 2021-01-30
+ * v2.5.4 - built 2024-07-30
  * Licensed under the MIT License.
  * http://vegas.jaysalvat.com/
  * ----------------------------------------------------------------------------
- * Copyright (C) 2010-2021 Jay Salvat
+ * Copyright (C) 2010-2024 Jay Salvat
  * http://jaysalvat.com/
  * --------------------------------------------------------------------------*/
 
@@ -53,7 +53,7 @@
       //  cover:              true,
       //  video: {
       //      src: [],
-      //      mute: true,
+      //      muted: true,
       //      loop: true
       // }
       // ...
@@ -61,6 +61,7 @@
   };
 
   var videoCache = {};
+  var instances = 0;
 
   var Vegas = function (elmt, options) {
     this.elmt         = elmt;
@@ -76,6 +77,8 @@
     this.$slide       = null;
     this.timeout      = null;
     this.first        = true;
+
+    this.instance = instances++;
 
     this.transitions = [
       'fade', 'fade2',
@@ -113,14 +116,12 @@
 
     this.support = {
       objectFit:  'objectFit'  in document.body.style,
-      transition: 'transition' in document.body.style || 'WebkitTransition' in document.body.style,
-      video:      $.vegas.isVideoCompatible()
+      transition: 'transition' in document.body.style || 'WebkitTransition' in document.body.style
     };
 
     if (this.settings.shuffle === true) {
       this.shuffle();
     }
-
     this._init();
   };
 
@@ -210,7 +211,7 @@
         }
 
         if (this.settings.preload || this.settings.preloadVideos) {
-          if (this.support.video && this.settings.slides[i].video) {
+          if (this.settings.slides[i].video) {
             if (this.settings.slides[i].video instanceof Array) {
               this._video(this.settings.slides[i].video);
             } else {
@@ -266,7 +267,7 @@
     _video: function (srcs) {
       var video,
         source,
-        cacheKey = srcs.toString();
+        cacheKey = this.instance + srcs.toString();
 
       if (videoCache[cacheKey]) {
         return videoCache[cacheKey];
@@ -278,6 +279,8 @@
 
       video = document.createElement('video');
       video.preload = true;
+      video.playsInline = true;
+      video.controls = false;
 
       srcs.forEach(function (src) {
         source = document.createElement('source');
@@ -291,7 +294,7 @@
     },
 
     _fadeOutSound: function (video, duration) {
-      var self   = this,
+      var self = this,
         delay  = duration / 10,
         volume = video.volume - 0.09;
 
@@ -307,7 +310,7 @@
     },
 
     _fadeInSound: function (video, duration) {
-      var self   = this,
+      var self = this,
         delay  = duration / 10,
         volume = video.volume + 0.09;
 
@@ -355,7 +358,7 @@
         video,
         img;
 
-      var transition         = this._options('transition'),
+      var transition       = this._options('transition'),
         transitionDuration = this._options('transitionDuration'),
         animation          = this._options('animation'),
         animationDuration  = this._options('animationDuration');
@@ -412,7 +415,7 @@
 
       // Video
 
-      if (this.support.video && videoSettings) {
+      if (videoSettings) {
         if (videoSettings instanceof Array) {
           video = this._video(videoSettings);
         } else {
@@ -420,7 +423,7 @@
         }
 
         video.loop  = videoSettings.loop !== undefined ? videoSettings.loop : true;
-        video.muted = videoSettings.mute !== undefined ? videoSettings.mute : true;
+        video.muted = videoSettings.muted !== undefined ? videoSettings.muted : true;
 
         if (video.muted === false) {
           video.volume = 0;
@@ -745,7 +748,7 @@
   $.vegas.defaults = defaults;
 
   $.vegas.isVideoCompatible = function () {
-    return !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent);
+    return true;
   };
 
 })(window.jQuery || window.Zepto || window.m4q);

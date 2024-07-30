@@ -347,7 +347,7 @@
         sass,
         header,
         cssmin,
-        uglify,
+        uglify
     );
 
     exports.build = build;
