@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vegas — Demo</title>
+  <link rel="stylesheet" href="../dist/vegas.css">
+  <link rel="stylesheet" href="./demo.css">
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Vegas</h1>
+    <p>Fullscreen backgrounds &amp; slideshows — no jQuery required</p>
+    <div class="controls">
+      <button id="btn-prev">← Prev</button>
+      <button id="btn-toggle">Pause</button>
+      <button id="btn-next">Next →</button>
+    </div>
+  </div>
+
+  <div class="slide-info" id="slide-info">Slide 1 / 5</div>
+
+  <script type="module">
+    import vegas from '../dist/vegas.js'
+
+    const slideshow = vegas(document.body, {
+      delay: 4000,
+      transition: 'fade',
+      transitionDuration: 1000,
+      animation: 'kenburns',
+      animationDuration: 4000,
+      timer: true,
+      overlay: true,
+      slides: [
+        { src: './assets/unsplash1.jpg' },
+        { src: './assets/unsplash2.jpg' },
+        { src: './assets/unsplash3.jpg' },
+        { src: './assets/unsplash4.jpg' },
+        { src: './assets/unsplash5.jpg' }
+      ],
+      walk(index) {
+        document.getElementById('slide-info').textContent = `Slide ${index + 1} / 5`
+      }
+    })
+
+    document.getElementById('btn-prev').addEventListener('click', () => slideshow.previous())
+    document.getElementById('btn-next').addEventListener('click', () => slideshow.next())
+    document.getElementById('btn-toggle').addEventListener('click', () => {
+      slideshow.toggle()
+      document.getElementById('btn-toggle').textContent = slideshow.playing() ? 'Pause' : 'Play'
+    })
+  </script>
+
+</body>
+</html>

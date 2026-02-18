@@ -5,8 +5,13 @@
   "homepage": "http://vegas.jaysalvat.com",
   "author": "Jay Salvat",
   "license": "MIT",
-  "main": "dist/vegas.min.js",
+  "main": "dist/vegas.js",
   "type": "module",
+  "exports": {
+    ".": "./dist/vegas.js",
+    "./jquery": "./src/jquery.vegas.js",
+    "./dist/*": "./dist/*"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:jaysalvat/vegas.git"

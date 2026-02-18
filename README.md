@@ -2,40 +2,91 @@ Vegas – Backgrounds and Slideshows
 ==================================
 
 [![NPM version](https://badge.fury.io/js/vegas.svg)](https://badge.fury.io/js/vegas)
-[![Bower version](https://badge.fury.io/bo/vegas.svg)](https://badge.fury.io/bo/vegas)
 
-Vegas is a [jQuery](https://jquery.com)/[Zepto](https://zeptojs.com) plugin 
-to add beautiful backgrounds and Slideshows to DOM elements.
-
-**Important note:** Vegas 2 is not a drop-in replacement for version 1.x. It's a brand new plugin.
+Vegas is a JavaScript library to add beautiful backgrounds and slideshows to DOM elements.
+No jQuery required — a jQuery wrapper is available separately.
 
 #### Install
 
-Download the [last version](https://jaysalvat.github.io/vegas/releases/latest/vegas.zip).
-
-Or use [Bower](https://bower.io/):
-
-    bower install vegas
-
-Or use [NPM](https://www.npmjs.org/):
+Use [NPM](https://www.npmjs.org/):
 
     npm install vegas
 
+Or download the [latest release](https://jaysalvat.github.io/vegas/releases/latest/vegas.zip).
+
 #### Get started
 
-First, include either [jQuery](https://jquery.com) or [Zepto](https://zeptojs.com).
+**Vanilla JS**
 
-Then...
+Include `vegas.css` and `vegas.js`, then:
 
-    $(function() {
-        $('body').vegas({
-            slides: [
-                { src: 'img1.jpg' },
-                { src: 'img2.jpg' },
-                { src: 'img3.jpg' }
-            ]
-        });
-    });
+```html
+<link rel="stylesheet" href="vegas/dist/vegas.css">
+<script type="module">
+  import vegas from 'vegas/dist/vegas.js'
+
+  vegas('body', {
+    slides: [
+      { src: 'img1.jpg' },
+      { src: 'img2.jpg' },
+      { src: 'img3.jpg' }
+    ]
+  })
+</script>
+```
+
+**Bundler (Vite, Webpack…)**
+
+```js
+import 'vegas/dist/vegas.css'
+import vegas from 'vegas'
+
+vegas('body', {
+  slides: [
+    { src: 'img1.jpg' },
+    { src: 'img2.jpg' },
+    { src: 'img3.jpg' }
+  ]
+})
+```
+
+For the jQuery wrapper (auto-registers with global `$`):
+
+```js
+import 'vegas/dist/vegas.css'
+import 'vegas/jquery'
+
+$('body').vegas({
+  slides: [
+    { src: 'img1.jpg' },
+    { src: 'img2.jpg' },
+    { src: 'img3.jpg' }
+  ]
+})
+```
+
+**jQuery wrapper**
+
+> The jQuery wrapper is provided for backward compatibility with Vegas v2. New projects should use the vanilla JS API.
+
+Include jQuery, then `jquery.vegas.js` — the plugin registers itself automatically:
+
+```html
+<link rel="stylesheet" href="vegas/dist/vegas.css">
+<script src="jquery.min.js"></script>
+<script src="vegas/dist/jquery.vegas.js"></script>
+<script>
+  $('body').vegas({
+    slides: [
+      { src: 'img1.jpg' },
+      { src: 'img2.jpg' },
+      { src: 'img3.jpg' }
+    ]
+  })
+</script>
+```
+
+The wrapper is also compatible with [Zepto](https://zeptojs.com) and [m4q](https://github.com/olton/m4q).
 
 ### Official website
 https://vegas.jaysalvat.com/
@@ -46,32 +97,30 @@ https://vegas.jaysalvat.com/demo/
 ### Documentation
 https://vegas.jaysalvat.com/documentation/
 
-#### Looking for Vegas v1?
-
-The [Vegas v1 website](http://v1.vegas.jaysalvat.com) is still available but this version is not maintained anymore.
-
 Contributing
 ------------
 
-Please don't edit files in the `dist` directory as they are generated via [Gulp](https://gulpjs.com). 
-You'll find source code in the `src` directory!
+Please don't edit files in the `dist` directory as they are generated via [Rollup](https://rollupjs.org).
+You'll find source code in the `src` directory.
 
-Install dependencies.
+Install dependencies:
 
     npm install
 
-Run watch task before editing code. 
+Watch JS changes during development:
 
-    gulp watch
+    npm run dev
 
-Regarding code style like indentation and whitespace, **follow the conventions you see used in the source already.**
+Build for production:
+
+    npm run build
 
 License
 -------
 
 **The MIT License (MIT)**
 
-Copyright 2024 Jay Salvat
+Copyright 2026 Jay Salvat
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

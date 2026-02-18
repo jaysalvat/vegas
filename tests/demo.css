@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  color: white;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  text-shadow: 0 2px 20px rgba(0,0,0,.5);
+}
+
+p {
+  font-size: 1.1rem;
+  opacity: .8;
+  text-shadow: 0 1px 8px rgba(0,0,0,.5);
+}
+
+.controls {
+  display: flex;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+button {
+  padding: .5rem 1.25rem;
+  border: 2px solid rgba(255,255,255,.6);
+  border-radius: 999px;
+  background: rgba(255,255,255,.15);
+  color: white;
+  font-size: .9rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background .2s;
+}
+
+button:hover {
+  background: rgba(255,255,255,.3);
+}
+
+.slide-info {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-size: .8rem;
+  opacity: .6;
+  letter-spacing: .05em;
+}

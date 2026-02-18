@@ -1,7 +1,7 @@
 
 import vegas from './vegas.js'
 
-export default function jqueryVegas($) {
+function jqueryVegas($) {
   $.fn.vegas = function (options) {
     const args = arguments
     let error = false
@@ -79,3 +79,13 @@ export default function jqueryVegas($) {
     isVideoCompatible: vegas.isVideoCompatible
   }
 }
+
+// Auto-register if jQuery/Zepto/m4q is available globally
+if (typeof window !== 'undefined') {
+  const $ = window.jQuery || window.Zepto || window.m4q
+  if ($) {
+    jqueryVegas($)
+  }
+}
+
+export default jqueryVegas

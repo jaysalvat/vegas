@@ -1,9 +1,9 @@
-import terser from '@rollup/plugin-terser';
-import { readFileSync } from 'fs';
+import terser from '@rollup/plugin-terser'
+import { readFileSync } from 'fs'
 
-const pkg = JSON.parse(readFileSync('./package.json', 'utf8'));
-const year = new Date().getFullYear();
-const date = new Date().toISOString().slice(0, 10);
+const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
+const year = new Date().getFullYear()
+const date = new Date().toISOString().slice(0, 10)
 
 const banner = `/*!-----------------------------------------------------------------------------
  * ${pkg.description}
@@ -13,7 +13,7 @@ const banner = `/*!-------------------------------------------------------------
  * ----------------------------------------------------------------------------
  * Copyright (C) 2010-${year} Jay Salvat
  * http://jaysalvat.com/
- * --------------------------------------------------------------------------*/`;
+ * --------------------------------------------------------------------------*/`
 
 export default [
   // Vanilla build
@@ -40,22 +40,22 @@ export default [
       ]
     }
   },
-  // jQuery wrapper build
+  // jQuery wrapper build (IIFE, auto-registers with global jQuery/Zepto/m4q)
   {
     input: 'src/jquery.vegas.js',
-    external: [ 'jquery' ],
     output: {
       file: 'dist/jquery.vegas.js',
-      format: 'es',
+      format: 'iife',
+      name: 'jqueryVegas',
       banner
     }
   },
   {
     input: 'src/jquery.vegas.js',
-    external: [ 'jquery' ],
     output: {
       file: 'dist/jquery.vegas.min.js',
-      format: 'es',
+      format: 'iife',
+      name: 'jqueryVegas',
       sourcemap: true,
       banner,
       plugins: [
@@ -66,4 +66,4 @@ export default [
       ]
     }
   }
-];
+]
