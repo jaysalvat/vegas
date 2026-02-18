@@ -16,6 +16,7 @@ const banner = `/*!-------------------------------------------------------------
  * --------------------------------------------------------------------------*/`;
 
 export default [
+  // Vanilla build
   {
     input: 'src/vegas.js',
     output: {
@@ -28,6 +29,32 @@ export default [
     input: 'src/vegas.js',
     output: {
       file: 'dist/vegas.min.js',
+      format: 'es',
+      sourcemap: true,
+      banner,
+      plugins: [
+        terser({
+          mangle: true,
+          format: { comments: /^!/ }
+        })
+      ]
+    }
+  },
+  // jQuery wrapper build
+  {
+    input: 'src/jquery.vegas.js',
+    external: [ 'jquery' ],
+    output: {
+      file: 'dist/jquery.vegas.js',
+      format: 'es',
+      banner
+    }
+  },
+  {
+    input: 'src/jquery.vegas.js',
+    external: [ 'jquery' ],
+    output: {
+      file: 'dist/jquery.vegas.min.js',
       format: 'es',
       sourcemap: true,
       banner,
