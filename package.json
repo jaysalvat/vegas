@@ -6,16 +6,17 @@
   "author": "Jay Salvat",
   "license": "MIT",
   "main": "dist/vegas.min.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:jaysalvat/vegas.git"
   },
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build",
-    "release:patch": "gulp release --type patch",
-    "release:minor": "gulp release --type minor",
-    "release:major": "gulp release --type major"
+    "dev": "rollup -c --watch",
+    "build": "node scripts/build.mjs",
+    "release:patch": "node scripts/release.mjs --type patch",
+    "release:minor": "node scripts/release.mjs --type minor",
+    "release:major": "node scripts/release.mjs --type major"
   },
   "keywords": [
     "background",
@@ -27,26 +28,13 @@
     "zepto"
   ],
   "devDependencies": {
-    "date-format": "^3.0.0",
-    "del": "^6.1.1",
-    "exec": "^0.2.1",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
-    "gulp-bump": "^3.2.0",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-header": "^2.0.9",
-    "gulp-jshint": "^2.1.0",
-    "gulp-load-plugins": "^2.0.8",
-    "gulp-rename": "^2.0.0",
-    "gulp-replace": "^1.1.4",
-    "gulp-sass": "^4.1.1",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-sync": "^0.1.4",
-    "gulp-uglify": "^3.0.2",
-    "gulp-util": "^3.0.8",
-    "gulp-zip": "^5.1.0",
-    "jshint": "^2.13.6",
-    "yargs": "^16.2.0"
+    "@rollup/plugin-terser": "^0.4.4",
+    "archiver": "^7.0.1",
+    "autoprefixer": "^10.4.24",
+    "cssnano": "^7.1.2",
+    "postcss": "^8.5.6",
+    "rollup": "^4.57.1",
+    "sass": "^1.97.3"
   },
   "dependencies": {}
 }
