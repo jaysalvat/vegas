@@ -18,10 +18,10 @@
   },
   "scripts": {
     "dev": "rollup -c --watch",
-    "build": "node scripts/build.mjs",
-    "release:patch": "node scripts/release.mjs --type patch",
-    "release:minor": "node scripts/release.mjs --type minor",
-    "release:major": "node scripts/release.mjs --type major"
+    "build": "node scripts/build.js",
+    "release:patch": "node scripts/release.js --type patch",
+    "release:minor": "node scripts/release.js --type minor",
+    "release:major": "node scripts/release.js --type major"
   },
   "keywords": [
     "background",
