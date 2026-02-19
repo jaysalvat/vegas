@@ -40,6 +40,32 @@ export default [
       ]
     }
   },
+  // Vanilla IIFE build (window.vegas global for <script> tag usage)
+  {
+    input: 'src/vegas.js',
+    output: {
+      file: 'dist/vegas.iife.js',
+      format: 'iife',
+      name: 'vegas',
+      banner
+    }
+  },
+  {
+    input: 'src/vegas.js',
+    output: {
+      file: 'dist/vegas.iife.min.js',
+      format: 'iife',
+      name: 'vegas',
+      sourcemap: true,
+      banner,
+      plugins: [
+        terser({
+          mangle: true,
+          format: { comments: /^!/ }
+        })
+      ]
+    }
+  },
   // jQuery wrapper build (IIFE, auto-registers with global jQuery/Zepto/m4q)
   {
     input: 'src/jquery.vegas.js',
