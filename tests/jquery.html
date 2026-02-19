@@ -21,10 +21,14 @@
 
   <div class="slide-info" id="slide-info">Slide 1 / 5</div>
 
+  <section class="demo-section">
+    <div id="div-slideshow"></div>
+  </section>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="../dist/jquery.vegas.js"></script>
   <script>
-    $('body').vegas({
+    const settings = {
       delay: 4000,
       transition: 'fade',
       transitionDuration: 1000,
@@ -42,12 +46,22 @@
       walk(index) {
         $('#slide-info').text(`Slide ${index + 1} / 5`)
       }
-    })
+    }
 
-    $('#btn-prev').on('click', () => $('body').vegas('previous'))
-    $('#btn-next').on('click', () => $('body').vegas('next'))
+    $('body').vegas(settings)
+    $('#div-slideshow').vegas(settings)
+
+    $('#btn-prev').on('click', () => {
+      $('body').vegas('previous')
+      $('#div-slideshow').vegas('previous')
+    })
+    $('#btn-next').on('click', () => {
+      $('body').vegas('next')
+      $('#div-slideshow').vegas('next')
+    })
     $('#btn-toggle').on('click', () => {
       $('body').vegas('toggle')
+      $('#div-slideshow').vegas('toggle')
       const playing = $('body').vegas('playing')
       $('#btn-toggle').text(playing ? 'Pause' : 'Play')
     })

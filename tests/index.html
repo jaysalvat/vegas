@@ -21,10 +21,14 @@
 
   <div class="slide-info" id="slide-info">Slide 1 / 5</div>
 
+  <section class="demo-section">
+    <div id="div-slideshow"></div>
+  </section>
+
   <script type="module">
     import vegas from '../dist/vegas.js'
 
-    const slideshow = vegas(document.body, {
+    const settings = {
       delay: 4000,
       transition: 'fade',
       transitionDuration: 1000,
@@ -42,12 +46,22 @@
       walk(index) {
         document.getElementById('slide-info').textContent = `Slide ${index + 1} / 5`
       }
-    })
+    }
 
-    document.getElementById('btn-prev').addEventListener('click', () => slideshow.previous())
-    document.getElementById('btn-next').addEventListener('click', () => slideshow.next())
+    const slideshow = vegas('body', settings)
+    const slideshow2 = vegas('#div-slideshow', settings)
+
+    document.getElementById('btn-prev').addEventListener('click', () => {
+      slideshow.previous()
+      slideshow2.previous()
+    })
+    document.getElementById('btn-next').addEventListener('click', () => {
+      slideshow.next()
+      slideshow2.next();
+    })
     document.getElementById('btn-toggle').addEventListener('click', () => {
       slideshow.toggle()
+      slideshow2.toggle()
       document.getElementById('btn-toggle').textContent = slideshow.playing() ? 'Pause' : 'Play'
     })
   </script>

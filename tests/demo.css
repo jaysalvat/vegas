@@ -23,13 +23,13 @@ h1 {
   font-size: clamp(2rem, 8vw, 5rem);
   font-weight: 900;
   letter-spacing: -.02em;
-  text-shadow: 0 2px 20px rgba(0,0,0,.5);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .5);
 }
 
 p {
   font-size: 1.1rem;
   opacity: .8;
-  text-shadow: 0 1px 8px rgba(0,0,0,.5);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
 }
 
 .controls {
@@ -40,9 +40,9 @@ p {
 
 button {
   padding: .5rem 1.25rem;
-  border: 2px solid rgba(255,255,255,.6);
+  border: 2px solid rgba(255, 255, 255, .6);
   border-radius: 999px;
-  background: rgba(255,255,255,.15);
+  background: rgba(255, 255, 255, .15);
   color: white;
   font-size: .9rem;
   cursor: pointer;
@@ -51,7 +51,7 @@ button {
 }
 
 button:hover {
-  background: rgba(255,255,255,.3);
+  background: rgba(255, 255, 255, .3);
 }
 
 .slide-info {
@@ -61,4 +61,20 @@ button:hover {
   font-size: .8rem;
   opacity: .6;
   letter-spacing: .05em;
+}
+
+.demo-section {
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+}
+
+#div-slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
