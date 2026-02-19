@@ -2,6 +2,15 @@
 
 ## CHANGE LOG
 
+### Vegas 3.0.0 2026-02-19
+
+* Add IIFE, ESM builds for vanilla Vegas
+* Update eslint
+* Remove SASS to standard CSS
+* Rewrite Vegas with no jquery
+* Jquery wrapper for retrocompatibility
+* Get rid of Gulp, switch to Rollup
+
 ### Vegas 2.6.0 2024-07-30
 
 * Play video inline
