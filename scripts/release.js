@@ -18,7 +18,8 @@ const typeIdx = args.indexOf('--type');
 const typeArg = typeIdx !== -1 ? args[typeIdx + 1] : 'patch';
 
 function exec(cmd, opts = {}) {
-  return execSync(cmd, { cwd: root, encoding: 'utf8', ...opts }).trim();
+  const result = execSync(cmd, { cwd: root, encoding: 'utf8', ...opts });
+  return result ? result.trim() : '';
 }
 
 function readJson(path) {
