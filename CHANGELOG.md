@@ -5,7 +5,6 @@
 ### Vegas 3.0.0 2026-02-19
 
 * Add IIFE, ESM builds for vanilla Vegas
-* Update eslint
 * Remove SASS to standard CSS
 * Rewrite Vegas with no jquery
 * Jquery wrapper for retrocompatibility
